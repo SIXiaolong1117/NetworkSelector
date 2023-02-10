@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "NetworkSelector (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "NetworkSelector (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

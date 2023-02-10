@@ -1,0 +1,25 @@
+﻿<!-- Copyright (c) Microsoft Corporation and Contributors. -->
+<!-- Licensed under the MIT License. -->
+
+<Page
+    x:Class="NetworkSelector.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:NetworkSelector"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <ComboBox x:Name="backgroundMaterial" 
+                      ItemsSource="{x:Bind material}" 
+                      SelectionChanged="backgroundMaterial_SelectionChanged" 
+                      Header="背景材料：" 
+                      Width="268" 
+                      Margin="0,8,0,0">
+            </ComboBox>
+        </StackPanel>
+    </Grid>
+</Page>

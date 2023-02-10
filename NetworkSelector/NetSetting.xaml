@@ -1,0 +1,40 @@
+﻿<!-- Copyright (c) Microsoft Corporation and Contributors. -->
+<!-- Licensed under the MIT License. -->
+
+<Page
+    x:Class="NetworkSelector.NetSetting"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:NetworkSelector"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <ComboBox x:Name="configName" 
+                      ItemsSource="{x:Bind ConfigSelector}" 
+                      SelectionChanged="configName_SelectionChanged" 
+                      Header="预设名称：" 
+                      Width="268" 
+                      Margin="0,0,0,8">
+                    </ComboBox>
+                    <TextBox x:Name="netName" Header="网卡名称：" PlaceholderText="以太网" Width="268" Margin="0,0,0,8"/>
+                    <TextBox x:Name="IPAddr" Header="IP地址：" PlaceholderText="192.168.0.1" Width="268" Margin="0,0,0,8"/>
+                    <TextBox x:Name="mask" Header="子网掩码：" PlaceholderText="255.255.255.0" Width="268" Margin="0,0,0,8"/>
+                    <TextBox x:Name="gateway" Header="网关：" PlaceholderText="192.168.0.1" Width="268" Margin="0,0,0,8"/>
+                    <TextBox x:Name="DNS1" Header="首选DNS：" PlaceholderText="192.168.0.1" Width="268" Margin="0,0,0,8"/>
+                    <TextBox x:Name="DNS2" Header="备选DNS：" PlaceholderText="4.2.2.1" Width="268" Margin="0,0,0,8"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Button HorizontalAlignment="Center" Content="保存为预设" Click="saveButton_Click" Width="100" Margin="0,0,8,0"/>
+                        <Button HorizontalAlignment="Center" Content="保存并应用" Click="saveApplyButton_Click" Width="100" />
+                    </StackPanel>
+                    <TextBox x:Name="netshCMD" Header="CMD：" PlaceholderText="" Width="268" Margin="0,8,0,0"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>
