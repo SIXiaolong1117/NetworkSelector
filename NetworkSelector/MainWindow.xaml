@@ -24,8 +24,7 @@
 
         <NavigationView x:Name="NavView" SelectionChanged="NavigationView_SelectionChanged" Grid.Row="1" IsBackButtonVisible="Collapsed" IsSettingsVisible="True">
             <NavigationView.MenuItems>
-                <NavigationViewItem Icon="Sort" Content="网络选择" Tag="NetSelector"/>
-                <NavigationViewItem Icon="Sort" Content="预设设置" Tag="NetSetting"/>
+                <NavigationViewItem Icon="Sort" Content="网络选择" Tag="NetSetting"/>
             </NavigationView.MenuItems>
             <NavigationView.FooterMenuItems>
                 <NavigationViewItem Icon="Message" Content="关于" Tag="About"/>

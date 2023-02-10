@@ -43,8 +43,7 @@ namespace NetworkSelector
 
             TrySetSystemBackdrop();
 
-            NavView.SelectedItem = NavView.MenuItems[1];
-            //contentFrame.Navigate(typeof(DragandDrop));
+            NavView.SelectedItem = NavView.MenuItems[0];
         }
 
         bool TrySetSystemBackdrop()
@@ -146,17 +145,13 @@ namespace NetworkSelector
             else
             {
                 var selectedItem = (NavigationViewItem)args.SelectedItem;
-                if ((string)selectedItem.Tag == "NetSelector")
-                {
-                    contentFrame.Navigate(typeof(NetSelector));
-                }
-                else if ((string)selectedItem.Tag == "NetSetting")
+                if ((string)selectedItem.Tag == "NetSetting")
                 {
                     contentFrame.Navigate(typeof(NetSetting));
                 }
                 else if ((string)selectedItem.Tag == "About")
                 {
-                    //contentFrame.Navigate(typeof(About));
+                    contentFrame.Navigate(typeof(About));
                 }
             }
         }

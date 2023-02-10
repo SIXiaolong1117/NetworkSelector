@@ -18,9 +18,9 @@ using Windows.Foundation.Collections;
 
 namespace NetworkSelector
 {
-    public sealed partial class NetSelector : Page
+    public sealed partial class About : Page
     {
-        public NetSelector()
+        public About()
         {
             this.InitializeComponent();
         }

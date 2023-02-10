@@ -27,6 +27,7 @@ namespace NetworkSelector
         ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
         public List<string> ConfigSelector { get; } = new List<string>()
         {
+            "自动",
             "预设1",
             "预设2",
             "预设3",
@@ -45,24 +46,58 @@ namespace NetworkSelector
         }
         public void applyConfig()
         {
-            localSettings.Values["netshCMD"] =
+            if ((configName.SelectedItem as string) == "自动")
+            {
+                localSettings.Values["netshCMD"] =
+                    "netsh interface ip set address '" + netName.Text + "' dhcp;"
+                    + "netsh interface ip set dns name='" + netName.Text + "' source=dhcp;";
+            }
+            else
+            {
+                localSettings.Values["netshCMD"] =
                 "netsh interface ip set address name='" + netName.Text + "' source=static addr='" + IPAddr.Text + "' mask='" + mask.Text + "' gateway='" + gateway.Text + "'; "
                 + "netsh interface ip set dns name='" + netName.Text + "' source=static addr='" + DNS1.Text + "' register=primary;"
                 + "netsh interface ip add dns name='" + netName.Text + "' addr='" + DNS2.Text + "' index=2;";
+            }
+
             netshCMD.Text = localSettings.Values["netshCMD"] as string;
         }
-        public NetSetting()
+        public void refreshContent()
         {
-            this.InitializeComponent();
-
             netName.Text = localSettings.Values[(configName.SelectedItem as string) + "netName"] as string;
             IPAddr.Text = localSettings.Values[(configName.SelectedItem as string) + "IPAddr"] as string;
             mask.Text = localSettings.Values[(configName.SelectedItem as string) + "mask"] as string;
             gateway.Text = localSettings.Values[(configName.SelectedItem as string) + "gateway"] as string;
             DNS1.Text = localSettings.Values[(configName.SelectedItem as string) + "DNS1"] as string;
             DNS2.Text = localSettings.Values[(configName.SelectedItem as string) + "DNS2"] as string;
+        }
+        public void refreshStatus()
+        {
+            if ((configName.SelectedItem as string) == "自动")
+            {
+                IPAddr.IsEnabled = false;
+                mask.IsEnabled = false;
+                gateway.IsEnabled = false;
+                DNS1.IsEnabled = false;
+                DNS2.IsEnabled = false;
+            }
+            else
+            {
+                IPAddr.IsEnabled = true;
+                mask.IsEnabled = true;
+                gateway.IsEnabled = true;
+                DNS1.IsEnabled = true;
+                DNS2.IsEnabled = true;
+            }
+        }
+        public NetSetting()
+        {
+            this.InitializeComponent();
 
             configName.SelectedItem = ConfigSelector[0];
+
+            refreshContent();
+            refreshStatus();
         }
         private void saveButton_Click(object sender, RoutedEventArgs e)
         {
@@ -88,15 +123,12 @@ namespace NetworkSelector
         }
         public void saveApplyChildThread()
         {
+            saveConfig();
         }
         private void configName_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            netName.Text = localSettings.Values[(configName.SelectedItem as string) + "netName"] as string;
-            IPAddr.Text = localSettings.Values[(configName.SelectedItem as string) + "IPAddr"] as string;
-            mask.Text = localSettings.Values[(configName.SelectedItem as string) + "mask"] as string;
-            gateway.Text = localSettings.Values[(configName.SelectedItem as string) + "gateway"] as string;
-            DNS1.Text = localSettings.Values[(configName.SelectedItem as string) + "DNS1"] as string;
-            DNS2.Text = localSettings.Values[(configName.SelectedItem as string) + "DNS2"] as string;
+            refreshContent();
+            refreshStatus();
         }
     }
 }
