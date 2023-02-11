@@ -97,7 +97,15 @@ namespace NetworkSelector
         {
             this.InitializeComponent();
 
-            configName.SelectedItem = ConfigSelector[0];
+            if (localSettings.Values["configName"] == null)
+            {
+                configName.SelectedItem = ConfigSelector[0];
+                localSettings.Values["configName"] = ConfigSelector[0];
+            }
+            else
+            {
+                configName.SelectedItem = localSettings.Values["configName"];
+            }
 
             refreshContent();
             refreshStatus();
@@ -117,16 +125,17 @@ namespace NetworkSelector
             process.StartInfo.FileName = "PowerShell.exe";
             process.StartInfo.Arguments = localSettings.Values["netshCMD"] as string;
             //是否使用操作系统shell启动
-            process.StartInfo.UseShellExecute = true;
+            process.StartInfo.UseShellExecute = false;
             //是否在新窗口中启动该进程的值 (不显示程序窗口)
             process.StartInfo.CreateNoWindow = true;
             process.Start();
             process.WaitForExit();
             process.Close();
+            localSettings.Values["configName"] = configName.SelectedItem;
         }
         public void saveApplyChildThread()
         {
-            saveConfig();
+
         }
         private void configName_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
