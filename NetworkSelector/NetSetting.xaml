@@ -20,21 +20,27 @@
                       SelectionChanged="configName_SelectionChanged" 
                       Header="IP设置：" 
                       Width="268" 
-                      Margin="0,0,0,8">
+                      Margin="0,8,0,0">
                     </ComboBox>
-                    <TextBox x:Name="netName" Header="网卡名称：" PlaceholderText="eg: 以太网" Width="268" Margin="0,0,0,8"/>
+                    <TextBox x:Name="netName" Header="网卡名称：" Width="268" Margin="0,8,0,0"/>
+                    <TextBlock Text="eg: 以太网" Foreground="DarkGray" FontSize="12"/>
                     <StackPanel x:Name="optionToHide" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <TextBox x:Name="IPAddr" Header="IP地址：" PlaceholderText="eg: 192.168.0.1" Width="268" Margin="0,0,0,8"/>
-                        <TextBox x:Name="mask" Header="子网掩码：" PlaceholderText="eg: 255.255.255.0" Width="268" Margin="0,0,0,8"/>
-                        <TextBox x:Name="gateway" Header="网关：" PlaceholderText="eg: 192.168.0.1" Width="268" Margin="0,0,0,8"/>
-                        <TextBox x:Name="DNS1" Header="首选DNS：" PlaceholderText="eg: 192.168.0.1" Width="268" Margin="0,0,0,8"/>
-                        <TextBox x:Name="DNS2" Header="备选DNS：" PlaceholderText="eg: 4.2.2.1" Width="268" Margin="0,0,0,8"/>
+                        <TextBox x:Name="IPAddr" Header="IP地址：" Width="268" Margin="0,8,0,0"/>
+                        <TextBlock Text="eg: 192.168.0.1" Foreground="DarkGray" FontSize="12"/>
+                        <TextBox x:Name="mask" Header="子网掩码：" Width="268" Margin="0,8,0,0"/>
+                        <TextBlock Text="eg: 255.255.255.0" Foreground="DarkGray" FontSize="12"/>
+                        <TextBox x:Name="gateway" Header="网关：" Width="268" Margin="0,8,0,0"/>
+                        <TextBlock Text="eg: 192.168.0.1" Foreground="DarkGray" FontSize="12"/>
+                        <TextBox x:Name="DNS1" Header="首选DNS：" Width="268" Margin="0,8,0,0"/>
+                        <TextBlock Text="eg: 192.168.0.1" Foreground="DarkGray" FontSize="12"/>
+                        <TextBox x:Name="DNS2" Header="备选DNS：" Width="268" Margin="0,8,0,0"/>
+                        <TextBlock Text="eg: 4.2.2.1" Foreground="DarkGray" FontSize="12"/>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,8,0,0">
                         <Button HorizontalAlignment="Center" Content="保存为预设" Click="saveButton_Click" Width="100" Margin="0,0,8,0"/>
-                        <Button HorizontalAlignment="Center" Content="保存并应用" Click="saveApplyButton_Click" Width="100" />
+                        <Button x:Name="saveApplyButton" HorizontalAlignment="Center" Content="保存并应用" Click="saveApplyButton_Click" Width="100" />
                     </StackPanel>
-                    <TextBox x:Name="netshCMD" Header="CMD：" PlaceholderText="" Width="268" Margin="0,8,0,0"/>
+                    <TextBox x:Name="netshCMD" Header="CMD：" Width="268" Margin="0,8,0,0"/>
                 </StackPanel>
             </StackPanel>
         </StackPanel>

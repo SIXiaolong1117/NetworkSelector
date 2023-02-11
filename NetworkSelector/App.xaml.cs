@@ -52,7 +52,7 @@ namespace NetworkSelector
             var appWindow = Microsoft.UI.Windowing.AppWindow.GetFromWindowId(windowId);
 
             // 重新设定窗口大小
-            appWindow.Resize(new Windows.Graphics.SizeInt32 { Width = 480, Height = 870 });
+            appWindow.Resize(new Windows.Graphics.SizeInt32 { Width = 500, Height = 1000 });
         }
 
         public static Window m_window;
