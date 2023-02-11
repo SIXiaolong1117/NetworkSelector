@@ -8,6 +8,7 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using Microsoft.VisualBasic.FileIO;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -75,6 +76,7 @@ namespace NetworkSelector
         {
             if ((configName.SelectedItem as string) == "自动")
             {
+                optionToHide.Visibility = Visibility.Collapsed;
                 IPAddr.IsEnabled = false;
                 mask.IsEnabled = false;
                 gateway.IsEnabled = false;
@@ -83,6 +85,7 @@ namespace NetworkSelector
             }
             else
             {
+                optionToHide.Visibility = Visibility.Visible;
                 IPAddr.IsEnabled = true;
                 mask.IsEnabled = true;
                 gateway.IsEnabled = true;
