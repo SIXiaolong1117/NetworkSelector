@@ -6,7 +6,7 @@
 
 ## 项目预览
 
-<img src="./README/屏幕截图 2023-02-11 015534.png" style="zoom:50%;" />
+<img src="./README/屏幕截图 2023-02-11 015534.png" style="max-width: 30%;" />
 
 ## ⬇下载
 
