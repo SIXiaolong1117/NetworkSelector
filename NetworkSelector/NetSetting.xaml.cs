@@ -19,6 +19,7 @@ using System.Threading;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
+using WinRT;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace NetworkSelector
@@ -37,13 +38,14 @@ namespace NetworkSelector
         };
         public void saveConfig()
         {
-
             localSettings.Values[(configName.SelectedItem as string) + "netName"] = netName.Text;
             localSettings.Values[(configName.SelectedItem as string) + "IPAddr"] = IPAddr.Text;
             localSettings.Values[(configName.SelectedItem as string) + "mask"] = mask.Text;
             localSettings.Values[(configName.SelectedItem as string) + "gateway"] = gateway.Text;
             localSettings.Values[(configName.SelectedItem as string) + "DNS1"] = DNS1.Text;
             localSettings.Values[(configName.SelectedItem as string) + "DNS2"] = DNS2.Text;
+
+            netshCMD.Text = localSettings.Values["netshCMD"] as string;
         }
         public void applyConfig()
         {
@@ -60,8 +62,6 @@ namespace NetworkSelector
                 + "netsh interface ip set dns name='" + netName.Text + "' source=static addr='" + DNS1.Text + "' register=primary;"
                 + "netsh interface ip add dns name='" + netName.Text + "' addr='" + DNS2.Text + "' index=2;";
             }
-
-            netshCMD.Text = localSettings.Values["netshCMD"] as string;
         }
         public void refreshContent()
         {

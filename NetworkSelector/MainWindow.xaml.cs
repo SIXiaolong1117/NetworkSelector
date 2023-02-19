@@ -45,7 +45,6 @@ namespace NetworkSelector
 
             NavView.SelectedItem = NavView.MenuItems[0];
         }
-
         bool TrySetSystemBackdrop()
         {
             if (Microsoft.UI.Composition.SystemBackdrops.MicaController.IsSupported())
