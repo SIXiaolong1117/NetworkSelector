@@ -1,12 +1,23 @@
-# Network Selector
-
-个人的一个 C# + WinUI3 的练手项目，可以在多个网络配置预设中快速切换。
-
-因为微软没有在 Windows 中提供保存网络设置为预设的功能，对于需要经常切换网关服务器/代理服务器的用户来说十分的麻烦，于是我就开发了这个小工具。
+<p align="center">
+  <h1 align="center">Network Selector</h1>
+  <p align="center">个人的一个 C# + WinUI3 的练手项目，可以在多个网络配置预设中快速切换。</p>
+  <p align="center">因为微软没有在 Windows 中提供保存网络设置为预设的功能，对于需要经常切换网关服务器/代理服务器的用户来说十分的麻烦，于是我就开发了这个小工具。</p>
+  <p align="center">
+    <a href="https://github.com/Direct5dom/NetworkSelector/blob/master/LICENSE">
+      <img src="https://img.shields.io/github/license/Direct5dom/NetworkSelector"/>
+    </a>
+    <a href="https://github.com/Direct5dom/NetworkSelector/releases">
+      <img src="https://img.shields.io/github/v/release/Direct5dom/NetworkSelector?display_name=tag"/>
+    </a>
+  </p>
+  <p align="center">
+    <a href="https://twitter.com/SI_Xiaolong">
+      <img src="https://img.shields.io/badge/follow-SI_Xiaolong-blue?style=flat&logo=Twitter"/>
+    </a>
+  </p>
+</p>
 
 ## 项目预览
-
-![img|500](./README/屏幕截图 2023-02-12 100604.png)
 
 <img src="./README/屏幕截图 2023-02-12 100604.png" width="50%" />
 
@@ -14,7 +25,7 @@
 
 您可以直接到 [Releases · Direct5dom/NetworkSelector](https://github.com/Direct5dom/NetworkSelector/releases) 下载我已经打包好的安装包。
 
-安装需要注意的是，要右键“使用 PowrShell 运行” `Install.ps1`，而不是直接双击`WSAFileLink.msix`。
+安装需要注意的是，要右键“使用 PowrShell 运行” `Install.ps1`，而不是直接双击 `NetworkSelector.msix`。
 
 ## ✋使用
 
@@ -44,7 +55,7 @@
 
 以一种简单的情况为例：
 
-<img src="./README/网络拓扑.png" style="zoom: 50%;" />
+<img src="./README/网络拓扑.png" width="50%" />
 
 网关是否指向旁路，意味着流量是否会经过旁路。
 
@@ -70,8 +81,4 @@ git clone git@github.com:Direct5dom/NetworkSelector.git
 
 或者更方便的，使用 Visual Studio 的“克隆存储库”克隆本仓库。
 
-使用 Visual Studio 打开项目根目录的`NetworkSelector.sln`，即可进行调试和打包。
-
-## ⚖️License
-
-[MIT License](https://github.com/Direct5dom/NetworkSelector/blob/master/LICENSE)
+使用 Visual Studio 打开项目根目录的 `NetworkSelector.sln`，即可进行调试和打包。
