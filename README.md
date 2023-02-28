@@ -1,7 +1,6 @@
 <p align="center">
   <h1 align="center">Network Selector</h1>
   <p align="center">个人的一个 C# + WinUI3 的练手项目，可以在多个网络配置预设中快速切换。</p>
-  <p align="center">因为微软没有在 Windows 中提供保存网络设置为预设的功能，对于需要经常切换网关服务器/代理服务器的用户来说十分的麻烦，于是我就开发了这个小工具。</p>
   <p align="center">
     <a href="https://github.com/Direct5dom/NetworkSelector/blob/master/LICENSE">
       <img src="https://img.shields.io/github/license/Direct5dom/NetworkSelector"/>
@@ -17,9 +16,13 @@
   </p>
 </p>
 
+因为微软没有在 Windows 中提供保存网络设置为预设的功能，对于需要经常切换网关服务器/代理服务器的用户来说十分的麻烦，于是我就开发了这个小工具。
+
 ## 项目预览
 
-<img src="./README/屏幕截图 2023-02-12 100604.png" width="50%" />
+<p align="center">
+  <img src="./README/屏幕截图 2023-02-12 100604.png" width="50%" />
+</p>
 
 ## ⬇下载
 
@@ -55,7 +58,9 @@
 
 以一种简单的情况为例：
 
+<p align="center">
 <img src="./README/网络拓扑.png" width="50%" />
+</p>
 
 网关是否指向旁路，意味着流量是否会经过旁路。
 

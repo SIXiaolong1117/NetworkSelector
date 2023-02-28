@@ -22,6 +22,7 @@
                       Width="268" 
                       Margin="0,8,0,0">
                     </ComboBox>
+                    <TextBlock Text="自动 (DHCP) 或手动 (预设)" Foreground="DarkGray" FontSize="12"/>
                     <TextBox x:Name="netName" Header="网卡名称：" Width="268" Margin="0,8,0,0"/>
                     <TextBlock Text="eg: 以太网" Foreground="DarkGray" FontSize="12"/>
                     <StackPanel x:Name="optionToHide" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -40,7 +41,7 @@
                         <Button HorizontalAlignment="Center" Content="保存为预设" Click="saveButton_Click" Width="100" Margin="0,0,8,0"/>
                         <Button x:Name="saveApplyButton" HorizontalAlignment="Center" Content="保存并应用" Click="saveApplyButton_Click" Width="100" />
                     </StackPanel>
-                    <TextBox x:Name="netshCMD" Header="CMD：" Width="268" Margin="0,8,0,0"/>
+                    <TextBox x:Name="netshCMD" Header="CMD：" Visibility="Collapsed"  Width="268" Margin="0,8,0,0"/>
                 </StackPanel>
             </StackPanel>
         </StackPanel>
