@@ -24,10 +24,18 @@
 
         <NavigationView x:Name="NavView" SelectionChanged="NavigationView_SelectionChanged" Grid.Row="1" IsBackButtonVisible="Collapsed" IsSettingsVisible="True">
             <NavigationView.MenuItems>
-                <NavigationViewItem Icon="Sort" Content="网络选择" Tag="NetSetting"/>
+                <NavigationViewItem Content="网络选择" Tag="NetSetting">
+                    <NavigationViewItem.Icon>
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xeda3;"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
             </NavigationView.MenuItems>
             <NavigationView.FooterMenuItems>
-                <NavigationViewItem Icon="Message" Content="关于" Tag="About"/>
+                <NavigationViewItem Content="关于" Tag="About">
+                    <NavigationViewItem.Icon>
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xe946;"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
             </NavigationView.FooterMenuItems>
             <Frame x:Name="contentFrame"/>
         </NavigationView>
