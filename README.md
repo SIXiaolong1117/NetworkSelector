@@ -21,7 +21,8 @@
 ## 项目预览
 
 <p align="center">
-  <img src="./README/屏幕截图 2023-02-12 100604.png" width="50%" />
+  <img src="./README/屏幕截图 2023-03-10 184646.png" width="32%" />
+  <img src="./README/屏幕截图 2023-03-10 184710.png" width="32%" />
 </p>
 
 ## ⬇下载
