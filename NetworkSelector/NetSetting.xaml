@@ -15,33 +15,50 @@
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <ComboBox x:Name="configName" 
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <ComboBox x:Name="configName" 
                       ItemsSource="{x:Bind ConfigSelector}" 
                       SelectionChanged="configName_SelectionChanged" 
                       Header="IP设置：" 
                       Width="268" 
-                      Margin="0,8,0,0">
-                    </ComboBox>
-                    <TextBlock Text="自动 (DHCP) 或手动 (预设)" Foreground="DarkGray" FontSize="12"/>
-                    <TextBox x:Name="netName" Header="网卡名称：" Width="268" Margin="0,8,0,0"/>
-                    <TextBlock Text="eg: 以太网" Foreground="DarkGray" FontSize="12"/>
-                    <StackPanel x:Name="optionToHide" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <TextBox x:Name="IPAddr" Header="IP地址：" Width="268" Margin="0,8,0,0"/>
-                        <TextBlock Text="eg: 192.168.0.1" Foreground="DarkGray" FontSize="12"/>
-                        <TextBox x:Name="mask" Header="子网掩码：" Width="268" Margin="0,8,0,0"/>
-                        <TextBlock Text="eg: 255.255.255.0" Foreground="DarkGray" FontSize="12"/>
-                        <TextBox x:Name="gateway" Header="网关：" Width="268" Margin="0,8,0,0"/>
-                        <TextBlock Text="eg: 192.168.0.1" Foreground="DarkGray" FontSize="12"/>
-                        <TextBox x:Name="DNS1" Header="首选DNS：" Width="268" Margin="0,8,0,0"/>
-                        <TextBlock Text="eg: 192.168.0.1" Foreground="DarkGray" FontSize="12"/>
-                        <TextBox x:Name="DNS2" Header="备选DNS：" Width="268" Margin="0,8,0,0"/>
-                        <TextBlock Text="eg: 4.2.2.1" Foreground="DarkGray" FontSize="12"/>
+                      Margin="0,0,0,8">
+                        </ComboBox>
+
+                        <TextBox x:Name="netName" TextChanged="TextChanged" Header="网卡名称：" Width="268" Margin="0,0,0,8"/>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,8,0,0">
-                        <Button HorizontalAlignment="Center" Content="保存为预设" Click="saveButton_Click" Width="100" Margin="0,0,8,0"/>
-                        <Button x:Name="saveApplyButton" HorizontalAlignment="Center" Content="保存并应用" Click="saveApplyButton_Click" Width="100" />
+
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <GridView x:Name="MyGridView">
+
+                            <GridView.ItemTemplate>
+                                <DataTemplate x:DataType="local:Item">
+                                    <StackPanel Orientation="Vertical" Margin="8" Width="252">
+                                        <TextBlock Text="{x:Bind IPAddr}"/>
+                                        <TextBlock Text="{x:Bind Mask}"/>
+                                        <TextBlock Text="{x:Bind Gateway}"/>
+                                        <TextBlock Text="{x:Bind DNS1}"/>
+                                        <TextBlock Text="{x:Bind DNS2}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridView.ItemTemplate>
+
+                            <GridView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <ItemsWrapGrid x:Name="MaxItemsWrapGrid"
+                                               MaximumRowsOrColumns="2"
+                                               Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </GridView.ItemsPanel>
+
+                        </GridView>
+
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,8">
+                            <Button x:Name="addConfigButton" HorizontalAlignment="Center" Content="添加配置" Click="addConfigButton_Click" Width="100" Margin="0,0,8,0"/>
+                            <Button x:Name="applyConfigButton" HorizontalAlignment="Center" Content="应用配置" Click="applyConfigButton_Click" Width="100"/>
+                        </StackPanel>
+                        <TextBox x:Name="netshCMD" Header="CMD：" Visibility="Collapsed"  Width="268"/>
                     </StackPanel>
-                    <TextBox x:Name="netshCMD" Header="CMD：" Visibility="Collapsed"  Width="268" Margin="0,8,0,0"/>
                 </StackPanel>
             </StackPanel>
         </StackPanel>

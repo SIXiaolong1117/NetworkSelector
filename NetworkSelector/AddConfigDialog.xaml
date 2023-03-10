@@ -1,0 +1,28 @@
+﻿<!-- Copyright (c) Microsoft Corporation and Contributors. -->
+<!-- Licensed under the MIT License. -->
+
+<ContentDialog
+    x:Class="NetworkSelector.AddConfigDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    >
+
+    <ScrollViewer Width="280">
+
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <!-- <TextBlock x:Name="Test" Foreground="DarkGray" FontSize="12"/> -->
+            <TextBox x:Name="IPAddr" TextChanged="TextChanged" Header="IP地址：" Width="250" Margin="0,8,0,0"/>
+            <TextBlock Text="eg: 192.168.0.1" Foreground="DarkGray" FontSize="12"/>
+            <TextBox x:Name="mask" TextChanged="TextChanged" Header="子网掩码：" Width="250" Margin="0,8,0,0"/>
+            <TextBlock Text="eg: 255.255.255.0" Foreground="DarkGray" FontSize="12"/>
+            <TextBox x:Name="gateway" TextChanged="TextChanged" Header="网关：" Width="250" Margin="0,8,0,0"/>
+            <TextBlock Text="eg: 192.168.0.1" Foreground="DarkGray" FontSize="12"/>
+            <TextBox x:Name="DNS1" TextChanged="TextChanged" Header="首选DNS：" Width="250" Margin="0,8,0,0"/>
+            <TextBlock Text="eg: 192.168.0.1" Foreground="DarkGray" FontSize="12"/>
+            <TextBox x:Name="DNS2" TextChanged="TextChanged" Header="备选DNS：" Width="250" Margin="0,8,0,0"/>
+            <TextBlock Text="eg: 4.2.2.1" Foreground="DarkGray" FontSize="12"/>
+        </StackPanel>
+
+    </ScrollViewer>
+
+</ContentDialog>
