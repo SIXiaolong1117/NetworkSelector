@@ -34,7 +34,7 @@ namespace NetworkSelector
 
             IntPtr hwnd = WinRT.Interop.WindowNative.GetWindowHandle(m_window);
 
-            SetWindowSize(hwnd, 350, 480);
+            SetWindowSize(hwnd, 350, 500);
         }
 
         private void SetWindowSize(IntPtr hwnd, int width, int height)

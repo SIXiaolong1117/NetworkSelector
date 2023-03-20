@@ -28,7 +28,7 @@
                     </StackPanel>
 
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <GridView x:Name="MyGridView">
+                        <GridView x:Name="MyGridView" SelectionMode="None">
 
                             <GridView.ItemTemplate>
                                 <DataTemplate x:DataType="local:Item">
@@ -54,8 +54,9 @@
 
 
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,8">
-                            <Button x:Name="addConfigButton" HorizontalAlignment="Center" Content="添加配置" Click="addConfigButton_Click" Width="100" Margin="0,0,8,0"/>
-                            <Button x:Name="applyConfigButton" HorizontalAlignment="Center" Content="应用配置" Click="applyConfigButton_Click" Width="100"/>
+                            <Button x:Name="addConfigButton" HorizontalAlignment="Center" Content="添加配置" Click="addConfigButton_Click" Width="84" Margin="0,0,8,0"/>
+                            <Button x:Name="delConfigButton" HorizontalAlignment="Center" Content="删除配置" Click="delConfigButton_Click" Width="84" Margin="0,0,8,0"/>
+                            <Button x:Name="applyConfigButton" HorizontalAlignment="Center" Content="应用配置" Click="applyConfigButton_Click" Width="84"/>
                         </StackPanel>
                         <TextBox x:Name="netshCMD" Header="CMD：" Visibility="Collapsed"  Width="268"/>
                     </StackPanel>

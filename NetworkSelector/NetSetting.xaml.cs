@@ -99,6 +99,7 @@ namespace NetworkSelector
         public void refreshContent(string ConfigNameStr)
         {
             addConfigButton.IsEnabled = true;
+            delConfigButton.IsEnabled = true;
             List<Item> items = new List<Item>();
             if (ConfigNameStr != "自动")
             {
@@ -133,6 +134,7 @@ namespace NetworkSelector
                         "次选 DNS："
                         ));
                     addConfigButton.Content = "添加配置";
+                    delConfigButton.IsEnabled = false;
                     netshCMD.Text = "";
                 }
             }
@@ -147,6 +149,7 @@ namespace NetworkSelector
                     ));
                 addConfigButton.Content = "添加配置";
                 addConfigButton.IsEnabled = false;
+                delConfigButton.IsEnabled = false;
                 refreshCMD("DHCP", "DHCP", "DHCP", "DHCP", "DHCP");
             }
             MyGridView.ItemsSource = items;
@@ -201,10 +204,17 @@ namespace NetworkSelector
             applyConfig();
             localSettings.Values["configName"] = configName.SelectedItem;
         }
+        private void delConfigButton_Click(object sender, RoutedEventArgs e)
+        {
+            string ConfigNameStr = configName.SelectedItem.ToString();
+            localSettings.Values["ConfigID" + ConfigNameStr] = null;
+            refreshContent(ConfigNameStr);
+        }
         public void TextChanged(object sender, TextChangedEventArgs e)
         {
-            localSettings.Values[configName.SelectedItem.ToString() + "netName"] = netName.Text;
-            refreshContent(configName.SelectedItem.ToString());
+            string ConfigNameStr = configName.SelectedItem.ToString();
+            localSettings.Values[ConfigNameStr + "netName"] = netName.Text;
+            refreshContent(ConfigNameStr);
         }
     }
     public class Item
