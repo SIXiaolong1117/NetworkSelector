@@ -76,6 +76,7 @@ namespace NetworkSelector
             process.Start();
             process.WaitForExit();
             process.Close();
+            NetworkIsChangeTips.IsOpen = true;
         }
         private void refreshCMD(string IPAddr, string Mask, string Gateway, string DNS1, string DNS2)
         {
@@ -209,6 +210,10 @@ namespace NetworkSelector
             string ConfigNameStr = configName.SelectedItem.ToString();
             localSettings.Values["ConfigID" + ConfigNameStr] = null;
             refreshContent(ConfigNameStr);
+            if (this.delConfigButton.Flyout is Flyout f)
+            {
+                f.Hide();
+            }
         }
         public void TextChanged(object sender, TextChangedEventArgs e)
         {
