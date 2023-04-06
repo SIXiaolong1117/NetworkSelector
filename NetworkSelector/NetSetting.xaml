@@ -19,7 +19,7 @@
                         <ComboBox x:Name="configName" 
                       ItemsSource="{x:Bind ConfigSelector}" 
                       SelectionChanged="configName_SelectionChanged" 
-                      Header="IP设置：" 
+                      Header="IP 设置：" 
                       Width="268" 
                       Margin="0,0,0,8">
                         </ComboBox>

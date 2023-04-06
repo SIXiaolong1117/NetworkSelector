@@ -101,6 +101,7 @@ namespace NetworkSelector
         {
             addConfigButton.IsEnabled = true;
             delConfigButton.IsEnabled = true;
+            applyConfigButton.IsEnabled = true;
             List<Item> items = new List<Item>();
             if (ConfigNameStr != "自动")
             {
@@ -136,7 +137,9 @@ namespace NetworkSelector
                         ));
                     addConfigButton.Content = "添加配置";
                     delConfigButton.IsEnabled = false;
+                    applyConfigButton.IsEnabled = false;
                     netshCMD.Text = "";
+                    refreshCMD("", "", "", "", "");
                 }
             }
             else
