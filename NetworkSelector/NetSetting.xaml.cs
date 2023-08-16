@@ -213,6 +213,9 @@ namespace NetworkSelector
         }
         private async void addConfigButton_Click(object sender, RoutedEventArgs e)
         {
+            string ConfigNameStr = configName.SelectedItem.ToString();
+            localSettings.Values["ConfigIDTemp"] = localSettings.Values["ConfigID" + ConfigNameStr];
+
             AddConfigDialog configDialog = new AddConfigDialog();
 
             // XamlRoot must be set in the case of a ContentDialog running in a Desktop app
@@ -228,7 +231,6 @@ namespace NetworkSelector
 
             if (result == ContentDialogResult.Primary)
             {
-                string ConfigNameStr = configName.SelectedItem.ToString();
                 localSettings.Values["ConfigID" + ConfigNameStr] = localSettings.Values["ConfigIDTemp"];
                 refreshContent(ConfigNameStr);
             }

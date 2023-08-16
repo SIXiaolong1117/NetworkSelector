@@ -18,6 +18,8 @@ using Microsoft.UI.Xaml.Navigation;
 using Windows.Storage;
 using System.Net;
 using Validation;
+using Windows.Services.Maps;
+using System.Threading.Tasks;
 
 namespace NetworkSelector
 {
@@ -27,6 +29,20 @@ namespace NetworkSelector
         public AddConfigDialog()
         {
             this.InitializeComponent();
+
+            string configInner = localSettings.Values["ConfigIDTemp"] as string;
+            if (configInner != null)
+            {
+                // IPAddr.Text + "," + mask.Text + "," + gateway.Text + "," + DNS1.Text + "," + DNS2.Text + "," + configName.Text + "," + netInterface.Text;
+                string[] configInnerSplit = configInner.Split(',');
+                configName.Text = configInnerSplit[5];
+                netInterface.Text = configInnerSplit[6];
+                IPAddr.Text = configInnerSplit[0];
+                mask.Text = configInnerSplit[1];
+                gateway.Text = configInnerSplit[2];
+                DNS1.Text = configInnerSplit[3];
+                DNS2.Text = configInnerSplit[4];
+            }
 
             if (localSettings.Values["DHCPStatus"] as string == "True")
             {
