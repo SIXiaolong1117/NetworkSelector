@@ -28,23 +28,27 @@ namespace NetworkSelector
         WindowsSystemDispatcherQueueHelper m_wsdqHelper; // See below for implementation.
         DesktopAcrylicController a_backdropController;
         MicaController m_backdropController;
+        MicaController ma_backdropController;
         SystemBackdropConfiguration m_configurationSource;
 
         ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
 
-        //String materialStatus = localSettings.Values["materialStatus"] as string;
         public MainWindow()
         {
             this.InitializeComponent();
 
-            // Hide default title bar.
+            // 启动个性化TitleBar
             ExtendsContentIntoTitleBar = true;
+            // 将UI设置为TitleBar
             SetTitleBar(AppTitleBar);
+            // 设置任务栏显示名称
+            Title = $"网络唤醒 (Wake on LAN)";
 
             TrySetSystemBackdrop();
 
             NavView.SelectedItem = NavView.MenuItems[0];
         }
+
         bool TrySetSystemBackdrop()
         {
             if (Microsoft.UI.Composition.SystemBackdrops.MicaController.IsSupported())
@@ -66,22 +70,41 @@ namespace NetworkSelector
                 {
                     a_backdropController = new Microsoft.UI.Composition.SystemBackdrops.DesktopAcrylicController();
                 }
-                else
+                else if (localSettings.Values["materialStatus"] as string == "Mica")
                 {
                     m_backdropController = new Microsoft.UI.Composition.SystemBackdrops.MicaController();
+                }
+                else
+                {
+                    ma_backdropController = new Microsoft.UI.Composition.SystemBackdrops.MicaController()
+                    {
+                        Kind = MicaKind.BaseAlt
+                    };
                 }
 
                 // Enable the system backdrop.
                 // Note: Be sure to have "using WinRT;" to support the Window.As<...>() call.
-                if (localSettings.Values["materialStatus"] as string == "Acrylic")
+                if (localSettings.Values["materialStatus"] as string == "Mica")
+                {
+                    m_backdropController.AddSystemBackdropTarget(this.As<Microsoft.UI.Composition.ICompositionSupportsSystemBackdrop>());
+                    m_backdropController.SetSystemBackdropConfiguration(m_configurationSource);
+                }
+                else if (localSettings.Values["materialStatus"] as string == "Mica Alt")
+                {
+                    ma_backdropController.AddSystemBackdropTarget(this.As<Microsoft.UI.Composition.ICompositionSupportsSystemBackdrop>());
+                    ma_backdropController.SetSystemBackdropConfiguration(m_configurationSource);
+                }
+                else if (localSettings.Values["materialStatus"] as string == "Acrylic")
                 {
                     a_backdropController.AddSystemBackdropTarget(this.As<Microsoft.UI.Composition.ICompositionSupportsSystemBackdrop>());
                     a_backdropController.SetSystemBackdropConfiguration(m_configurationSource);
                 }
                 else
+                //throw new Exception($"Invalid argument: {localSettings.Values["materialStatus"] as string}");
                 {
-                    m_backdropController.AddSystemBackdropTarget(this.As<Microsoft.UI.Composition.ICompositionSupportsSystemBackdrop>());
-                    m_backdropController.SetSystemBackdropConfiguration(m_configurationSource);
+                    localSettings.Values["materialStatus"] = "Mica Alt";
+                    ma_backdropController.AddSystemBackdropTarget(this.As<Microsoft.UI.Composition.ICompositionSupportsSystemBackdrop>());
+                    ma_backdropController.SetSystemBackdropConfiguration(m_configurationSource);
                 }
                 return true; // succeeded
             }

@@ -28,6 +28,7 @@ namespace NetworkSelector
         public List<string> material { get; } = new List<string>()
         {
             "Mica",
+            "Mica Alt",
             "Acrylic"
         };
 
@@ -49,15 +50,19 @@ namespace NetworkSelector
             {
                 backgroundMaterial.SelectedItem = material[0];
             }
-            else if (localSettings.Values["materialStatus"] as string == "Acrylic")
+            else if (localSettings.Values["materialStatus"] as string == "Mica Alt")
             {
                 backgroundMaterial.SelectedItem = material[1];
             }
+            else if (localSettings.Values["materialStatus"] as string == "Acrylic")
+            {
+                backgroundMaterial.SelectedItem = material[2];
+            }
             else
             {
-                // 非法输入，设置默认材料为Mica
-                localSettings.Values["materialStatus"] = "Mica";
-                backgroundMaterial.SelectedItem = material[0];
+                // 非法输入，设置默认材料为Mica Alt
+                localSettings.Values["materialStatus"] = "Mica Alt";
+                backgroundMaterial.SelectedItem = material[1];
                 // 非法输入，扔出警报
                 //throw new Exception($"Wrong material type: {localSettings.Values["materialStatus"]}");
             }
@@ -92,6 +97,17 @@ namespace NetworkSelector
                     else
                     {
                         localSettings.Values["materialStatus"] = "Mica";
+                    }
+                    break;
+                case "Mica Alt":
+                    if (localSettings.Values["materialStatus"] as string != "Mica Alt")
+                    {
+                        localSettings.Values["materialStatus"] = "Mica Alt";
+                        Microsoft.Windows.AppLifecycle.AppInstance.Restart("");
+                    }
+                    else
+                    {
+                        localSettings.Values["materialStatus"] = "Mica Alt";
                     }
                     break;
                 case "Acrylic":
