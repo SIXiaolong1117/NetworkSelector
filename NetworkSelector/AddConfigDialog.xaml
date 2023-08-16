@@ -11,6 +11,10 @@
 
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
             <!-- <TextBlock x:Name="Test" Foreground="DarkGray" FontSize="12"/> -->
+            <TextBox x:Name="configName" TextChanged="TextChanged" Header="配置名称：" Width="250" Margin="0,8,0,0"/>
+            <TextBlock Text="eg: 学校宿舍 旁路网关" Foreground="DarkGray" FontSize="12"/>
+            <TextBox x:Name="netInterface" TextChanged="TextChanged" Header="网卡：" Width="250" Margin="0,8,0,0"/>
+            <TextBlock Text="eg: WLAN or 以太网" Foreground="DarkGray" FontSize="12"/>
             <TextBox x:Name="IPAddr" TextChanged="TextChanged" Header="IP地址：" Width="250" Margin="0,8,0,0"/>
             <TextBlock Text="eg: 192.168.0.1" Foreground="DarkGray" FontSize="12"/>
             <TextBox x:Name="mask" TextChanged="TextChanged" Header="子网掩码：" Width="250" Margin="0,8,0,0"/>

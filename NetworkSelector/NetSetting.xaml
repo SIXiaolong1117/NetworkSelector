@@ -24,7 +24,6 @@
                       Margin="0,0,0,8">
                         </ComboBox>
 
-                        <TextBox x:Name="netName" TextChanged="TextChanged" Header="网卡名称：" Width="268" Margin="0,0,0,8"/>
                     </StackPanel>
 
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -33,6 +32,8 @@
                             <GridView.ItemTemplate>
                                 <DataTemplate x:DataType="local:Item">
                                     <StackPanel Orientation="Vertical" Margin="8" Width="252">
+                                        <TextBlock Text="{x:Bind ConfigName}"/>
+                                        <TextBlock Text="{x:Bind NetInterface}"/>
                                         <TextBlock Text="{x:Bind IPAddr}"/>
                                         <TextBlock Text="{x:Bind Mask}"/>
                                         <TextBlock Text="{x:Bind Gateway}"/>

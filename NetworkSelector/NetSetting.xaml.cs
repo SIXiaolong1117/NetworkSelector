@@ -46,7 +46,7 @@ namespace NetworkSelector
                 refreshContent(localSettings.Values["configName"].ToString());
             }
 
-            netName.Text = localSettings.Values[localSettings.Values["configName"].ToString() + "netName"] as string;
+            //netName.Text = localSettings.Values[localSettings.Values["configName"].ToString() + "netName"] as string;
             refreshStatus();
         }
         public List<string> ConfigSelector { get; } = new List<string>()
@@ -78,21 +78,21 @@ namespace NetworkSelector
             process.Close();
             NetworkIsChangeTips.IsOpen = true;
         }
-        private void refreshCMD(string IPAddr, string Mask, string Gateway, string DNS1, string DNS2)
+        private void refreshCMD(string netInterface, string IPAddr, string Mask, string Gateway, string DNS1, string DNS2)
         {
             // 根据选择自动或手动，写入不同的netshCMD
             if ((configName.SelectedItem as string) == "自动")
             {
                 localSettings.Values["netshCMD"] =
-                    "netsh interface ip set address '" + netName.Text + "' dhcp;"
-                    + "netsh interface ip set dns name='" + netName.Text + "' source=dhcp;";
+                    "netsh interface ip set address '" + netInterface + "' dhcp;"
+                    + "netsh interface ip set dns name='" + netInterface + "' source=dhcp;";
             }
             else
             {
                 localSettings.Values["netshCMD"] =
-                "netsh interface ip set address name='" + netName.Text + "' source=static addr='" + IPAddr + "' mask='" + Mask + "' gateway='" + Gateway + "'; "
-                + "netsh interface ip set dns name='" + netName.Text + "' source=static addr='" + DNS1 + "' register=primary;"
-                + "netsh interface ip add dns name='" + netName.Text + "' addr='" + DNS2 + "' index=2;";
+                "netsh interface ip set address name='" + netInterface + "' source=static addr='" + IPAddr + "' mask='" + Mask + "' gateway='" + Gateway + "'; "
+                + "netsh interface ip set dns name='" + netInterface + "' source=static addr='" + DNS1 + "' register=primary;"
+                + "netsh interface ip add dns name='" + netInterface + "' addr='" + DNS2 + "' index=2;";
             }
             netshCMD.Text = localSettings.Values["netshCMD"] as string;
         }
@@ -103,20 +103,23 @@ namespace NetworkSelector
             delConfigButton.IsEnabled = true;
             applyConfigButton.IsEnabled = true;
             List<Item> items = new List<Item>();
-            if (ConfigNameStr != "自动")
+            string configInner = localSettings.Values["ConfigID" + ConfigNameStr] as string;
+            if (configInner != null)
             {
-                string configInner = localSettings.Values["ConfigID" + ConfigNameStr] as string;
-                if (configInner != null)
+                string[] configInnerSplit = configInner.Split(',');
+                //             localSettings.Values["ConfigIDTemp"] = IPAddr.Text + "," + mask.Text + "," + gateway.Text + "," + DNS1.Text + "," + DNS2.Text + "," + configName.Text + "," + netInterface.Text;
+                string configName = configInnerSplit[5];
+                string netInterface = configInnerSplit[6];
+                string IPAddr = configInnerSplit[0];
+                string Mask = configInnerSplit[1];
+                string Gateway = configInnerSplit[2];
+                string DNS1 = configInnerSplit[3];
+                string DNS2 = configInnerSplit[4];
+                if (ConfigNameStr != "自动")
                 {
-                    string[] configInnerSplit = configInner.Split(',');
-                    // IPAddr.Text + "," + mask.Text + "," + gateway.Text + "," + DNS1.Text + "," + DNS2.Text;
-                    string IPAddr = configInnerSplit[0];
-                    string Mask = configInnerSplit[1];
-                    string Gateway = configInnerSplit[2];
-                    string DNS1 = configInnerSplit[3];
-                    string DNS2 = configInnerSplit[4];
-
                     items.Add(new Item(
+                        "配置名称：" + configName,
+                        "网卡：" + netInterface,
                         "IP 地址：" + IPAddr,
                         "子网掩码：" + Mask,
                         "网关：" + Gateway,
@@ -124,11 +127,30 @@ namespace NetworkSelector
                         "次选 DNS：" + DNS2
                         ));
                     addConfigButton.Content = "修改配置";
-                    refreshCMD(IPAddr, Mask, Gateway, DNS1, DNS2);
+                    refreshCMD(netInterface, IPAddr, Mask, Gateway, DNS1, DNS2);
                 }
                 else
                 {
                     items.Add(new Item(
+                        "配置名称：DHCP",
+                        "网卡：" + netInterface,
+                        "IP 地址：DHCP",
+                        "子网掩码：DHCP",
+                        "网关：DHCP",
+                        "首选 DNS：DHCP",
+                        "次选 DNS：DHCP"
+                        ));
+                    addConfigButton.Content = "修改配置";
+                    refreshCMD(netInterface, "DHCP", "DHCP", "DHCP", "DHCP", "DHCP");
+                }
+            }
+            else
+            {
+                if (ConfigNameStr != "自动")
+                {
+                    items.Add(new Item(
+                        "配置名称：",
+                        "网卡：",
                         "IP 地址：",
                         "子网掩码：",
                         "网关：",
@@ -139,22 +161,22 @@ namespace NetworkSelector
                     delConfigButton.IsEnabled = false;
                     applyConfigButton.IsEnabled = false;
                     netshCMD.Text = "";
-                    refreshCMD("", "", "", "", "");
+                    refreshCMD("", "", "", "", "", "");
                 }
-            }
-            else
-            {
-                items.Add(new Item(
-                    "IP 地址：DHCP",
-                    "子网掩码：DHCP",
-                    "网关：DHCP",
-                    "首选 DNS：DHCP",
-                    "次选 DNS：DHCP"
-                    ));
-                addConfigButton.Content = "添加配置";
-                addConfigButton.IsEnabled = false;
-                delConfigButton.IsEnabled = false;
-                refreshCMD("DHCP", "DHCP", "DHCP", "DHCP", "DHCP");
+                else
+                {
+                    items.Add(new Item(
+                        "配置名称：DHCP",
+                        "网卡：",
+                        "IP 地址：DHCP",
+                        "子网掩码：DHCP",
+                        "网关：DHCP",
+                        "首选 DNS：DHCP",
+                        "次选 DNS：DHCP"
+                        ));
+                    addConfigButton.Content = "修改配置";
+                    refreshCMD("", "DHCP", "DHCP", "DHCP", "DHCP", "DHCP");
+                }
             }
             MyGridView.ItemsSource = items;
         }
@@ -178,6 +200,14 @@ namespace NetworkSelector
         // 自动或预设切换
         private void configName_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if ((configName.SelectedItem as string) == "自动")
+            {
+                localSettings.Values["DHCPStatus"] = "True";
+            }
+            else
+            {
+                localSettings.Values["DHCPStatus"] = "False";
+            }
             refreshContent(configName.SelectedItem.ToString());
             refreshStatus();
         }
@@ -221,12 +251,16 @@ namespace NetworkSelector
         public void TextChanged(object sender, TextChangedEventArgs e)
         {
             string ConfigNameStr = configName.SelectedItem.ToString();
-            localSettings.Values[ConfigNameStr + "netName"] = netName.Text;
+            //localSettings.Values[ConfigNameStr + "netName"] = netName.Text;
             refreshContent(ConfigNameStr);
         }
     }
     public class Item
     {
+        // 配置名称
+        public string ConfigName { get; set; }
+        // 网卡名称
+        public string NetInterface { get; set; }
         // IP地址
         public string IPAddr { get; set; }
         // 子网掩码
@@ -236,8 +270,10 @@ namespace NetworkSelector
         // DNS
         public string DNS1 { get; set; }
         public string DNS2 { get; set; }
-        public Item(string ipAddr, string mask, string gateway, string dns1, string dns2)
+        public Item(string configName, string netInterface, string ipAddr, string mask, string gateway, string dns1, string dns2)
         {
+            ConfigName = configName;
+            NetInterface = netInterface;
             IPAddr = ipAddr;
             Mask = mask;
             Gateway = gateway;

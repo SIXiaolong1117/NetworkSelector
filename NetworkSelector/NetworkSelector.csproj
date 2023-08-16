@@ -24,7 +24,6 @@
   <ItemGroup>
     <None Remove="About.xaml" />
     <None Remove="AddConfigDialog.xaml" />
-    <None Remove="AddGitConfigDialog.xaml" />
     <None Remove="NetSetting.xaml" />
     <None Remove="SettingsPage.xaml" />
   </ItemGroup>
@@ -52,11 +51,6 @@
   -->
   <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <ProjectCapability Include="Msix" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="AddGitConfigDialog.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="AddConfigDialog.xaml">

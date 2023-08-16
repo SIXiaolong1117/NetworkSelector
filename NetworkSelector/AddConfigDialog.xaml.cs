@@ -27,10 +27,31 @@ namespace NetworkSelector
         public AddConfigDialog()
         {
             this.InitializeComponent();
+
+            if (localSettings.Values["DHCPStatus"] as string == "True")
+            {
+                IPAddr.IsEnabled = false;
+                mask.IsEnabled = false;
+                gateway.IsEnabled = false;
+                DNS1.IsEnabled = false;
+                DNS2.IsEnabled = false;
+                configName.IsEnabled = false;
+                netInterface.IsEnabled = true;
+            }
+            else
+            {
+                IPAddr.IsEnabled = true;
+                mask.IsEnabled = true;
+                gateway.IsEnabled = true;
+                DNS1.IsEnabled = true;
+                DNS2.IsEnabled = true;
+                configName.IsEnabled = true;
+                netInterface.IsEnabled = true;
+            }
         }
         public void TextChanged(object sender, TextChangedEventArgs e)
         {
-            localSettings.Values["ConfigIDTemp"] = IPAddr.Text + "," + mask.Text + "," + gateway.Text + "," + DNS1.Text + "," + DNS2.Text;
+            localSettings.Values["ConfigIDTemp"] = IPAddr.Text + "," + mask.Text + "," + gateway.Text + "," + DNS1.Text + "," + DNS2.Text + "," + configName.Text + "," + netInterface.Text;
             //Test.Text = localSettings.Values["ConfigIDTemp"] as string;
         }
     }
