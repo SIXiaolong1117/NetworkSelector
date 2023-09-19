@@ -13,7 +13,7 @@
 
   <Properties>
     <DisplayName>NetworkSelector</DisplayName>
-    <PublisherDisplayName>SI_Xiaolong</PublisherDisplayName>
+    <PublisherDisplayName>SI Xiaolong</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
@@ -44,6 +44,5 @@
 
   <Capabilities>
     <rescap:Capability Name="runFullTrust" />
-    <rescap:Capability Name="allowElevation" />
   </Capabilities>
 </Package>

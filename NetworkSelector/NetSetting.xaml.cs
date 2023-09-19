@@ -16,6 +16,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Security.Principal;
 using System.Threading;
 using System.Threading.Tasks;
 using Windows.Foundation;
@@ -66,17 +67,30 @@ namespace NetworkSelector
         // 应用保存的设置
         public void applyConfig()
         {
-            Process process = new Process();
-            process.StartInfo.FileName = "PowerShell.exe";
-            process.StartInfo.Arguments = localSettings.Values["netshCMD"] as string;
-            //是否使用操作系统shell启动
-            process.StartInfo.UseShellExecute = false;
-            //是否在新窗口中启动该进程的值 (不显示程序窗口)
-            process.StartInfo.CreateNoWindow = true;
-            process.Start();
-            process.WaitForExit();
-            process.Close();
-            NetworkIsChangeTips.IsOpen = true;
+            WindowsIdentity identity = WindowsIdentity.GetCurrent();
+            WindowsPrincipal principal = new WindowsPrincipal(identity);
+
+            bool isAdmin = principal.IsInRole(WindowsBuiltInRole.Administrator);
+
+            if (isAdmin)
+            {
+                Process process = new Process();
+                process.StartInfo.FileName = "PowerShell.exe";
+                process.StartInfo.Arguments = localSettings.Values["netshCMD"] as string;
+                //是否使用操作系统shell启动
+                process.StartInfo.UseShellExecute = false;
+                //是否在新窗口中启动该进程的值 (不显示程序窗口)
+                process.StartInfo.CreateNoWindow = true;
+                process.Start();
+                process.WaitForExit();
+                process.Close();
+                NetworkIsChangeTips.IsOpen = true;
+            }
+            else
+            {
+                NotAdminTips.IsOpen = true;
+            }
+
         }
         private void refreshCMD(string netInterface, string IPAddr, string Mask, string Gateway, string DNS1, string DNS2)
         {

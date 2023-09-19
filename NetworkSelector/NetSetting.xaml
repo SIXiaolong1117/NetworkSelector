@@ -91,5 +91,13 @@
 	                 IsLightDismissEnabled="True"
 	                 CloseButtonContent="明白！">
         </TeachingTip>
+        <TeachingTip x:Name="NotAdminTips"
+	                 Title="设置失败！"
+	                 Subtitle="您需要以管理员身份运行网关切换器 (Gateway Selector)，这是因为netsh需要在管理员权限下才可以修改网络配置信息。"
+	                 PreferredPlacement="Auto"
+	                 PlacementMargin="20"
+	                 IsLightDismissEnabled="True"
+	                 CloseButtonContent="明白！">
+        </TeachingTip>
     </Grid>
 </Page>

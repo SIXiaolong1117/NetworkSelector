@@ -30,6 +30,10 @@
                 <TextBlock Text="⚖️License:" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <HyperlinkButton Content="MIT License" FontSize="14" NavigateUri="https://github.com/Direct5dom/NetworkSelector/blob/master/LICENSE" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <TextBlock Text="❓帮助:" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <HyperlinkButton Content="Github Wiki" FontSize="14" NavigateUri="https://github.com/Direct5dom/NetworkSelector/wiki" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Page>
