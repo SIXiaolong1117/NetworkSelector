@@ -42,7 +42,7 @@ namespace NetworkSelector
             // 将UI设置为TitleBar
             SetTitleBar(AppTitleBar);
             // 设置任务栏显示名称
-            Title = $"网络唤醒 (Wake on LAN)";
+            Title = $"网关切换器 (Gateway Selector)";
 
             TrySetSystemBackdrop();
 

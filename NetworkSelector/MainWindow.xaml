@@ -18,8 +18,8 @@
         </Grid.RowDefinitions>
 
         <Grid x:Name="AppTitleBar">
-            <Image Source="Images/WindowIcon.png" HorizontalAlignment="Left" Width="16" Height="16" Margin="8,0"/>
-            <TextBlock x:Name="AppTitleTextBlock" Text="Network Selector" TextWrapping="NoWrap" Style="{StaticResource CaptionTextBlockStyle}" VerticalAlignment="Center" Margin="28,0,0,0"/>
+            <Image Source=".\Assets\Square44x44Logo.altform-lightunplated_targetsize-256.png" HorizontalAlignment="Left" Width="16" Height="16" Margin="8,0"/>
+            <TextBlock x:Name="AppTitleTextBlock" Text="网关切换器 (Gateway Selector)" TextWrapping="NoWrap" Style="{StaticResource CaptionTextBlockStyle}" VerticalAlignment="Center" Margin="28,0,0,0"/>
         </Grid>
 
         <NavigationView x:Name="NavView" SelectionChanged="NavigationView_SelectionChanged" Grid.Row="1" IsBackButtonVisible="Collapsed" IsSettingsVisible="True">

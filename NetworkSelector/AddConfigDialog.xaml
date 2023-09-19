@@ -11,20 +11,27 @@
 
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
             <!-- <TextBlock x:Name="Test" Foreground="DarkGray" FontSize="12"/> -->
-            <TextBox x:Name="configName" TextChanged="TextChanged" Header="配置名称：" Width="250" Margin="0,8,0,0"/>
-            <TextBlock Text="eg: 学校宿舍 旁路网关" Foreground="DarkGray" FontSize="12"/>
-            <TextBox x:Name="netInterface" TextChanged="TextChanged" Header="网卡：" Width="250" Margin="0,8,0,0"/>
-            <TextBlock Text="eg: WLAN or 以太网" Foreground="DarkGray" FontSize="12"/>
-            <TextBox x:Name="IPAddr" TextChanged="TextChanged" Header="IP地址：" Width="250" Margin="0,8,0,0"/>
-            <TextBlock Text="eg: 192.168.0.1" Foreground="DarkGray" FontSize="12"/>
-            <TextBox x:Name="mask" TextChanged="TextChanged" Header="子网掩码：" Width="250" Margin="0,8,0,0"/>
-            <TextBlock Text="eg: 255.255.255.0" Foreground="DarkGray" FontSize="12"/>
-            <TextBox x:Name="gateway" TextChanged="TextChanged" Header="网关：" Width="250" Margin="0,8,0,0"/>
-            <TextBlock Text="eg: 192.168.0.1" Foreground="DarkGray" FontSize="12"/>
-            <TextBox x:Name="DNS1" TextChanged="TextChanged" Header="首选DNS：" Width="250" Margin="0,8,0,0"/>
-            <TextBlock Text="eg: 192.168.0.1" Foreground="DarkGray" FontSize="12"/>
-            <TextBox x:Name="DNS2" TextChanged="TextChanged" Header="备选DNS：" Width="250" Margin="0,8,0,0"/>
-            <TextBlock Text="eg: 4.2.2.1" Foreground="DarkGray" FontSize="12"/>
+            <TextBox x:Name="configName" TextChanged="TextChanged" 
+                     Header="配置名称：" PlaceholderText="eg: 旁路网关"
+                     Width="250" Margin="0,8,0,0"/>
+            <TextBox x:Name="netInterface" TextChanged="TextChanged" 
+                     Header="网卡：" PlaceholderText="eg: WLAN or 以太网"
+                     Width="250" Margin="0,8,0,0"/>
+            <TextBox x:Name="IPAddr" TextChanged="TextChanged" 
+                     Header="IP地址：" PlaceholderText="eg: 192.168.0.1"
+                     Width="250" Margin="0,8,0,0"/>
+            <TextBox x:Name="mask" TextChanged="TextChanged" 
+                     Header="子网掩码：" PlaceholderText="eg: 255.255.255.0"
+                     Width="250" Margin="0,8,0,0"/>
+            <TextBox x:Name="gateway" TextChanged="TextChanged" 
+                     Header="网关：" PlaceholderText="eg: 192.168.0.1"
+                     Width="250" Margin="0,8,0,0"/>
+            <TextBox x:Name="DNS1" TextChanged="TextChanged" 
+                     Header="首选DNS：" PlaceholderText="eg: 192.168.0.1"
+                     Width="250" Margin="0,8,0,0"/>
+            <TextBox x:Name="DNS2" TextChanged="TextChanged" 
+                     Header="备选DNS：" PlaceholderText="eg: 4.2.2.1"
+                     Width="250" Margin="0,8,0,0"/>
         </StackPanel>
 
     </ScrollViewer>
