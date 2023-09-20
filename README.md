@@ -26,9 +26,17 @@
 
 ## ⬇下载/Download
 
+### 从 Microsoft Store 获取（推荐）
+
+[<img src="https://get.microsoft.com/images/zh-cn%20light.svg"  width="30%" height="30%">](https://www.microsoft.com/store/productid/9PDQC93R0WLF?ocid=pdpshare)
+
+### 从 Releases 获取自签名版（不推荐）
+
 您可以直接到 [Releases · Direct5dom/NetworkSelector](https://github.com/Direct5dom/NetworkSelector/releases) 下载我已经打包好的安装包。
 
-安装需要注意的是，要右键“使用 PowrShell 运行” `Install.ps1`，而不是直接双击 `NetworkSelector.msix`。
+> 需要注意的是，因为本项目使用自签名旁加载，需要您打开Windows的开发者模式，右键“使用PowrShell”运行Install.ps1，而不是直接双击WinWoL.msix。
+
+> 自签名版需要打开开发者模式并安装一个证书，这并不是安全的应用安装方式。
 
 ## 🛠️获取源码/Source Code
 
