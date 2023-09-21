@@ -395,10 +395,8 @@ namespace NetworkSelector
                 // 分割字符串
                 string[] configInnerSplit = configInner.Split(',');
                 // 传入的字符串结构：
-                // configName.Text + "," + macAddress.Text + ","
-                // + ipAddress.Text + "," + ipPort.Text + ","
-                // + rdpIsOpen.IsOn + "," + rdpIpAddress.Text + "," + rdpIpPort;
-                string configName = configInnerSplit[0];
+                // IPAddr.Text + "," + mask.Text + "," + gateway.Text + "," + DNS1.Text + "," + DNS2.Text + "," + configName.Text + "," + netInterface.Text;
+                string configName = configInnerSplit[5];
 
                 string configContent = localSettings.Values["ConfigID" + ConfigIDNum].ToString();
 
