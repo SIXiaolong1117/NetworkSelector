@@ -15,6 +15,7 @@ using Windows.Storage.Pickers;
 using System.IO;
 using System.Text;
 using Windows.Storage.Provider;
+using System.Text.RegularExpressions;
 
 namespace NetworkSelector
 {
@@ -41,9 +42,6 @@ namespace NetworkSelector
                 configName.SelectedItem = localSettings.Values["configName"];
                 refreshContent(localSettings.Values["configName"].ToString());
             }
-
-            //netName.Text = localSettings.Values[localSettings.Values["configName"].ToString() + "netName"] as string;
-            refreshStatus();
         }
         public List<string> ConfigSelector { get; } = new List<string>()
         {
@@ -120,7 +118,6 @@ namespace NetworkSelector
                 + "netsh interface ip set dns name='" + netInterface + "' source=static addr='" + DNS1 + "' register=primary;"
                 + "netsh interface ip add dns name='" + netInterface + "' addr='" + DNS2 + "' index=2;";
             }
-            netshCMD.Text = localSettings.Values["netshCMD"] as string;
         }
         // 刷新Content 调取localSettings存储内容
         public void refreshContent(string ConfigNameStr)
@@ -204,7 +201,6 @@ namespace NetworkSelector
                     addConfigButton.Content = "添加配置";
                     delConfigButton.IsEnabled = false;
                     applyConfigButton.IsEnabled = false;
-                    netshCMD.Text = "";
                     refreshCMD("", "", "", "", "", "");
                 }
                 else
@@ -226,23 +222,6 @@ namespace NetworkSelector
             }
             MyGridView.ItemsSource = items;
         }
-        // 刷新Status 调用localSettings存储状态
-        public void refreshStatus()
-        {
-            if (localSettings.Values["CMDDisplay"] as string == "是")
-            {
-                netshCMD.Visibility = Visibility.Visible;
-            }
-            else if (localSettings.Values["CMDDisplay"] as string == "否")
-            {
-                netshCMD.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                localSettings.Values["CMDDisplay"] = "否";
-                netshCMD.Visibility = Visibility.Collapsed;
-            }
-        }
         // 自动或预设切换
         private void configName_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -255,7 +234,6 @@ namespace NetworkSelector
                 localSettings.Values["DHCPStatus"] = "False";
             }
             refreshContent(configName.SelectedItem.ToString());
-            refreshStatus();
         }
         private async void addConfigButton_Click(object sender, RoutedEventArgs e)
         {
@@ -379,6 +357,8 @@ namespace NetworkSelector
             {
                 var path = file.Path;
                 localSettings.Values["ConfigID" + ConfigIDNum] = File.ReadAllText(path, Encoding.UTF8);
+                // 处理掉一些非法字符
+                localSettings.Values["ConfigID" + ConfigIDNum] = Regex.Replace(localSettings.Values["ConfigID" + ConfigIDNum] as string, @"\r\n?|\n", "");
                 // 刷新UI
                 refreshContent(ConfigIDNum);
             }

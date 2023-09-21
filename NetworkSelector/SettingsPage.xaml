@@ -20,13 +20,6 @@
                       Width="268" 
                       Margin="0,8,0,0">
             </ComboBox>
-            <ComboBox x:Name="CMDDisplay" 
-                      ItemsSource="{x:Bind CMDDisplays}" 
-                      SelectionChanged="CMDDisplay_SelectionChanged" 
-                      Header="是否显示 CMD 文本框：" 
-                      Width="268" 
-                      Margin="0,8,0,0">
-            </ComboBox>
         </StackPanel>
     </Grid>
 </Page>

@@ -63,22 +63,6 @@ namespace NetworkSelector
                 // 非法输入，设置默认材料为Mica Alt
                 localSettings.Values["materialStatus"] = "Mica Alt";
                 backgroundMaterial.SelectedItem = material[1];
-                // 非法输入，扔出警报
-                //throw new Exception($"Wrong material type: {localSettings.Values["materialStatus"]}");
-            }
-
-            if (localSettings.Values["CMDDisplay"] as string == "是")
-            {
-                CMDDisplay.SelectedItem = CMDDisplays[0];
-            }
-            else if (localSettings.Values["CMDDisplay"] as string == "否")
-            {
-                CMDDisplay.SelectedItem = CMDDisplays[1];
-            }
-            else
-            {
-                localSettings.Values["CMDDisplay"] = "否";
-                CMDDisplay.SelectedItem = CMDDisplays[1];
             }
         }
 
@@ -123,34 +107,6 @@ namespace NetworkSelector
                     break;
                 default:
                     throw new Exception($"Invalid argument: {materialStatus}");
-            }
-        }
-
-        private void CMDDisplay_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            string CMDDisplay = e.AddedItems[0].ToString();
-            switch (CMDDisplay)
-            {
-                case "是":
-                    if (localSettings.Values["CMDDisplay"] as string != "是")
-                    {
-                        localSettings.Values["CMDDisplay"] = "是";
-                    }
-                    else
-                    {
-                        localSettings.Values["CMDDisplay"] = "是";
-                    }
-                    break;
-                case "否":
-                    if (localSettings.Values["CMDDisplay"] as string != "否")
-                    {
-                        localSettings.Values["CMDDisplay"] = "否";
-                    }
-                    else
-                    {
-                        localSettings.Values["CMDDisplay"] = "否";
-                    }
-                    break;
             }
         }
     }
