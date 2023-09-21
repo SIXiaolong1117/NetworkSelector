@@ -3,37 +3,29 @@
 
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
-using Microsoft.VisualBasic.FileIO;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Security.Principal;
 using System.Threading;
-using System.Threading.Tasks;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.Storage;
-using WinRT;
-using static System.Net.Mime.MediaTypeNames;
+using Microsoft.UI.Dispatching;
+using static PInvoke.Kernel32;
+
 
 namespace NetworkSelector
 {
     public sealed partial class NetSetting : Page
     {
         ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
-        // 页面初始化
+        private DispatcherQueue _dispatcherQueue;
+
         public NetSetting()
         {
             this.InitializeComponent();
+
+            // 获取UI线程的DispatcherQueue
+            _dispatcherQueue = DispatcherQueue.GetForCurrentThread();
 
             if (localSettings.Values["configName"] == null)
             {
@@ -74,6 +66,20 @@ namespace NetworkSelector
 
             if (isAdmin)
             {
+                netshChildThread();
+            }
+            else
+            {
+                NotAdminTips.IsOpen = true;
+            }
+        }
+        private void netshChildThread()
+        {
+            // 关闭“应用配置”按钮
+            applyConfigButton.IsEnabled = false;
+            // 在子线程中执行任务
+            Thread subThread = new Thread(new ThreadStart(() =>
+            {
                 Process process = new Process();
                 process.StartInfo.FileName = "PowerShell.exe";
                 process.StartInfo.Arguments = localSettings.Values["netshCMD"] as string;
@@ -84,13 +90,15 @@ namespace NetworkSelector
                 process.Start();
                 process.WaitForExit();
                 process.Close();
-                NetworkIsChangeTips.IsOpen = true;
-            }
-            else
-            {
-                NotAdminTips.IsOpen = true;
-            }
-
+                // 要在UI线程上更新UI，使用DispatcherQueue
+                _dispatcherQueue.TryEnqueue(() =>
+                {
+                    NetworkIsChangeTips.IsOpen = true;
+                    // 打开“应用配置”按钮
+                    applyConfigButton.IsEnabled = true;
+                });
+            }));
+            subThread.Start();
         }
 
         private void refreshCMD(string netInterface, string IPAddr, string Mask, string Gateway, string DNS1, string DNS2)
