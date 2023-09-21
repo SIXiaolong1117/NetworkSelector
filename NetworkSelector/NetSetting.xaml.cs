@@ -92,6 +92,7 @@ namespace NetworkSelector
             }
 
         }
+
         private void refreshCMD(string netInterface, string IPAddr, string Mask, string Gateway, string DNS1, string DNS2)
         {
             // 根据选择自动或手动，写入不同的netshCMD
@@ -121,7 +122,7 @@ namespace NetworkSelector
             if (configInner != null)
             {
                 string[] configInnerSplit = configInner.Split(',');
-                //             localSettings.Values["ConfigIDTemp"] = IPAddr.Text + "," + mask.Text + "," + gateway.Text + "," + DNS1.Text + "," + DNS2.Text + "," + configName.Text + "," + netInterface.Text;
+                //IPAddr.Text + "," + mask.Text + "," + gateway.Text + "," + DNS1.Text + "," + DNS2.Text + "," + configName.Text + "," + netInterface.Text;
                 string configName = configInnerSplit[5];
                 string netInterface = configInnerSplit[6];
                 string IPAddr = configInnerSplit[0];
@@ -264,11 +265,34 @@ namespace NetworkSelector
                 f.Hide();
             }
         }
-        public void TextChanged(object sender, TextChangedEventArgs e)
+        private void NotAdminTips_ActionButtonClick(TeachingTip sender, object args)
+        {
+            RestartAsAdmin();
+        }
+        private void TextChanged(object sender, TextChangedEventArgs e)
         {
             string ConfigNameStr = configName.SelectedItem.ToString();
             //localSettings.Values[ConfigNameStr + "netName"] = netName.Text;
             refreshContent(ConfigNameStr);
+        }
+        private static void RestartAsAdmin()
+        {
+            string appPath = Process.GetCurrentProcess().MainModule.FileName;
+
+            ProcessStartInfo startInfo = new ProcessStartInfo();
+            startInfo.FileName = appPath;
+            startInfo.UseShellExecute = true;
+            startInfo.Verb = "runas"; // 使用管理员权限启动
+
+            try
+            {
+                Process.Start(startInfo);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("重新启动失败: " + ex.Message);
+            }
+            Environment.Exit(0);
         }
     }
     public class Item

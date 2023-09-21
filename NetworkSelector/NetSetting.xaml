@@ -97,7 +97,9 @@
 	                 PreferredPlacement="Auto"
 	                 PlacementMargin="20"
 	                 IsLightDismissEnabled="True"
-	                 CloseButtonContent="明白！">
+	                 ActionButtonContent="给予管理员权限"
+                     ActionButtonClick="NotAdminTips_ActionButtonClick"
+	                 CloseButtonContent="取消">
         </TeachingTip>
     </Grid>
 </Page>
