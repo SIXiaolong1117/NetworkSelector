@@ -15,15 +15,58 @@
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock x:Name="Header" FontSize="24" Text="网关切换" HorizontalAlignment="Center" />
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <ComboBox x:Name="configName" 
-                      ItemsSource="{x:Bind ConfigSelector}" 
-                      SelectionChanged="configName_SelectionChanged" 
-                      Header="IP 设置：" 
-                      Width="268" 
-                      Margin="0,0,0,8">
+                                  ItemsSource="{x:Bind ConfigSelector}" 
+                                  SelectionChanged="configName_SelectionChanged" 
+                                  Header="IP 设置：" 
+                                  Width="268" 
+                                  Margin="0,0,0,8">
                         </ComboBox>
+                    </StackPanel>
 
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" 
+                                VerticalAlignment="Center" Margin="0,0,0,8">
+                        <Button 
+                            x:Name="ImportConfig"
+                            Click="ImportConfig_Click" 
+                            Content="导入配置"
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Bottom" 
+                            Width="130"
+                            Margin="0,0,8,0"
+                            />
+                        <Button 
+                            x:Name="ImportAndReplaceConfig"
+                            Content="覆盖配置"
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Bottom" 
+                            Width="130"
+                            Margin="0,0,8,0"
+                            >
+                            <Button.Flyout>
+                                <Flyout>
+                                    <StackPanel>
+                                        <TextBlock 
+                                            Style="{ThemeResource BaseTextBlockStyle}" 
+                                            Text="您确定要覆盖此配置文件吗？" 
+                                            Margin="0,0,0,12" />
+                                        <Button 
+                                            Click="ImportConfig_Click" 
+                                            Content="确定" />
+                                    </StackPanel>
+                                </Flyout>
+                            </Button.Flyout>
+                        </Button>
+                        <Button 
+                            x:Name="ExportConfig" 
+                            Click="ExportConfig_Click" 
+                            Content="导出配置"
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Bottom" 
+                            Width="130"
+                            />
                     </StackPanel>
 
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -100,6 +143,14 @@
 	                 ActionButtonContent="给予管理员权限"
                      ActionButtonClick="NotAdminTips_ActionButtonClick"
 	                 CloseButtonContent="取消">
+        </TeachingTip>
+        <TeachingTip x:Name="SaveConfigTips"
+	                 Title=""
+	                 Subtitle=""
+	                 PreferredPlacement="Auto"
+	                 PlacementMargin="20"
+	                 IsLightDismissEnabled="True"
+	                 CloseButtonContent="确认">
         </TeachingTip>
     </Grid>
 </Page>
