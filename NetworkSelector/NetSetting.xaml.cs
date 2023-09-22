@@ -227,6 +227,8 @@ namespace NetworkSelector
                         ));
                     ImportConfig.IsEnabled = false;
                     ImportAndReplaceConfig.IsEnabled = false;
+                    delConfigButton.IsEnabled = false;
+                    applyConfigButton.IsEnabled = false;
                     addConfigButton.Content = "修改配置";
                     refreshCMD("", "DHCP", "DHCP", "DHCP", "DHCP", "DHCP");
                 }
