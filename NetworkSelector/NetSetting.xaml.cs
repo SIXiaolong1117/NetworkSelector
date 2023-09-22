@@ -42,6 +42,17 @@ namespace NetworkSelector
                 configName.SelectedItem = localSettings.Values["configName"];
                 refreshContent(localSettings.Values["configName"].ToString());
             }
+
+            // adminFlag = 1 以管理员身份重启
+            if (localSettings.Values["adminFlag"] as string == null)
+            {
+                localSettings.Values["adminFlag"] = "0";
+            }
+            else if (localSettings.Values["adminFlag"] as string == "1")
+            {
+                localSettings.Values["adminFlag"] = "0";
+                applyConfig();
+            }
         }
         public List<string> ConfigSelector { get; } = new List<string>()
         {
@@ -261,8 +272,8 @@ namespace NetworkSelector
         }
         private void applyConfigButton_Click(object sender, RoutedEventArgs e)
         {
-            applyConfig();
             localSettings.Values["configName"] = configName.SelectedItem;
+            applyConfig();
         }
         private void delConfigButton_Click(object sender, RoutedEventArgs e)
         {
@@ -276,6 +287,7 @@ namespace NetworkSelector
         }
         private void NotAdminTips_ActionButtonClick(TeachingTip sender, object args)
         {
+            localSettings.Values["adminFlag"] = "1";
             RestartAsAdmin();
         }
         // 添加/修改配置按钮点击
