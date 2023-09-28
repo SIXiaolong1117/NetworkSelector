@@ -54,7 +54,7 @@ namespace NetworkSelector
                 applyConfig();
             }
         }
-        public List<string> ConfigSelector { get; } = new List<string>()
+        private List<string> ConfigSelector { get; } = new List<string>()
         {
             "自动",
             "预设1",
@@ -69,7 +69,7 @@ namespace NetworkSelector
             "预设10"
         };
         // 应用保存的设置
-        public void applyConfig()
+        private void applyConfig()
         {
             WindowsIdentity identity = WindowsIdentity.GetCurrent();
             WindowsPrincipal principal = new WindowsPrincipal(identity);

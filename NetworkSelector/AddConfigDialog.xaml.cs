@@ -20,6 +20,7 @@ using System.Net;
 using Validation;
 using Windows.Services.Maps;
 using System.Threading.Tasks;
+using System.Net.NetworkInformation;
 
 namespace NetworkSelector
 {
@@ -33,10 +34,9 @@ namespace NetworkSelector
             string configInner = localSettings.Values["ConfigIDTemp"] as string;
             if (configInner != null)
             {
-                // IPAddr.Text + "," + mask.Text + "," + gateway.Text + "," + DNS1.Text + "," + DNS2.Text + "," + configName.Text + "," + netInterface.Text;
+                // IPAddr.Text + "," + mask.Text + "," + gateway.Text + "," + DNS1.Text + "," + DNS2.Text + "," + configName.Text + "," + networkInterfaceName.SelectedItem as string;
                 string[] configInnerSplit = configInner.Split(',');
                 configName.Text = configInnerSplit[5];
-                netInterface.Text = configInnerSplit[6];
                 IPAddr.Text = configInnerSplit[0];
                 mask.Text = configInnerSplit[1];
                 gateway.Text = configInnerSplit[2];
@@ -52,7 +52,7 @@ namespace NetworkSelector
                 DNS1.IsEnabled = false;
                 DNS2.IsEnabled = false;
                 configName.IsEnabled = false;
-                netInterface.IsEnabled = true;
+                networkInterfaceName.IsEnabled = true;
             }
             else
             {
@@ -62,13 +62,34 @@ namespace NetworkSelector
                 DNS1.IsEnabled = true;
                 DNS2.IsEnabled = true;
                 configName.IsEnabled = true;
-                netInterface.IsEnabled = true;
+                networkInterfaceName.IsEnabled = true;
             }
+            listNetworkInterface();
         }
-        public void TextChanged(object sender, TextChangedEventArgs e)
+        private void InnerChanged()
         {
-            localSettings.Values["ConfigIDTemp"] = IPAddr.Text + "," + mask.Text + "," + gateway.Text + "," + DNS1.Text + "," + DNS2.Text + "," + configName.Text + "," + netInterface.Text;
-            //Test.Text = localSettings.Values["ConfigIDTemp"] as string;
+            localSettings.Values["ConfigIDTemp"] = IPAddr.Text + "," + mask.Text + "," + gateway.Text + "," + DNS1.Text + "," + DNS2.Text + "," + configName.Text + "," + networkInterfaceName.SelectedItem as string;
+        }
+        private void TextChanged(object sender, TextChangedEventArgs e)
+        {
+            InnerChanged();
+        }
+
+        private void networkInterfaceName_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            InnerChanged();
+        }
+
+        // 列举所有网卡
+        private void listNetworkInterface()
+        {
+            NetworkInterface[] networkInterfaces = NetworkInterface.GetAllNetworkInterfaces();
+
+            foreach (NetworkInterface networkInterface in networkInterfaces)
+            {
+                //DevCMD.Text += "网卡名称: " + networkInterface.Name;
+                networkInterfaceName.Items.Add(networkInterface.Name);
+            }
         }
     }
 }

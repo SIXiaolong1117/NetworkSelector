@@ -14,9 +14,15 @@
             <TextBox x:Name="configName" TextChanged="TextChanged" 
                      Header="配置名称：" PlaceholderText="eg: 旁路网关"
                      Width="250" Margin="0,8,0,0"/>
-            <TextBox x:Name="netInterface" TextChanged="TextChanged" 
-                     Header="网卡：" PlaceholderText="eg: WLAN or 以太网"
-                     Width="250" Margin="0,8,0,0"/>
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <ComboBox x:Name="networkInterfaceName" 
+                                  SelectionChanged="networkInterfaceName_SelectionChanged" 
+                                  PlaceholderText="未改变"
+                                  Header="网卡：" 
+                                  Width="250" 
+                                  Margin="0,8,0,0">
+                </ComboBox>
+            </StackPanel>
             <TextBox x:Name="IPAddr" TextChanged="TextChanged" 
                      Header="IP地址：" PlaceholderText="eg: 192.168.0.1"
                      Width="250" Margin="0,8,0,0"/>
