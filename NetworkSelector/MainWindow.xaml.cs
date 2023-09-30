@@ -173,7 +173,7 @@ namespace NetworkSelector
                 }
                 else if ((string)selectedItem.Tag == "About")
                 {
-                    contentFrame.Navigate(typeof(About));
+                    contentFrame.Navigate(typeof(Pages.About));
                 }
             }
         }

@@ -21,6 +21,30 @@
             <!--  设置圆角  -->
             <Setter Property="CornerRadius" Value="4" />
         </Style>
+        <Flyout x:Name="confirmationDelFlyout" Placement="Right">
+            <StackPanel>
+                <TextBlock Margin="0,0,0,8" Text="确定要删除吗？" />
+                <StackPanel Orientation="Horizontal">
+                    <Button
+                        Margin="0,0,8,0"
+                        Click="ConfirmDelete_Click"
+                        Content="确认" />
+                    <Button Click="CancelDelete_Click" Content="取消" />
+                </StackPanel>
+            </StackPanel>
+        </Flyout>
+        <Flyout x:Name="confirmationReplaceFlyout" Placement="Right">
+            <StackPanel>
+                <TextBlock Margin="0,0,0,8" Text="确定要覆盖吗？" />
+                <StackPanel Orientation="Horizontal">
+                    <Button
+                        Margin="0,0,8,0"
+                        Click="ConfirmReplace_Click"
+                        Content="确认" />
+                    <Button Click="CancelReplace_Click" Content="取消" />
+                </StackPanel>
+            </StackPanel>
+        </Flyout>
     </Page.Resources>
 
     <Grid>
@@ -36,57 +60,196 @@
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     Orientation="Vertical">
-                    <ScrollViewer
-                        Width="268"
-                        Height="270"
-                        Margin="0,8,0,0"
-                        Style="{StaticResource TransparentScrollViewerStyle}">
-                        <Grid>
-                            <ListView
-                                x:Name="dataListView"
-                                HorizontalAlignment="Stretch"
-                                VerticalAlignment="Stretch">
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <Grid Padding="0,8,0,8" RightTapped="OnListViewRightTapped">
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto" />
-                                            </Grid.RowDefinitions>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto" />
-                                                <ColumnDefinition Width="*" />
-                                            </Grid.ColumnDefinitions>
-                                            <TextBlock
-                                                Grid.Row="0"
-                                                Grid.Column="0"
-                                                Text="配置：" />
-                                            <TextBlock
-                                                Grid.Row="0"
-                                                Grid.Column="1"
-                                                Text="{Binding Name}" />
-                                        </Grid>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
-                        </Grid>
-                    </ScrollViewer>
-
+                    <TextBlock
+                        x:Name="Header"
+                        Margin="0,0,0,8"
+                        HorizontalAlignment="Center"
+                        FontSize="24"
+                        Text="网关切换" />
 
                     <StackPanel
-                        Margin="0,8,0,0"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
+                        Width="592"
+                        Margin="0,0,0,8"
                         Orientation="Horizontal">
-                        <Button
-                            x:Name="AddConfig"
-                            Width="268"
+                        <TextBlock
                             HorizontalAlignment="Center"
-                            VerticalAlignment="Bottom"
-                            Click="AddConfigButton_Click"
-                            Content="添加配置" />
+                            VerticalAlignment="Center"
+                            FontSize="12"
+                            Foreground="DarkGray"
+                            Text="双击左键应用配置 右键配置打开菜单" />
                     </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel
+                            Margin="0,0,8,0"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Orientation="Vertical">
+                            <ScrollViewer
+                                Width="292"
+                                Height="292"
+                                Margin="0,0,0,8"
+                                Style="{StaticResource TransparentScrollViewerStyle}">
+                                <Grid>
+                                    <ListView
+                                        x:Name="dataListView"
+                                        HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Stretch">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <Grid DoubleTapped="OnListViewDoubleTapped" RightTapped="OnListViewRightTapped">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <TextBlock
+                                                        Grid.Row="0"
+                                                        Grid.Column="0"
+                                                        Padding="0,10,0,0"
+                                                        Text="配置：" />
+                                                    <TextBlock
+                                                        Grid.Row="0"
+                                                        Grid.Column="1"
+                                                        Padding="0,10,0,0"
+                                                        Text="{Binding Name}" />
+                                                    <TextBlock
+                                                        Grid.Row="1"
+                                                        Grid.Column="0"
+                                                        Padding="0,0,0,10"
+                                                        Text="网卡：" />
+                                                    <TextBlock
+                                                        Grid.Row="1"
+                                                        Grid.Column="1"
+                                                        Padding="0,0,0,10"
+                                                        Text="{Binding Netinterface}" />
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </Grid>
+                            </ScrollViewer>
+                            <StackPanel
+                                Width="292"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Orientation="Horizontal">
+                                <Button
+                                    x:Name="AddConfig"
+                                    Width="142"
+                                    Margin="0,0,8,0"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Bottom"
+                                    Click="AddConfigButton_Click"
+                                    Content="添加配置" />
+                                <Button
+                                    x:Name="ImportConfig"
+                                    Width="142"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Bottom"
+                                    Click="ImportConfig_Click"
+                                    Content="导入配置" />
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Orientation="Vertical">
+                            <ScrollViewer
+                                Width="292"
+                                Height="292"
+                                Margin="0,0,0,8"
+                                Style="{StaticResource TransparentScrollViewerStyle}">
+                                <StackPanel
+                                    Width="262"
+                                    Margin="15"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Orientation="Vertical">
+                                    <TextBlock x:Name="OutputTextBlock0" TextWrapping="Wrap" />
+                                    <TextBlock x:Name="OutputTextBlock1" TextWrapping="Wrap" />
+                                    <TextBlock x:Name="OutputTextBlock2" TextWrapping="Wrap" />
+                                    <TextBlock x:Name="OutputTextBlock3" TextWrapping="Wrap" />
+                                    <TextBlock x:Name="OutputTextBlock4" TextWrapping="Wrap" />
+                                    <TextBlock x:Name="OutputTextBlock5" TextWrapping="Wrap" />
+                                    <TextBlock x:Name="OutputTextBlock6" TextWrapping="Wrap" />
+                                </StackPanel>
+                            </ScrollViewer>
+                            <StackPanel
+                                Width="292"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Orientation="Horizontal">
+                                <Button
+                                    x:Name="DHCPConfig"
+                                    Width="142"
+                                    Margin="0,0,8,0"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Bottom"
+                                    Click="DHCPConfigButton_Click"
+                                    Content="DHCP（自动）" />
+                                <Button
+                                    x:Name="RefreshConfig"
+                                    Width="142"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Bottom"
+                                    Click="RefreshConfigButton_Click"
+                                    Content="刷新信息" />
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+
+
+
                 </StackPanel>
             </StackPanel>
+            <StackPanel
+                Margin="0,0,0,8"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Orientation="Vertical">
+                <HyperlinkButton
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Content="赞助我"
+                    FontSize="12"
+                    NavigateUri="https://github.com/Direct5dom/Direct5dom/blob/main/Sponsor.md" />
+            </StackPanel>
         </StackPanel>
+        <TeachingTip
+            x:Name="NeedSelectedTips"
+            Title="需要选中一个配置"
+            CloseButtonContent="确认"
+            IsLightDismissEnabled="True" />
+        <TeachingTip
+            x:Name="NetworkIsChangeTips"
+            Title="网络预设已经切换"
+            CloseButtonContent="明白！"
+            IsLightDismissEnabled="True"
+            PlacementMargin="20"
+            PreferredPlacement="Auto"
+            Subtitle="已经通过 netsh 命令行修改了网络配置，您可能需要重新进入 “Windows 高级网络设置” 页面才能看到修改结果。" />
+        <TeachingTip
+            x:Name="NotAdminTips"
+            Title="设置失败！"
+            ActionButtonClick="NotAdminTips_ActionButtonClick"
+            ActionButtonContent="给予管理员权限"
+            CloseButtonContent="取消"
+            IsLightDismissEnabled="True"
+            PlacementMargin="20"
+            PreferredPlacement="Auto"
+            Subtitle="您需要以管理员身份运行网关切换器 (Gateway Selector)，这是因为netsh需要在管理员权限下才可以修改网络配置信息。" />
+        <TeachingTip
+            x:Name="SaveConfigTips"
+            Title=""
+            CloseButtonContent="确认"
+            IsLightDismissEnabled="True"
+            PlacementMargin="20"
+            PreferredPlacement="Auto"
+            Subtitle="" />
+        <ProgressRing x:Name="InProgressing" IsActive="False" />
     </Grid>
 </Page>

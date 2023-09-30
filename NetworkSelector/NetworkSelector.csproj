@@ -45,9 +45,10 @@
     <Content Remove="Assets\Wide310x150Logo.scale-150.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Remove="About.xaml" />
     <None Remove="AddConfigDialog.xaml" />
     <None Remove="NetSetting.xaml" />
+    <None Remove="Pages\About.xaml" />
+    <None Remove="Pages\Dialogs\AddDHCPConfig.xaml" />
     <None Remove="Pages\Dialogs\AddNSConfig.xaml" />
     <None Remove="Pages\NetSelectPage.xaml" />
     <None Remove="SettingsPage.xaml" />
@@ -66,6 +67,7 @@
     <PackageReference Include="Microsoft.Data.Sqlite" Version="7.0.11" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.4.230913002" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.756" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="PInvoke.User32" Version="0.7.124" />
     <Manifest Include="$(ApplicationManifest)" />
   </ItemGroup>
@@ -79,12 +81,15 @@
     <ProjectCapability Include="Msix" />
   </ItemGroup>
   <ItemGroup>
-    <Page Update="AddConfigDialog.xaml">
+    <Page Update="Pages\About.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="Pages\Dialogs\AddDHCPConfig.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="About.xaml">
+    <Page Update="AddConfigDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
