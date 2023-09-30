@@ -169,7 +169,7 @@ namespace NetworkSelector
                 var selectedItem = (NavigationViewItem)args.SelectedItem;
                 if ((string)selectedItem.Tag == "NetSetting")
                 {
-                    contentFrame.Navigate(typeof(NetSetting));
+                    contentFrame.Navigate(typeof(Pages.NetSelectPage));
                 }
                 else if ((string)selectedItem.Tag == "About")
                 {

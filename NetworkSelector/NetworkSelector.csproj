@@ -21,6 +21,7 @@
     <AppxBundle>Always</AppxBundle>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
     <AppxBundlePlatforms>x86|x64|arm64</AppxBundlePlatforms>
+    <GenerateTemporaryStoreCertificate>True</GenerateTemporaryStoreCertificate>
   </PropertyGroup>
   <ItemGroup>
     <Content Remove="Assets\LargeTile.scale-125.png" />
@@ -47,6 +48,8 @@
     <None Remove="About.xaml" />
     <None Remove="AddConfigDialog.xaml" />
     <None Remove="NetSetting.xaml" />
+    <None Remove="Pages\Dialogs\AddNSConfig.xaml" />
+    <None Remove="Pages\NetSelectPage.xaml" />
     <None Remove="SettingsPage.xaml" />
   </ItemGroup>
 
@@ -60,8 +63,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.2.230118.102" />
-    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.755" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="7.0.11" />
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.4.230913002" />
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.756" />
     <PackageReference Include="PInvoke.User32" Version="0.7.124" />
     <Manifest Include="$(ApplicationManifest)" />
   </ItemGroup>
@@ -91,6 +95,16 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="NetSetting.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Pages\NetSelectPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Pages\Dialogs\AddNSConfig.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
