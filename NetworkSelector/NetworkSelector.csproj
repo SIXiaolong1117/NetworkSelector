@@ -46,7 +46,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="AddConfigDialog.xaml" />
-    <None Remove="NetSetting.xaml" />
     <None Remove="Pages\About.xaml" />
     <None Remove="Pages\Dialogs\AddDHCPConfig.xaml" />
     <None Remove="Pages\Dialogs\AddNSConfig.xaml" />
@@ -95,11 +94,6 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="SettingsPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="NetSetting.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

@@ -135,7 +135,7 @@ namespace NetworkSelector.Pages
                 }
             }
         }
-        private async void RefreshConfigButton_Click(object sender, RoutedEventArgs e)
+        private void RefreshConfigButton_Click(object sender, RoutedEventArgs e)
         {
             DisplayNetworkInfo();
         }
@@ -328,9 +328,21 @@ namespace NetworkSelector.Pages
                     // 获取网络接口的IP属性
                     IPInterfaceProperties ipProperties = networkInterface.GetIPProperties();
 
+                    // 获取网络接口的名称
+                    string interfaceName = networkInterface.Name;
+
                     // 获取IP地址
                     string ipAddress = ipProperties.UnicastAddresses
                         .FirstOrDefault(ip => ip.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)?.Address.ToString();
+
+                    // 获取网络接口的MAC地址
+                    string macAddress = networkInterface.GetPhysicalAddress().ToString();
+
+                    // 检查是否是12个字符的MAC地址
+                    if (macAddress.Length == 12)
+                    {
+                        macAddress = string.Join(":", Enumerable.Range(0, 6).Select(i => macAddress.Substring(i * 2, 2)));
+                    }
 
                     // 获取子网掩码
                     string subnetMask = ipProperties.UnicastAddresses
@@ -344,14 +356,22 @@ namespace NetworkSelector.Pages
                     string dns1 = ipProperties.DnsAddresses.FirstOrDefault()?.ToString();
                     string dns2 = ipProperties.DnsAddresses.Skip(1).FirstOrDefault()?.ToString();
 
+                    // 获取网络接口的类型（以太网、Wi-Fi等）
+                    NetworkInterfaceType interfaceType = networkInterface.NetworkInterfaceType;
+
+                    // 获取网络接口的速度（以比特每秒为单位）
+                    long interfaceSpeed = networkInterface.Speed;
+
                     // 将信息输出到TextBlock
-                    OutputTextBlock0.Text = $"网络名: \n{NSMethod.GetCurrentActiveNetworkInterfaceName()}\n";
-                    OutputTextBlock1.Text = $"网卡: \n{networkInterface.Description}\n";
-                    OutputTextBlock2.Text = $"IP 地址: \n{ipAddress}\n";
-                    OutputTextBlock3.Text = $"子网掩码: \n{subnetMask}\n";
-                    OutputTextBlock4.Text = $"网关地址: \n{gatewayAddress}\n";
-                    OutputTextBlock5.Text = $"DNS 1: \n{dns1}\n";
-                    OutputTextBlock6.Text = $"DNS 2: \n{dns2}\n\n";
+                    NetworkInterfaceName.Text = $"接口名称: \n{interfaceName}";
+                    NetworkInterfaceDescription.Text = $"接口描述: \n{networkInterface.Description}";
+                    NetworkInterfaceMACAddress.Text = $"物理地址(MAC)地址: \n{macAddress}";
+                    NetworkInterfaceIPAddress.Text = $"IP 地址: \n{ipAddress}";
+                    NetworkInterfaceSubnetMask.Text = $"子网掩码: \n{subnetMask}";
+                    NetworkInterfaceGatewayAddress.Text = $"网关地址: \n{gatewayAddress}";
+                    NetworkInterfaceDNS.Text = $"DNS 1: \n{dns1}\n{dns2}";
+                    NetworkInterfaceType.Text = $"网络类型: \n{interfaceType.ToString()}";
+                    NetworkInterfaceSpeed.Text = $"协商速度: \n{interfaceSpeed / 1000000} Mbps";
                 }
             }
         }

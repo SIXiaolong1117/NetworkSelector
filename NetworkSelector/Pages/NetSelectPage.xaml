@@ -79,7 +79,7 @@
                             Text="双击左键应用配置 右键配置打开菜单" />
                     </StackPanel>
 
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Margin="0,0,0,8" Orientation="Horizontal">
                         <StackPanel
                             Margin="0,0,8,0"
                             HorizontalAlignment="Center"
@@ -165,17 +165,46 @@
                                 Style="{StaticResource TransparentScrollViewerStyle}">
                                 <StackPanel
                                     Width="262"
-                                    Margin="15"
+                                    Margin="14"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
                                     Orientation="Vertical">
-                                    <TextBlock x:Name="OutputTextBlock0" TextWrapping="Wrap" />
-                                    <TextBlock x:Name="OutputTextBlock1" TextWrapping="Wrap" />
-                                    <TextBlock x:Name="OutputTextBlock2" TextWrapping="Wrap" />
-                                    <TextBlock x:Name="OutputTextBlock3" TextWrapping="Wrap" />
-                                    <TextBlock x:Name="OutputTextBlock4" TextWrapping="Wrap" />
-                                    <TextBlock x:Name="OutputTextBlock5" TextWrapping="Wrap" />
-                                    <TextBlock x:Name="OutputTextBlock6" TextWrapping="Wrap" />
+                                    <TextBlock
+                                        x:Name="NetworkInterfaceName"
+                                        Margin="0,0,0,8"
+                                        TextWrapping="Wrap" />
+                                    <TextBlock
+                                        x:Name="NetworkInterfaceDescription"
+                                        Margin="0,0,0,8"
+                                        TextWrapping="Wrap" />
+                                    <TextBlock
+                                        x:Name="NetworkInterfaceIPAddress"
+                                        Margin="0,0,0,8"
+                                        TextWrapping="Wrap" />
+                                    <TextBlock
+                                        x:Name="NetworkInterfaceMACAddress"
+                                        Margin="0,0,0,8"
+                                        TextWrapping="Wrap" />
+                                    <TextBlock
+                                        x:Name="NetworkInterfaceSubnetMask"
+                                        Margin="0,0,0,8"
+                                        TextWrapping="Wrap" />
+                                    <TextBlock
+                                        x:Name="NetworkInterfaceGatewayAddress"
+                                        Margin="0,0,0,8"
+                                        TextWrapping="Wrap" />
+                                    <TextBlock
+                                        x:Name="NetworkInterfaceDNS"
+                                        Margin="0,0,0,8"
+                                        TextWrapping="Wrap" />
+                                    <TextBlock
+                                        x:Name="NetworkInterfaceType"
+                                        Margin="0,0,0,8"
+                                        TextWrapping="Wrap" />
+                                    <TextBlock
+                                        x:Name="NetworkInterfaceSpeed"
+                                        Margin="0,0,0,8"
+                                        TextWrapping="Wrap" />
                                 </StackPanel>
                             </ScrollViewer>
                             <StackPanel
@@ -207,7 +236,6 @@
                 </StackPanel>
             </StackPanel>
             <StackPanel
-                Margin="0,0,0,8"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 Orientation="Vertical">
