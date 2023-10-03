@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddConfig.Content" xml:space="preserve">
+    <value>添加配置</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="ConfigGrid.Text" xml:space="preserve">
+    <value>配置</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>确认</value>
+  </data>
+  <data name="ConfirmDelete.Text" xml:space="preserve">
+    <value>确定要删除吗？</value>
+  </data>
+  <data name="ConfirmReplace.Text" xml:space="preserve">
+    <value>确定要覆盖吗？</value>
+  </data>
+  <data name="DHCPConfig.Content" xml:space="preserve">
+    <value>DHCP (自动)</value>
+  </data>
+  <data name="ImportConfig.Content" xml:space="preserve">
+    <value>导入配置</value>
+  </data>
+  <data name="IPv4Unconnect" xml:space="preserve">
+    <value>未找到 IPv4 连接</value>
+  </data>
+  <data name="IPv6Unconnect" xml:space="preserve">
+    <value>未找到 IPv6 连接</value>
+  </data>
+  <data name="NeedSelectedTips.Title" xml:space="preserve">
+    <value>需要选中一个配置</value>
+  </data>
+  <data name="NetInterfaceGrid.Text" xml:space="preserve">
+    <value>网卡</value>
+  </data>
+  <data name="NetSelectHeader.Text" xml:space="preserve">
+    <value>网关切换</value>
+  </data>
+  <data name="NetworkInterfaceDescription.Text" xml:space="preserve">
+    <value>接口描述:</value>
+  </data>
+  <data name="NetworkInterfaceDNS.Text" xml:space="preserve">
+    <value>DNS:</value>
+  </data>
+  <data name="NetworkInterfaceGatewayAddress.Text" xml:space="preserve">
+    <value>网关地址:</value>
+  </data>
+  <data name="NetworkInterfaceIPAddress.Text" xml:space="preserve">
+    <value>IP 地址:</value>
+  </data>
+  <data name="NetworkInterfaceMACAddress.Text" xml:space="preserve">
+    <value>物理地址 (MAC) 地址:</value>
+  </data>
+  <data name="NetworkInterfaceName.Text" xml:space="preserve">
+    <value>接口名称:</value>
+  </data>
+  <data name="NetworkInterfaceSpeed.Text" xml:space="preserve">
+    <value>协商速度:</value>
+  </data>
+  <data name="NetworkInterfaceSubnetMask.Text" xml:space="preserve">
+    <value>子网掩码:</value>
+  </data>
+  <data name="NetworkInterfaceTypeTextBox.Text" xml:space="preserve">
+    <value>网络类型:</value>
+  </data>
+  <data name="NetworkIsChangeTips.Subtitle" xml:space="preserve">
+    <value>已经通过 netsh 命令行修改了网络配置，您可能需要重新进入 “Windows 高级网络设置” 页面才能看到修改结果。</value>
+  </data>
+  <data name="NetworkIsChangeTips.Title" xml:space="preserve">
+    <value>网络预设已经切换</value>
+  </data>
+  <data name="NotAdminTips.ActionButtonContent" xml:space="preserve">
+    <value>给予管理员权限</value>
+  </data>
+  <data name="NotAdminTips.Subtitle" xml:space="preserve">
+    <value>您需要以管理员身份运行网关切换器 (Gateway Selector)，这是因为netsh需要在管理员权限下才可以修改网络配置信息。</value>
+  </data>
+  <data name="NotAdminTips.Title" xml:space="preserve">
+    <value>设置失败！</value>
+  </data>
+  <data name="RefreshConfig.Content" xml:space="preserve">
+    <value>刷新信息</value>
+  </data>
+  <data name="Sponsor.Content" xml:space="preserve">
+    <value>赞助我</value>
+  </data>
+  <data name="Tips1.Text" xml:space="preserve">
+    <value>双击左键应用配置 右键配置打开菜单</value>
+  </data>
+  <data name="Tips2.Text" xml:space="preserve">
+    <value>当前网络信息</value>
+  </data>
+  <data name="TypeEthernet" xml:space="preserve">
+    <value>以太网</value>
+  </data>
+  <data name="TypeLoopback" xml:space="preserve">
+    <value>回环</value>
+  </data>
+  <data name="TypeTunnel" xml:space="preserve">
+    <value>隧道</value>
+  </data>
+  <data name="TypeUnknown" xml:space="preserve">
+    <value>未知</value>
+  </data>
+  <data name="TypeWireless80211" xml:space="preserve">
+    <value>无线 (IEEE 802.11)</value>
+  </data>
+</root>

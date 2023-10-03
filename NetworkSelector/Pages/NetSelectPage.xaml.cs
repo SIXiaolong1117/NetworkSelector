@@ -24,11 +24,14 @@ using NetworkSelector.Methods;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Net;
+using Windows.ApplicationModel.Resources;
+using Windows.UI.Core;
 
 namespace NetworkSelector.Pages
 {
     public sealed partial class NetSelectPage : Page
     {
+        ResourceLoader resourceLoader = new ResourceLoader();
         private DispatcherQueue _dispatcherQueue;
         public NetSelectPage()
         {
@@ -37,6 +40,18 @@ namespace NetworkSelector.Pages
             _dispatcherQueue = DispatcherQueue.GetForCurrentThread();
             // 加载数据
             LoadData();
+
+            NeedSelectedTips.CloseButtonContent = resourceLoader.GetString("Confirm");
+            NetworkIsChangeTips.CloseButtonContent = resourceLoader.GetString("Confirm");
+            SaveConfigTips.CloseButtonContent = resourceLoader.GetString("Confirm");
+            ConfirmDelete.Content = resourceLoader.GetString("Confirm");
+            ConfirmReplace.Content = resourceLoader.GetString("Confirm");
+
+
+            NotAdminTips.CloseButtonContent = resourceLoader.GetString("Cancel");
+            CancelDelete.Content = resourceLoader.GetString("Cancel");
+            CancelReplace.Content = resourceLoader.GetString("Cancel");
+
         }
         private void LoadData()
         {
@@ -332,8 +347,20 @@ namespace NetworkSelector.Pages
                     string interfaceName = networkInterface.Name;
 
                     // 获取IP地址
-                    string ipAddress = ipProperties.UnicastAddresses
-                        .FirstOrDefault(ip => ip.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)?.Address.ToString();
+                    // v4
+                    string ipAddressSrc = ipProperties.UnicastAddresses.FirstOrDefault(ip => ip.Address.AddressFamily == AddressFamily.InterNetwork)?.Address.ToString();
+                    string ipAddress = ipAddressSrc;
+                    if (ipAddressSrc == null)
+                    {
+                        ipAddress = resourceLoader.GetString("IPv4Unconnect");
+                    }
+                    // v6
+                    string ipv6AddressSrc = ipProperties.UnicastAddresses.FirstOrDefault(ip => ip.Address.AddressFamily == AddressFamily.InterNetworkV6)?.Address.ToString();
+                    string ipv6Address = ipv6AddressSrc;
+                    if (ipv6AddressSrc == null)
+                    {
+                        ipv6Address = resourceLoader.GetString("IPv6Unconnect");
+                    }
 
                     // 获取网络接口的MAC地址
                     string macAddress = networkInterface.GetPhysicalAddress().ToString();
@@ -344,34 +371,80 @@ namespace NetworkSelector.Pages
                         macAddress = string.Join(":", Enumerable.Range(0, 6).Select(i => macAddress.Substring(i * 2, 2)));
                     }
 
-                    // 获取子网掩码
-                    string subnetMask = ipProperties.UnicastAddresses
-                        .FirstOrDefault(ip => ip.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)?.IPv4Mask.ToString();
+                    // 获取子网前缀长度
+                    //// v4
+                    //string subnetMask = ipProperties.UnicastAddresses.FirstOrDefault(ip => ip.Address.AddressFamily == AddressFamily.InterNetwork)?.IPv4Mask.ToString();
+                    //// v6
+                    //string subnet6Mask = ipProperties.UnicastAddresses.FirstOrDefault(ip => ip.Address.AddressFamily == AddressFamily.InterNetworkV6)?.IPv6Mask.ToString();
+                    string subnetMask = "";
+                    string subnet6Mask = "";
+                    foreach (UnicastIPAddressInformation ipInfo in networkInterface.GetIPProperties().UnicastAddresses)
+                    {
+                        // v4
+                        if (ipInfo.Address.AddressFamily == AddressFamily.InterNetwork)
+                        {
+                            subnetMask = ipInfo.PrefixLength.ToString();
+                        }
+                        // v6
+                        if (ipInfo.Address.AddressFamily == AddressFamily.InterNetworkV6)
+                        {
+                            subnet6Mask = ipInfo.PrefixLength.ToString();
+                        }
+                    }
 
                     // 获取网关地址
-                    string gatewayAddress = ipProperties.GatewayAddresses
-                        .FirstOrDefault()?.Address.ToString();
+                    // v4
+                    string gatewayAddress = ipProperties.GatewayAddresses.FirstOrDefault(ga => ga.Address.AddressFamily == AddressFamily.InterNetwork)?.Address.ToString();
+                    // v6
+                    string gateway6Address = ipProperties.GatewayAddresses.FirstOrDefault(ga => ga.Address.AddressFamily == AddressFamily.InterNetworkV6)?.Address.ToString();
 
                     // 获取DNS服务器信息
-                    string dns1 = ipProperties.DnsAddresses.FirstOrDefault()?.ToString();
-                    string dns2 = ipProperties.DnsAddresses.Skip(1).FirstOrDefault()?.ToString();
+                    string dns = "";
+                    foreach (IPAddress dnsAddress in ipProperties.DnsAddresses)
+                    {
+                        dns += dnsAddress.ToString() + "\n";
+                    }
 
                     // 获取网络接口的类型（以太网、Wi-Fi等）
-                    NetworkInterfaceType interfaceType = networkInterface.NetworkInterfaceType;
+                    string interfaceTypeSrc = networkInterface.NetworkInterfaceType.ToString();
+                    string interfaceType = interfaceTypeSrc;
+                    if (interfaceTypeSrc == "Ethernet")
+                    {
+                        interfaceType = resourceLoader.GetString("TypeEthernet");
+                    }
+                    else if (interfaceTypeSrc == "Wireless80211")
+                    {
+                        interfaceType = resourceLoader.GetString("TypeWireless80211");
+                    }
+                    else if (interfaceTypeSrc == "Loopback")
+                    {
+                        interfaceType = resourceLoader.GetString("TypeLoopback");
+                    }
+                    else if (interfaceTypeSrc == "Tunnel")
+                    {
+                        interfaceType = resourceLoader.GetString("TypeTunnel");
+                    }
+                    else if (interfaceTypeSrc == "Unknown")
+                    {
+                        interfaceType = resourceLoader.GetString("TypeUnknown");
+                    }
+                    else
+                    {
+                        interfaceType = interfaceTypeSrc;
+                    }
 
                     // 获取网络接口的速度（以比特每秒为单位）
                     long interfaceSpeed = networkInterface.Speed;
 
                     // 将信息输出到TextBlock
-                    NetworkInterfaceName.Text = $"接口名称: \n{interfaceName}";
-                    NetworkInterfaceDescription.Text = $"接口描述: \n{networkInterface.Description}";
-                    NetworkInterfaceMACAddress.Text = $"物理地址 (MAC) 地址: \n{macAddress}";
-                    NetworkInterfaceIPAddress.Text = $"IP 地址: \n{ipAddress}";
-                    NetworkInterfaceSubnetMask.Text = $"子网掩码: \n{subnetMask}";
-                    NetworkInterfaceGatewayAddress.Text = $"网关地址: \n{gatewayAddress}";
-                    NetworkInterfaceDNS.Text = $"DNS 1: \n{dns1}\n{dns2}";
-                    NetworkInterfaceType.Text = $"网络类型: \n{interfaceType.ToString()}";
-                    NetworkInterfaceSpeed.Text = $"协商速度: \n{interfaceSpeed / 1000000} Mbps";
+                    NetworkInterfaceName.Text = $"{interfaceName}";
+                    NetworkInterfaceDescription.Text = $"{networkInterface.Description}";
+                    NetworkInterfaceMACAddress.Text = $"{macAddress}";
+                    NetworkInterfaceIPAddress.Text = $"{ipAddress}/{subnetMask}\n{ipv6Address}/{subnet6Mask}";
+                    NetworkInterfaceGatewayAddress.Text = $"{gatewayAddress}\n{gateway6Address}";
+                    NetworkInterfaceDNS.Text = $"{dns.TrimEnd()}";
+                    NetworkInterfaceTypeTextBox.Text = $"{interfaceType}";
+                    NetworkInterfaceSpeed.Text = $"{interfaceSpeed / 1000000} Mbps";
                 }
             }
         }
