@@ -365,7 +365,7 @@ namespace NetworkSelector.Pages
                     // 将信息输出到TextBlock
                     NetworkInterfaceName.Text = $"接口名称: \n{interfaceName}";
                     NetworkInterfaceDescription.Text = $"接口描述: \n{networkInterface.Description}";
-                    NetworkInterfaceMACAddress.Text = $"物理地址(MAC)地址: \n{macAddress}";
+                    NetworkInterfaceMACAddress.Text = $"物理地址 (MAC) 地址: \n{macAddress}";
                     NetworkInterfaceIPAddress.Text = $"IP 地址: \n{ipAddress}";
                     NetworkInterfaceSubnetMask.Text = $"子网掩码: \n{subnetMask}";
                     NetworkInterfaceGatewayAddress.Text = $"网关地址: \n{gatewayAddress}";
