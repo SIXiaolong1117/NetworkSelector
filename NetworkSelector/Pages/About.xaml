@@ -23,6 +23,13 @@
                 FontSize="24"
                 Text="关于" />
             <StackPanel
+                Margin="0,0,0,8"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Orientation="Vertical">
+                <PersonPicture DisplayName="SI Xiaolong" ProfilePicture="https://avatars.githubusercontent.com/u/59590732?v=4" />
+            </StackPanel>
+            <StackPanel
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 Orientation="Horizontal">
@@ -31,135 +38,150 @@
                     BorderBrush="#11FFFFFF"
                     BorderThickness="0,0,1,0">
                     <StackPanel
+                        Width="200"
                         Margin="0,0,8,0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
                         Orientation="Vertical">
-                        <PersonPicture DisplayName="SI Xiaolong" ProfilePicture="https://avatars.githubusercontent.com/u/59590732?v=4" />
+                        <StackPanel
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="14"
+                                Text="👾作者:" />
+                            <HyperlinkButton
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Content="司晓龙 (SI Xiaolong)"
+                                FontSize="14"
+                                NavigateUri="https://github.com/Direct5dom" />
+                        </StackPanel>
+                        <StackPanel
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="14"
+                                Text="💽Repo:" />
+                            <HyperlinkButton
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Content="Gateway Selector"
+                                FontSize="14"
+                                NavigateUri="https://github.com/Direct5dom/NetworkSelector" />
+                        </StackPanel>
+                        <StackPanel
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="14"
+                                Text="⚖️开源许可:" />
+                            <HyperlinkButton
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Content="MIT License"
+                                FontSize="14"
+                                NavigateUri="https://raw.githubusercontent.com/Direct5dom/NetworkSelector/master/LICENSE" />
+                        </StackPanel>
+                        <StackPanel
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="14"
+                                Text="🔑隐私策略:" />
+                            <HyperlinkButton
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Content="PRIVACY"
+                                FontSize="14"
+                                NavigateUri="https://raw.githubusercontent.com/Direct5dom/NetworkSelector/master/PRIVACY" />
+                        </StackPanel>
+                        <StackPanel
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="14"
+                                Text="❓帮助:" />
+                            <HyperlinkButton
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Content="Github Wiki"
+                                FontSize="14"
+                                NavigateUri="https://github.com/Direct5dom/NetworkSelector/wiki" />
+                        </StackPanel>
+                        <StackPanel
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="14"
+                                Text="🍰版本号:" />
+                            <HyperlinkButton
+                                x:Name="APPVersion"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="14" />
+                        </StackPanel>
                     </StackPanel>
                 </Border>
                 <StackPanel
-                    Margin="0,0,8,0"
-                    HorizontalAlignment="Left"
+                    HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     Orientation="Vertical">
+                    <TextBlock
+                        Margin="0,0,0,8"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontSize="18"
+                        Text="☕赞助" />
                     <StackPanel
-                        HorizontalAlignment="Left"
+                        HorizontalAlignment="Center"
                         VerticalAlignment="Center"
                         Orientation="Horizontal">
-                        <TextBlock
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            FontSize="14"
-                            Text="👾作者:" />
-                        <HyperlinkButton
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Content="司晓龙 (SI Xiaolong)"
-                            FontSize="14"
-                            NavigateUri="https://github.com/Direct5dom" />
-                    </StackPanel>
-                    <StackPanel
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Center"
-                        Orientation="Horizontal">
-                        <TextBlock
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            FontSize="14"
-                            Text="💽Repo:" />
-                        <HyperlinkButton
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Content="Gateway Selector"
-                            FontSize="14"
-                            NavigateUri="https://github.com/Direct5dom/NetworkSelector" />
-                    </StackPanel>
-                    <StackPanel
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Center"
-                        Orientation="Horizontal">
-                        <TextBlock
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            FontSize="14"
-                            Text="⚖️开源许可:" />
-                        <HyperlinkButton
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Content="MIT License"
-                            FontSize="14"
-                            NavigateUri="https://raw.githubusercontent.com/Direct5dom/NetworkSelector/master/LICENSE" />
-                    </StackPanel>
-                    <StackPanel
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Center"
-                        Orientation="Horizontal">
-                        <TextBlock
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            FontSize="14"
-                            Text="🔑隐私策略:" />
-                        <HyperlinkButton
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Content="PRIVACY"
-                            FontSize="14"
-                            NavigateUri="https://raw.githubusercontent.com/Direct5dom/NetworkSelector/master/PRIVACY" />
-                    </StackPanel>
-                    <StackPanel
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Center"
-                        Orientation="Horizontal">
-                        <TextBlock
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            FontSize="14"
-                            Text="❓帮助:" />
-                        <HyperlinkButton
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Content="Github Wiki"
-                            FontSize="14"
-                            NavigateUri="https://github.com/Direct5dom/NetworkSelector/wiki" />
-                    </StackPanel>
-                    <StackPanel
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Center"
-                        Orientation="Horizontal">
-                        <TextBlock
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            FontSize="14"
-                            Text="❤️赞助:" />
                         <HyperlinkButton
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             Content="支付宝"
-                            FontSize="14"
+                            FontSize="12"
                             NavigateUri="https://raw.githubusercontent.com/Direct5dom/Direct5dom/main/README/Sponsor/AliPay.jpg" />
                         <HyperlinkButton
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             Content="微信"
-                            FontSize="14"
+                            FontSize="12"
                             NavigateUri="https://raw.githubusercontent.com/Direct5dom/Direct5dom/main/README/Sponsor/WeChat.png" />
                     </StackPanel>
-                    <StackPanel
-                        HorizontalAlignment="Left"
+                    <TextBlock
+                        Margin="0,0,0,8"
+                        HorizontalAlignment="Center"
                         VerticalAlignment="Center"
-                        Orientation="Horizontal">
-                        <TextBlock
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            FontSize="14"
-                            Text="🍰版本号:" />
-                        <HyperlinkButton
-                            x:Name="APPVersion"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            FontSize="14" />
-                    </StackPanel>
+                        FontSize="12"
+                        Foreground="DarkGray"
+                        Text="备注要展示的名称，按时间倒序" />
+                    <WebView2
+                        Grid.Row="1"
+                        Width="200"
+                        Height="100"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        DefaultBackgroundColor="Transparent"
+                        Source="https://raw.githubusercontent.com/Direct5dom/Direct5dom/main/README/Sponsor/List" />
                 </StackPanel>
             </StackPanel>
         </StackPanel>
