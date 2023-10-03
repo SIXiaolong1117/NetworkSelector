@@ -57,13 +57,29 @@
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     FontSize="14"
-                    Text="⚖️License:" />
+                    Text="⚖️开源许可:" />
                 <HyperlinkButton
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     Content="MIT License"
                     FontSize="14"
-                    NavigateUri="https://github.com/Direct5dom/NetworkSelector/blob/master/LICENSE" />
+                    NavigateUri="https://raw.githubusercontent.com/Direct5dom/NetworkSelector/master/LICENSE" />
+            </StackPanel>
+            <StackPanel
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Orientation="Horizontal">
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="14"
+                    Text="🔑隐私策略:" />
+                <HyperlinkButton
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Content="PRIVACY"
+                    FontSize="14"
+                    NavigateUri="https://raw.githubusercontent.com/Direct5dom/NetworkSelector/master/PRIVACY" />
             </StackPanel>
             <StackPanel
                 HorizontalAlignment="Left"
