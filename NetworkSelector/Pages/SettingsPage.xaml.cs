@@ -17,7 +17,7 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
 
-namespace NetworkSelector
+namespace NetworkSelector.Pages
 {
     public sealed partial class SettingsPage : Page
     {

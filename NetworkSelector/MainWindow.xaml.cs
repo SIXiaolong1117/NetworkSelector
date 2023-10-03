@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation and Contributors.
 // Licensed under the MIT License.
 
+using Microsoft.UI;
 using Microsoft.UI.Composition.SystemBackdrops;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -44,14 +45,25 @@ namespace NetworkSelector
             // 设置任务栏显示名称
             Title = $"网关切换器 (Gateway Selector)";
 
-            TrySetSystemBackdrop();
+            if (localSettings.Values["materialStatus"] as string == "Acrylic")
+            {
+                SetAcrylicBackground();
+            }
+            else if (localSettings.Values["materialStatus"] as string == "Mica")
+            {
+                SetMicaBackground();
+            }
+            else
+            {
+                SetMicaAltBackground();
+            }
 
             NavView.SelectedItem = NavView.MenuItems[0];
         }
 
-        bool TrySetSystemBackdrop()
+        public bool SetAcrylicBackground()
         {
-            if (Microsoft.UI.Composition.SystemBackdrops.MicaController.IsSupported())
+            if (DesktopAcrylicController.IsSupported())
             {
                 m_wsdqHelper = new WindowsSystemDispatcherQueueHelper();
                 m_wsdqHelper.EnsureWindowsSystemDispatcherQueueController();
@@ -66,50 +78,68 @@ namespace NetworkSelector
                 m_configurationSource.IsInputActive = true;
                 SetConfigurationSourceTheme();
 
-                if (localSettings.Values["materialStatus"] as string == "Acrylic")
-                {
-                    a_backdropController = new Microsoft.UI.Composition.SystemBackdrops.DesktopAcrylicController();
-                }
-                else if (localSettings.Values["materialStatus"] as string == "Mica")
-                {
-                    m_backdropController = new Microsoft.UI.Composition.SystemBackdrops.MicaController();
-                }
-                else
-                {
-                    ma_backdropController = new Microsoft.UI.Composition.SystemBackdrops.MicaController()
-                    {
-                        Kind = MicaKind.BaseAlt
-                    };
-                }
+                a_backdropController = new DesktopAcrylicController();
+                a_backdropController.AddSystemBackdropTarget(this.As<Microsoft.UI.Composition.ICompositionSupportsSystemBackdrop>());
+                a_backdropController.SetSystemBackdropConfiguration(m_configurationSource);
 
-                // Enable the system backdrop.
-                // Note: Be sure to have "using WinRT;" to support the Window.As<...>() call.
-                if (localSettings.Values["materialStatus"] as string == "Mica")
-                {
-                    m_backdropController.AddSystemBackdropTarget(this.As<Microsoft.UI.Composition.ICompositionSupportsSystemBackdrop>());
-                    m_backdropController.SetSystemBackdropConfiguration(m_configurationSource);
-                }
-                else if (localSettings.Values["materialStatus"] as string == "Mica Alt")
-                {
-                    ma_backdropController.AddSystemBackdropTarget(this.As<Microsoft.UI.Composition.ICompositionSupportsSystemBackdrop>());
-                    ma_backdropController.SetSystemBackdropConfiguration(m_configurationSource);
-                }
-                else if (localSettings.Values["materialStatus"] as string == "Acrylic")
-                {
-                    a_backdropController.AddSystemBackdropTarget(this.As<Microsoft.UI.Composition.ICompositionSupportsSystemBackdrop>());
-                    a_backdropController.SetSystemBackdropConfiguration(m_configurationSource);
-                }
-                else
-                //throw new Exception($"Invalid argument: {localSettings.Values["materialStatus"] as string}");
-                {
-                    localSettings.Values["materialStatus"] = "Mica Alt";
-                    ma_backdropController.AddSystemBackdropTarget(this.As<Microsoft.UI.Composition.ICompositionSupportsSystemBackdrop>());
-                    ma_backdropController.SetSystemBackdropConfiguration(m_configurationSource);
-                }
-                return true; // succeeded
+                return true;
             }
+            return false;
+        }
 
-            return false; // Mica is not supported on this system
+        public bool SetMicaBackground()
+        {
+            if (MicaController.IsSupported())
+            {
+                m_wsdqHelper = new WindowsSystemDispatcherQueueHelper();
+                m_wsdqHelper.EnsureWindowsSystemDispatcherQueueController();
+
+                // Create the policy object.
+                m_configurationSource = new SystemBackdropConfiguration();
+                this.Activated += Window_Activated;
+                this.Closed += Window_Closed;
+                ((FrameworkElement)this.Content).ActualThemeChanged += Window_ThemeChanged;
+
+                // Initial configuration state.
+                m_configurationSource.IsInputActive = true;
+                SetConfigurationSourceTheme();
+
+                m_backdropController = new MicaController();
+                m_backdropController.AddSystemBackdropTarget(this.As<Microsoft.UI.Composition.ICompositionSupportsSystemBackdrop>());
+                m_backdropController.SetSystemBackdropConfiguration(m_configurationSource);
+
+                return true;
+            }
+            return false;
+        }
+
+        public bool SetMicaAltBackground()
+        {
+            if (MicaController.IsSupported())
+            {
+                m_wsdqHelper = new WindowsSystemDispatcherQueueHelper();
+                m_wsdqHelper.EnsureWindowsSystemDispatcherQueueController();
+
+                // Create the policy object.
+                m_configurationSource = new SystemBackdropConfiguration();
+                this.Activated += Window_Activated;
+                this.Closed += Window_Closed;
+                ((FrameworkElement)this.Content).ActualThemeChanged += Window_ThemeChanged;
+
+                // Initial configuration state.
+                m_configurationSource.IsInputActive = true;
+                SetConfigurationSourceTheme();
+
+                ma_backdropController = new MicaController()
+                {
+                    Kind = MicaKind.BaseAlt
+                };
+                ma_backdropController.AddSystemBackdropTarget(this.As<Microsoft.UI.Composition.ICompositionSupportsSystemBackdrop>());
+                ma_backdropController.SetSystemBackdropConfiguration(m_configurationSource);
+
+                return true;
+            }
+            return false;
         }
         private void Window_Activated(object sender, WindowActivatedEventArgs args)
         {
@@ -162,7 +192,7 @@ namespace NetworkSelector
         {
             if (args.IsSettingsSelected)
             {
-                contentFrame.Navigate(typeof(SettingsPage));
+                contentFrame.Navigate(typeof(Pages.SettingsPage));
             }
             else
             {
