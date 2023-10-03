@@ -11,6 +11,7 @@ using Windows.Storage.Pickers;
 using Windows.Storage.Provider;
 using Windows.Storage;
 using Newtonsoft.Json;
+using System.Diagnostics;
 
 namespace NetworkSelector.Methods
 {
@@ -30,7 +31,7 @@ namespace NetworkSelector.Methods
             return networkInterfaceNames;
         }
 
-        // 获取当前使用的显卡名
+        // 获取当前使用的网卡名
         public static string GetCurrentActiveNetworkInterfaceName()
         {
             NetworkInterface[] networkInterfaces = NetworkInterface.GetAllNetworkInterfaces();
@@ -50,6 +51,30 @@ namespace NetworkSelector.Methods
 
             // 如果没有找到正在上网的网卡，可以返回一个默认值或抛出异常，具体取决于您的需求。
             return "未找到正在上网的网卡";
+        }
+        // 是否启用IPv6
+        public static bool IsIPv6Enabled()
+        {
+            NetworkInterface[] networkInterfaces = NetworkInterface.GetAllNetworkInterfaces();
+
+            foreach (NetworkInterface networkInterface in networkInterfaces)
+            {
+                if (networkInterface.Name == NSMethod.GetCurrentActiveNetworkInterfaceName())
+                {
+                    IPInterfaceProperties properties = networkInterface.GetIPProperties();
+
+                    foreach (UnicastIPAddressInformation addressInfo in properties.UnicastAddresses)
+                    {
+                        if (addressInfo.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetworkV6)
+                        {
+                            // 找到IPv6地址
+                            return true;
+                        }
+                    }
+                }
+            }
+            // 未找到IPv6地址
+            return false;
         }
         // 导出配置
         public static async Task<string> ExportConfig(NSModel nsModel)

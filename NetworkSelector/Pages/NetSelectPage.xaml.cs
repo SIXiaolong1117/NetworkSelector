@@ -26,6 +26,8 @@ using System.Net.Sockets;
 using System.Net;
 using Windows.ApplicationModel.Resources;
 using Windows.UI.Core;
+using Windows.Services.Maps;
+using System.Net.Mail;
 
 namespace NetworkSelector.Pages
 {
@@ -40,30 +42,46 @@ namespace NetworkSelector.Pages
             _dispatcherQueue = DispatcherQueue.GetForCurrentThread();
             // 加载数据
             LoadData();
+            DisplayNetworkInfo();
+            LoadString();
+        }
+        private void LoadString()
+        {
+            // 在子线程中执行任务
+            Thread subThread = new Thread(new ThreadStart(() =>
+            {
+                _dispatcherQueue.TryEnqueue(() =>
+                {
+                    NeedSelectedTips.CloseButtonContent = resourceLoader.GetString("Confirm");
+                    NetworkIsChangeTips.CloseButtonContent = resourceLoader.GetString("Confirm");
+                    SaveConfigTips.CloseButtonContent = resourceLoader.GetString("Confirm");
+                    ConfirmDelete.Content = resourceLoader.GetString("Confirm");
+                    ConfirmReplace.Content = resourceLoader.GetString("Confirm");
 
-            NeedSelectedTips.CloseButtonContent = resourceLoader.GetString("Confirm");
-            NetworkIsChangeTips.CloseButtonContent = resourceLoader.GetString("Confirm");
-            SaveConfigTips.CloseButtonContent = resourceLoader.GetString("Confirm");
-            ConfirmDelete.Content = resourceLoader.GetString("Confirm");
-            ConfirmReplace.Content = resourceLoader.GetString("Confirm");
 
-
-            NotAdminTips.CloseButtonContent = resourceLoader.GetString("Cancel");
-            CancelDelete.Content = resourceLoader.GetString("Cancel");
-            CancelReplace.Content = resourceLoader.GetString("Cancel");
-
+                    NotAdminTips.CloseButtonContent = resourceLoader.GetString("Cancel");
+                    CancelDelete.Content = resourceLoader.GetString("Cancel");
+                    CancelReplace.Content = resourceLoader.GetString("Cancel");
+                });
+            }));
+            subThread.Start();
         }
         private void LoadData()
         {
-            // 实例化SQLiteHelper
-            SQLiteHelper dbHelper = new SQLiteHelper();
-            // 查询数据
-            List<NSModel> dataList = dbHelper.QueryData();
-
-            // 将数据列表绑定到ListView
-            dataListView.ItemsSource = dataList;
-
-            DisplayNetworkInfo();
+            // 在子线程中执行任务
+            Thread subThread = new Thread(new ThreadStart(() =>
+            {
+                // 实例化SQLiteHelper
+                SQLiteHelper dbHelper = new SQLiteHelper();
+                // 查询数据
+                List<NSModel> dataList = dbHelper.QueryData();
+                _dispatcherQueue.TryEnqueue(() =>
+                {
+                    // 将数据列表绑定到ListView
+                    dataListView.ItemsSource = dataList;
+                });
+            }));
+            subThread.Start();
         }
         // 导入配置按钮点击
         private async void ImportConfig_Click(object sender, RoutedEventArgs e)
@@ -150,9 +168,74 @@ namespace NetworkSelector.Pages
                 }
             }
         }
-        private void RefreshConfigButton_Click(object sender, RoutedEventArgs e)
+        private void DisableIPv6Button_Click(object sender, RoutedEventArgs e)
         {
-            DisplayNetworkInfo();
+            WindowsIdentity identity = WindowsIdentity.GetCurrent();
+            WindowsPrincipal principal = new WindowsPrincipal(identity);
+            bool isAdmin = principal.IsInRole(WindowsBuiltInRole.Administrator);
+            if (isAdmin)
+            {
+                // 如果IPv6启用
+                if (NSMethod.IsIPv6Enabled() == true)
+                {
+                    InProgressing.IsActive = true;
+                    string cmd = "Disable-NetAdapterBinding -Name " + NSMethod.GetCurrentActiveNetworkInterfaceName() + " -ComponentID 'ms_tcpip6'";
+                    // 在子线程中执行任务
+                    Thread subThread = new Thread(new ThreadStart(() =>
+                    {
+                        Process process = new Process();
+                        process.StartInfo.FileName = "PowerShell.exe";
+                        process.StartInfo.Arguments = cmd;
+                        //是否使用操作系统shell启动
+                        process.StartInfo.UseShellExecute = false;
+                        //是否在新窗口中启动该进程的值 (不显示程序窗口)
+                        process.StartInfo.CreateNoWindow = true;
+                        process.Start();
+                        process.WaitForExit();
+                        process.Close();
+                        // 要在UI线程上更新UI，使用DispatcherQueue
+                        _dispatcherQueue.TryEnqueue(() =>
+                        {
+                            InProgressing.IsActive = false;
+                            NetworkIsChangeTips.IsOpen = true;
+                            DisplayNetworkInfo();
+                        });
+                    }));
+                    subThread.Start();
+                }
+                // 如果IPv6未启用
+                else
+                {
+                    InProgressing.IsActive = true;
+                    string cmd = "Enable-NetAdapterBinding -Name " + NSMethod.GetCurrentActiveNetworkInterfaceName() + " -ComponentID 'ms_tcpip6'";
+                    // 在子线程中执行任务
+                    Thread subThread = new Thread(new ThreadStart(() =>
+                    {
+                        Process process = new Process();
+                        process.StartInfo.FileName = "PowerShell.exe";
+                        process.StartInfo.Arguments = cmd;
+                        //是否使用操作系统shell启动
+                        process.StartInfo.UseShellExecute = false;
+                        //是否在新窗口中启动该进程的值 (不显示程序窗口)
+                        process.StartInfo.CreateNoWindow = true;
+                        process.Start();
+                        process.WaitForExit();
+                        process.Close();
+                        // 要在UI线程上更新UI，使用DispatcherQueue
+                        _dispatcherQueue.TryEnqueue(() =>
+                        {
+                            InProgressing.IsActive = false;
+                            NetworkIsChangeTips.IsOpen = true;
+                            DisplayNetworkInfo();
+                        });
+                    }));
+                    subThread.Start();
+                }
+            }
+            else
+            {
+                NotAdminTips.IsOpen = true;
+            }
         }
         private void CopyThisConfig(NSModel model)
         {
@@ -329,124 +412,148 @@ namespace NetworkSelector.Pages
         }
         private void DisplayNetworkInfo()
         {
-            // 获取当前使用的网络接口的名称
-            string targetNetworkInterfaceName = NSMethod.GetCurrentActiveNetworkInterfaceName();
-
-            // 获取所有的网络接口
-            NetworkInterface[] networkInterfaces = NetworkInterface.GetAllNetworkInterfaces();
-
-            foreach (var networkInterface in networkInterfaces)
+            // 占位符
+            DisableIPv6.Content = resourceLoader.GetString("DisableIPv6");
+            // 在子线程中执行任务
+            Thread subThread = new Thread(new ThreadStart(() =>
             {
-                // 仅处理与目标网络接口名称匹配的网络接口
-                if (networkInterface.Name == targetNetworkInterfaceName)
+                // 获取所有的网络接口
+                NetworkInterface[] networkInterfaces = NetworkInterface.GetAllNetworkInterfaces();
+
+                foreach (var networkInterface in networkInterfaces)
                 {
-                    // 获取网络接口的IP属性
-                    IPInterfaceProperties ipProperties = networkInterface.GetIPProperties();
-
-                    // 获取网络接口的名称
-                    string interfaceName = networkInterface.Name;
-
-                    // 获取IP地址
-                    // v4
-                    string ipAddressSrc = ipProperties.UnicastAddresses.FirstOrDefault(ip => ip.Address.AddressFamily == AddressFamily.InterNetwork)?.Address.ToString();
-                    string ipAddress = ipAddressSrc;
-                    if (ipAddressSrc == null)
+                    // 仅处理与目标网络接口名称匹配的网络接口
+                    if (networkInterface.Name == NSMethod.GetCurrentActiveNetworkInterfaceName())
                     {
-                        ipAddress = resourceLoader.GetString("IPv4Unconnect");
-                    }
-                    // v6
-                    string ipv6AddressSrc = ipProperties.UnicastAddresses.FirstOrDefault(ip => ip.Address.AddressFamily == AddressFamily.InterNetworkV6)?.Address.ToString();
-                    string ipv6Address = ipv6AddressSrc;
-                    if (ipv6AddressSrc == null)
-                    {
-                        ipv6Address = resourceLoader.GetString("IPv6Unconnect");
-                    }
+                        // 获取网络接口的IP属性
+                        IPInterfaceProperties ipProperties = networkInterface.GetIPProperties();
 
-                    // 获取网络接口的MAC地址
-                    string macAddress = networkInterface.GetPhysicalAddress().ToString();
+                        // 获取网络接口的名称
+                        string interfaceName = networkInterface.Name;
 
-                    // 检查是否是12个字符的MAC地址
-                    if (macAddress.Length == 12)
-                    {
-                        macAddress = string.Join(":", Enumerable.Range(0, 6).Select(i => macAddress.Substring(i * 2, 2)));
-                    }
+                        // 获取网络接口的描述
+                        string interfaceDescription = networkInterface.Description;
 
-                    // 获取子网前缀长度
-                    //// v4
-                    //string subnetMask = ipProperties.UnicastAddresses.FirstOrDefault(ip => ip.Address.AddressFamily == AddressFamily.InterNetwork)?.IPv4Mask.ToString();
-                    //// v6
-                    //string subnet6Mask = ipProperties.UnicastAddresses.FirstOrDefault(ip => ip.Address.AddressFamily == AddressFamily.InterNetworkV6)?.IPv6Mask.ToString();
-                    string subnetMask = "";
-                    string subnet6Mask = "";
-                    foreach (UnicastIPAddressInformation ipInfo in networkInterface.GetIPProperties().UnicastAddresses)
-                    {
-                        // v4
-                        if (ipInfo.Address.AddressFamily == AddressFamily.InterNetwork)
+                        // 获取网络接口的MAC地址
+                        string macAddress = networkInterface.GetPhysicalAddress().ToString();
+
+                        // 检查是否是12个字符的MAC地址
+                        if (macAddress.Length == 12)
                         {
-                            subnetMask = ipInfo.PrefixLength.ToString();
+                            macAddress = string.Join(":", Enumerable.Range(0, 6).Select(i => macAddress.Substring(i * 2, 2)));
+                        }
+
+                        // 获取子网前缀长度
+                        string subnetMask = "";
+                        string subnet6Mask = "";
+                        foreach (UnicastIPAddressInformation ipInfo in networkInterface.GetIPProperties().UnicastAddresses)
+                        {
+                            // v4
+                            if (ipInfo.Address.AddressFamily == AddressFamily.InterNetwork)
+                            {
+                                subnetMask = ipInfo.PrefixLength.ToString();
+                            }
+                            // v6
+                            if (ipInfo.Address.AddressFamily == AddressFamily.InterNetworkV6)
+                            {
+                                subnet6Mask = ipInfo.PrefixLength.ToString();
+                            }
+                        }
+                        // 获取IP地址
+                        // v4
+                        string ipAddressSrc = ipProperties.UnicastAddresses.FirstOrDefault(ip => ip.Address.AddressFamily == AddressFamily.InterNetwork)?.Address.ToString();
+                        string ipAddress = ipAddressSrc + "/" + subnetMask;
+                        if (ipAddressSrc == null)
+                        {
+                            ipAddress = resourceLoader.GetString("IPv4Unconnect");
                         }
                         // v6
-                        if (ipInfo.Address.AddressFamily == AddressFamily.InterNetworkV6)
+                        string ipv6AddressSrc = ipProperties.UnicastAddresses.FirstOrDefault(ip => ip.Address.AddressFamily == AddressFamily.InterNetworkV6)?.Address.ToString();
+                        string ipv6Address = ipv6AddressSrc + "/" + subnet6Mask;
+                        if (ipv6AddressSrc == null)
                         {
-                            subnet6Mask = ipInfo.PrefixLength.ToString();
+                            ipv6Address = resourceLoader.GetString("IPv6Unconnect");
                         }
-                    }
 
-                    // 获取网关地址
-                    // v4
-                    string gatewayAddress = ipProperties.GatewayAddresses.FirstOrDefault(ga => ga.Address.AddressFamily == AddressFamily.InterNetwork)?.Address.ToString();
-                    // v6
-                    string gateway6Address = ipProperties.GatewayAddresses.FirstOrDefault(ga => ga.Address.AddressFamily == AddressFamily.InterNetworkV6)?.Address.ToString();
+                        // 获取网关地址
+                        // v4
+                        string gatewayAddressSrc = ipProperties.GatewayAddresses.FirstOrDefault(ga => ga.Address.AddressFamily == AddressFamily.InterNetwork)?.Address.ToString();
+                        string gatewayAddress = gatewayAddressSrc;
+                        if (gatewayAddressSrc == null)
+                        {
+                            gatewayAddress = resourceLoader.GetString("IPv4Unconnect");
+                        }
+                        // v6
+                        string gateway6AddressSrc = ipProperties.GatewayAddresses.FirstOrDefault(ga => ga.Address.AddressFamily == AddressFamily.InterNetworkV6)?.Address.ToString();
+                        string gateway6Address = gateway6AddressSrc;
+                        if (gateway6AddressSrc == null)
+                        {
+                            gateway6Address = resourceLoader.GetString("IPv6Unconnect");
+                        }
 
-                    // 获取DNS服务器信息
-                    string dns = "";
-                    foreach (IPAddress dnsAddress in ipProperties.DnsAddresses)
-                    {
-                        dns += dnsAddress.ToString() + "\n";
-                    }
+                        // 获取DNS服务器信息
+                        string dns = "";
+                        foreach (IPAddress dnsAddress in ipProperties.DnsAddresses)
+                        {
+                            dns += dnsAddress.ToString() + "\n";
+                        }
 
-                    // 获取网络接口的类型（以太网、Wi-Fi等）
-                    string interfaceTypeSrc = networkInterface.NetworkInterfaceType.ToString();
-                    string interfaceType = interfaceTypeSrc;
-                    if (interfaceTypeSrc == "Ethernet")
-                    {
-                        interfaceType = resourceLoader.GetString("TypeEthernet");
-                    }
-                    else if (interfaceTypeSrc == "Wireless80211")
-                    {
-                        interfaceType = resourceLoader.GetString("TypeWireless80211");
-                    }
-                    else if (interfaceTypeSrc == "Loopback")
-                    {
-                        interfaceType = resourceLoader.GetString("TypeLoopback");
-                    }
-                    else if (interfaceTypeSrc == "Tunnel")
-                    {
-                        interfaceType = resourceLoader.GetString("TypeTunnel");
-                    }
-                    else if (interfaceTypeSrc == "Unknown")
-                    {
-                        interfaceType = resourceLoader.GetString("TypeUnknown");
-                    }
-                    else
-                    {
-                        interfaceType = interfaceTypeSrc;
-                    }
+                        // 获取网络接口的类型（以太网、Wi-Fi等）
+                        string interfaceTypeSrc = networkInterface.NetworkInterfaceType.ToString();
+                        string interfaceType = interfaceTypeSrc;
+                        if (interfaceTypeSrc == "Ethernet")
+                        {
+                            interfaceType = resourceLoader.GetString("TypeEthernet");
+                        }
+                        else if (interfaceTypeSrc == "Wireless80211")
+                        {
+                            interfaceType = resourceLoader.GetString("TypeWireless80211");
+                        }
+                        else if (interfaceTypeSrc == "Loopback")
+                        {
+                            interfaceType = resourceLoader.GetString("TypeLoopback");
+                        }
+                        else if (interfaceTypeSrc == "Tunnel")
+                        {
+                            interfaceType = resourceLoader.GetString("TypeTunnel");
+                        }
+                        else if (interfaceTypeSrc == "Unknown")
+                        {
+                            interfaceType = resourceLoader.GetString("TypeUnknown");
+                        }
+                        else
+                        {
+                            interfaceType = interfaceTypeSrc;
+                        }
 
-                    // 获取网络接口的速度（以比特每秒为单位）
-                    long interfaceSpeed = networkInterface.Speed;
+                        // 获取网络接口的速度（以比特每秒为单位）
+                        long interfaceSpeed = networkInterface.Speed;
 
-                    // 将信息输出到TextBlock
-                    NetworkInterfaceName.Text = $"{interfaceName}";
-                    NetworkInterfaceDescription.Text = $"{networkInterface.Description}";
-                    NetworkInterfaceMACAddress.Text = $"{macAddress}";
-                    NetworkInterfaceIPAddress.Text = $"{ipAddress}/{subnetMask}\n{ipv6Address}/{subnet6Mask}";
-                    NetworkInterfaceGatewayAddress.Text = $"{gatewayAddress}\n{gateway6Address}";
-                    NetworkInterfaceDNS.Text = $"{dns.TrimEnd()}";
-                    NetworkInterfaceTypeTextBox.Text = $"{interfaceType}";
-                    NetworkInterfaceSpeed.Text = $"{interfaceSpeed / 1000000} Mbps";
+                        // 要在UI线程上更新UI，使用DispatcherQueue
+                        _dispatcherQueue.TryEnqueue(() =>
+                        {
+                            // 将信息输出到TextBlock
+                            NetworkInterfaceName.Text = $"{interfaceName}";
+                            NetworkInterfaceDescription.Text = $"{interfaceDescription}";
+                            NetworkInterfaceMACAddress.Text = $"{macAddress}";
+                            NetworkInterfaceIPAddress.Text = $"{ipAddress}\n{ipv6Address}";
+                            NetworkInterfaceGatewayAddress.Text = $"{gatewayAddress}\n{gateway6Address}";
+                            NetworkInterfaceDNS.Text = $"{dns.TrimEnd()}";
+                            NetworkInterfaceTypeTextBox.Text = $"{interfaceType}";
+                            NetworkInterfaceSpeed.Text = $"{interfaceSpeed / 1000000} Mbps";
+                            if (NSMethod.IsIPv6Enabled() == true)
+                            {
+                                DisableIPv6.Content = resourceLoader.GetString("DisableIPv6");
+                            }
+                            else
+                            {
+                                DisableIPv6.Content = resourceLoader.GetString("EnableIPv6");
+                            }
+                        });
+                    }
                 }
-            }
+            }));
+            subThread.Start();
         }
         private void OnListViewRightTapped(object sender, RightTappedRoutedEventArgs e)
         {
@@ -577,6 +684,31 @@ namespace NetworkSelector.Pages
                 }
             }
         }
+        private void OnScrollViewerRightTapped(object sender, RightTappedRoutedEventArgs e)
+        {
+            if (InProgressing.IsActive == false)
+            {
+                // 获取右键点击的位置
+                var point = e.GetPosition(sender as UIElement);
 
+                // 创建ContextMenu
+                MenuFlyout menuFlyout = new MenuFlyout();
+
+                MenuFlyoutItem refreshItem = new MenuFlyoutItem
+                {
+                    Text = "刷新"
+                };
+                refreshItem.Click += (sender, e) =>
+                {
+                    DisplayNetworkInfo();
+                };
+                menuFlyout.Items.Add(refreshItem);
+
+                Thread.Sleep(10);
+
+                // 在指定位置显示ContextMenu
+                menuFlyout.ShowAt(sender as UIElement, point);
+            }
+        }
     }
 }

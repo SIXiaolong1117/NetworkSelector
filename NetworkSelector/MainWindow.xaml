@@ -42,14 +42,14 @@
             <NavigationView.MenuItems>
                 <NavigationViewItem Content="网关切换" Tag="NetSetting">
                     <NavigationViewItem.Icon>
-                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xeda3;" />
+                        <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xeda3;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
             </NavigationView.MenuItems>
             <NavigationView.FooterMenuItems>
                 <NavigationViewItem Content="关于" Tag="About">
                     <NavigationViewItem.Icon>
-                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xe946;" />
+                        <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE946;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
             </NavigationView.FooterMenuItems>
