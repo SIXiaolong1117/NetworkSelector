@@ -1,7 +1,7 @@
 <p align="center">
-  <h1 align="center">网关选择器 (Gateway Selector)</h1>
-  <p align="center">一个基于 WinUI3 的网关选择器 (Gateway Selector)。</p>
-  <p align="center">可以实现在多个网络配置预设中快速切换。</p>
+  <h1 align="center">Gateway Switcher</h1>
+  <p align="center">A Gateway Switcher based on WinUI3.</p>
+  <p align="center">Quickly switch between many network configuration presets.</p>
   <p align="center">
     <a href="https://github.com/Direct5dom/NetworkSelector/blob/master/LICENSE">
       <img src="https://img.shields.io/github/license/Direct5dom/NetworkSelector"/>
@@ -17,37 +17,38 @@
   </p>
 </p>
 <p align="center">
-  <img src="./README/1.png" width="49%" />
-  <img src="./README/2.png" width="49%" />
+  <img src="./README/3.png" width="49%" />
+  <img src="./README/4.png" width="49%" />
 </p>
 
+Because Microsoft does not provide the function of saving network settings as default in Windows, it is very troublesome for users who need to frequently switch gateway servers or proxy servers, so I developed this small tool.
 
-因为微软没有在 Windows 中提供保存网络设置为预设的功能，对于需要经常切换网关服务器或代理服务器的用户来说十分的麻烦，于是我就开发了这个小工具。
+Other languages: **English**, [简体中文](./README.zh-CN.md)
 
-## ⬇下载/Download
+## ⬇Download
 
-### 从 Microsoft Store 获取（推荐）
+### Get it from the Microsoft Store (recommended)
 
 [<img src="https://get.microsoft.com/images/zh-cn%20light.svg"  width="30%" height="30%">](https://www.microsoft.com/store/productid/9PDQC93R0WLF?ocid=pdpshare)
 
-### 从 Releases 获取自签名版（不推荐）
+### Get a self-signed version from Releases (not recommended)
 
-您可以直接到 [Releases · Direct5dom/NetworkSelector](https://github.com/Direct5dom/NetworkSelector/releases) 下载我已经打包好的安装包。
+You can go directly to [Releases · Direct5dom/NetworkSelector](https://github.com/Direct5dom/NetworkSelector/releases) to download the installation package I have packaged.
 
-> 需要注意的是，因为本项目使用自签名旁加载，需要您打开Windows的开发者模式，右键“使用PowrShell”运行Install.ps1，而不是直接双击WinWoL.msix。
+> It should be noted that because this project uses self-signed sideloading, you need to turn on the developer mode of Windows, right-click and "Use PowrShell" to run Install.ps1 instead of double-clicking WinWoL.msix directly.
 
-> 自签名版需要打开开发者模式并安装一个证书，这并不是安全的应用安装方式。
+> The self-signed version requires turning on developer mode and installing a certificate, which is not a secure way to install an app.
 
-## 🛠️获取源码/Source Code
+## 🛠️Source Code
 
-要构建此项目，您需要将项目源码克隆到本地。
+To build this project, you need to clone the project source code locally.
 
-您可以使用 Git 命令行：
+You can use the Git command:
 
 ```
 git clone git@github.com:Direct5dom/NetworkSelector.git
 ```
 
-或者更方便的，使用 Visual Studio 的“克隆存储库”克隆本仓库。
+Or more conveniently, use Visual Studio's "Clone Repository" to clone this repository.
 
-使用 Visual Studio 打开项目根目录的 `NetworkSelector.sln`，即可进行调试和打包。
+Use Visual Studio to open `NetworkSelector.sln` in the project root directory to debug and package.

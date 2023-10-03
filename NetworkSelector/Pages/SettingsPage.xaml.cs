@@ -108,6 +108,6 @@ namespace NetworkSelector.Pages
                 default:
                     throw new Exception($"Invalid argument: {materialStatus}");
             }
-        }
+        }       
     }
 }

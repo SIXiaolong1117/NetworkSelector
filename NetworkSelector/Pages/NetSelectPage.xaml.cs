@@ -117,8 +117,8 @@ namespace NetworkSelector.Pages
             // 对此dialog对象进行配置
             dialog.XamlRoot = this.XamlRoot;
             dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
-            dialog.PrimaryButtonText = "添加";
-            dialog.CloseButtonText = "关闭";
+            dialog.PrimaryButtonText = resourceLoader.GetString("DialogAdd");
+            dialog.CloseButtonText = resourceLoader.GetString("DialogClose");
             // 默认按钮为PrimaryButton
             dialog.DefaultButton = ContentDialogButton.Primary;
 
@@ -144,8 +144,8 @@ namespace NetworkSelector.Pages
             // 对此dialog对象进行配置
             dialog.XamlRoot = this.XamlRoot;
             dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
-            dialog.PrimaryButtonText = "切换至DHCP";
-            dialog.CloseButtonText = "关闭";
+            dialog.PrimaryButtonText = resourceLoader.GetString("Confirm");
+            dialog.CloseButtonText = resourceLoader.GetString("DialogClose");
             // 默认按钮为PrimaryButton
             dialog.DefaultButton = ContentDialogButton.Primary;
 
@@ -308,8 +308,8 @@ namespace NetworkSelector.Pages
             // 对此dialog对象进行配置
             dialog.XamlRoot = this.XamlRoot;
             dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
-            dialog.PrimaryButtonText = "修改";
-            dialog.CloseButtonText = "关闭";
+            dialog.PrimaryButtonText = resourceLoader.GetString("DialogChange");
+            dialog.CloseButtonText = resourceLoader.GetString("DialogClose");
             // 默认按钮为PrimaryButton
             dialog.DefaultButton = ContentDialogButton.Primary;
 
@@ -401,7 +401,7 @@ namespace NetworkSelector.Pages
             }
             catch (Exception ex)
             {
-                Console.WriteLine("重新启动失败: " + ex.Message);
+                Console.WriteLine(ex.Message);
             }
             Environment.Exit(0);
         }
@@ -412,6 +412,7 @@ namespace NetworkSelector.Pages
         }
         private void DisplayNetworkInfo()
         {
+            InProgressing.IsActive = true;
             // 占位符
             DisableIPv6.Content = resourceLoader.GetString("DisableIPv6");
             // 在子线程中执行任务
@@ -468,11 +469,13 @@ namespace NetworkSelector.Pages
                             ipAddress = resourceLoader.GetString("IPv4Unconnect");
                         }
                         // v6
+                        int ipv6Flag = 1;
                         string ipv6AddressSrc = ipProperties.UnicastAddresses.FirstOrDefault(ip => ip.Address.AddressFamily == AddressFamily.InterNetworkV6)?.Address.ToString();
                         string ipv6Address = ipv6AddressSrc + "/" + subnet6Mask;
                         if (ipv6AddressSrc == null)
                         {
                             ipv6Address = resourceLoader.GetString("IPv6Unconnect");
+                            ipv6Flag = 0;
                         }
 
                         // 获取网关地址
@@ -541,7 +544,7 @@ namespace NetworkSelector.Pages
                             NetworkInterfaceDNS.Text = $"{dns.TrimEnd()}";
                             NetworkInterfaceTypeTextBox.Text = $"{interfaceType}";
                             NetworkInterfaceSpeed.Text = $"{interfaceSpeed / 1000000} Mbps";
-                            if (NSMethod.IsIPv6Enabled() == true)
+                            if (ipv6Flag == 1)
                             {
                                 DisableIPv6.Content = resourceLoader.GetString("DisableIPv6");
                             }
@@ -549,6 +552,7 @@ namespace NetworkSelector.Pages
                             {
                                 DisableIPv6.Content = resourceLoader.GetString("EnableIPv6");
                             }
+                            InProgressing.IsActive = false;
                         });
                     }
                 }
@@ -575,7 +579,7 @@ namespace NetworkSelector.Pages
 
                     MenuFlyoutItem selectMenuItem = new MenuFlyoutItem
                     {
-                        Text = "切换至此配置"
+                        Text = resourceLoader.GetString("selectMenuItemText")
                     };
                     selectMenuItem.Click += (sender, e) =>
                     {
@@ -599,7 +603,7 @@ namespace NetworkSelector.Pages
 
                     MenuFlyoutItem exportMenuItem = new MenuFlyoutItem
                     {
-                        Text = "导出配置"
+                        Text = resourceLoader.GetString("exportMenuItemText")
                     };
                     exportMenuItem.Click += (sender, e) =>
                     {
@@ -609,7 +613,7 @@ namespace NetworkSelector.Pages
 
                     MenuFlyoutItem replaceMenuItem = new MenuFlyoutItem
                     {
-                        Text = "覆盖配置"
+                        Text = resourceLoader.GetString("replaceMenuItemText")
                     };
                     replaceMenuItem.Click += (sender, e) =>
                     {
@@ -624,7 +628,7 @@ namespace NetworkSelector.Pages
 
                     MenuFlyoutItem editMenuItem = new MenuFlyoutItem
                     {
-                        Text = "编辑配置"
+                        Text = resourceLoader.GetString("editMenuItemText")
                     };
                     editMenuItem.Click += (sender, e) =>
                     {
@@ -634,7 +638,7 @@ namespace NetworkSelector.Pages
 
                     MenuFlyoutItem copyMenuItem = new MenuFlyoutItem
                     {
-                        Text = "复制配置"
+                        Text = resourceLoader.GetString("copyMenuItemText")
                     };
                     copyMenuItem.Click += (sender, e) =>
                     {
@@ -644,7 +648,7 @@ namespace NetworkSelector.Pages
 
                     MenuFlyoutItem deleteMenuItem = new MenuFlyoutItem
                     {
-                        Text = "删除配置"
+                        Text = resourceLoader.GetString("deleteMenuItemText")
                     };
                     deleteMenuItem.Click += (sender, e) =>
                     {
@@ -696,7 +700,7 @@ namespace NetworkSelector.Pages
 
                 MenuFlyoutItem refreshItem = new MenuFlyoutItem
                 {
-                    Text = "刷新"
+                    Text = resourceLoader.GetString("refreshItemText")
                 };
                 refreshItem.Click += (sender, e) =>
                 {

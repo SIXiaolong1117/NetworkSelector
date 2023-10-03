@@ -118,228 +118,228 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutAliPay.Content" xml:space="preserve">
-    <value>支付宝</value>
+    <value>Alipay</value>
   </data>
   <data name="AboutAuthor.Text" xml:space="preserve">
-    <value>👾作者:</value>
+    <value>👾Author:</value>
   </data>
   <data name="AboutHeader.Text" xml:space="preserve">
-    <value>关于</value>
+    <value>About</value>
   </data>
   <data name="AboutHelp.Text" xml:space="preserve">
-    <value>❓帮助:</value>
+    <value>❓Help:</value>
   </data>
   <data name="AboutLicense.Text" xml:space="preserve">
-    <value>⚖️开源许可:</value>
+    <value>⚖️License:</value>
   </data>
   <data name="AboutPrivacy.Text" xml:space="preserve">
-    <value>🔑隐私策略:</value>
+    <value>🔑Privacy:</value>
   </data>
   <data name="AboutSponsor.Text" xml:space="preserve">
-    <value>☕赞助</value>
+    <value>☕Sponsor</value>
   </data>
   <data name="AboutSponsorTips.Text" xml:space="preserve">
-    <value>备注要展示的名称，按时间倒序</value>
+    <value>Please note your display name</value>
   </data>
   <data name="AboutVersion.Text" xml:space="preserve">
-    <value>🍰版本号:</value>
+    <value>🍰Version:</value>
   </data>
   <data name="AboutWePay.Content" xml:space="preserve">
-    <value>微信</value>
+    <value>WeChat</value>
   </data>
   <data name="AddConfConfigName.Header" xml:space="preserve">
-    <value>配置名称:</value>
+    <value>Configuration Name:</value>
   </data>
   <data name="AddConfConfigName.PlaceholderText" xml:space="preserve">
-    <value>eg: 旁路网关</value>
+    <value>eg: Bypass Gateway</value>
   </data>
   <data name="AddConfDns1.Header" xml:space="preserve">
-    <value>IPv4 首选 DNS:</value>
+    <value>IPv4 Preferred DNS:</value>
   </data>
   <data name="AddConfDns2.Header" xml:space="preserve">
-    <value>IPv4 备选 DNS:</value>
+    <value>IPv4 Alternate DNS:</value>
   </data>
   <data name="AddConfGateway.Header" xml:space="preserve">
-    <value>网关:</value>
+    <value>Gateway:</value>
   </data>
   <data name="AddConfig.Content" xml:space="preserve">
-    <value>添加配置</value>
+    <value>Add</value>
   </data>
   <data name="AddConfigHeader.Text" xml:space="preserve">
-    <value>添加一个配置</value>
+    <value>Add Configuration</value>
   </data>
   <data name="AddConfIpAddr.Header" xml:space="preserve">
-    <value>IP 地址</value>
+    <value>IP Address:</value>
   </data>
   <data name="AddConfNetworkInterfaceName.Header" xml:space="preserve">
-    <value>接口:</value>
+    <value>Interface:</value>
   </data>
   <data name="AddConfNetworkInterfaceName.PlaceholderText" xml:space="preserve">
-    <value>选择一个网口</value>
+    <value>Select a Network Interface</value>
   </data>
   <data name="AddConfSubnetMask.Header" xml:space="preserve">
-    <value>子网掩码:</value>
+    <value>Subnet Mask:</value>
   </data>
   <data name="AppTitleTextBlock.Text" xml:space="preserve">
-    <value>网关切换器</value>
+    <value>Gateway Switcher</value>
   </data>
   <data name="backgroundMaterial.Header" xml:space="preserve">
-    <value>背景材料：</value>
+    <value>Background Material:</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>取消</value>
+    <value>Cancel</value>
   </data>
   <data name="ConfigGrid.Text" xml:space="preserve">
-    <value>配置</value>
+    <value>Name</value>
   </data>
   <data name="Confirm" xml:space="preserve">
-    <value>确认</value>
+    <value>Confirm</value>
   </data>
   <data name="ConfirmDelete.Text" xml:space="preserve">
-    <value>确定要删除吗？</value>
+    <value>Are you sure you want to delete?</value>
   </data>
   <data name="ConfirmReplace.Text" xml:space="preserve">
-    <value>确定要覆盖吗？</value>
+    <value>Are you sure you want to overwrite?</value>
   </data>
   <data name="copyMenuItemText" xml:space="preserve">
-    <value>复制配置</value>
+    <value>Copy</value>
   </data>
   <data name="deleteMenuItemText" xml:space="preserve">
-    <value>删除配置</value>
+    <value>Delete</value>
   </data>
   <data name="DHCPConfig.Content" xml:space="preserve">
-    <value>DHCP (自动)</value>
+    <value>DHCP (Auto)</value>
   </data>
   <data name="DialogAdd" xml:space="preserve">
-    <value>添加</value>
+    <value>Add</value>
   </data>
   <data name="DialogChange" xml:space="preserve">
-    <value>修改</value>
+    <value>Modify</value>
   </data>
   <data name="DialogClose" xml:space="preserve">
-    <value>关闭</value>
+    <value>Close</value>
   </data>
   <data name="DisableIPv6" xml:space="preserve">
-    <value>禁用IPv6</value>
+    <value>Disable IPv6</value>
   </data>
   <data name="editMenuItemText" xml:space="preserve">
-    <value>编辑配置</value>
+    <value>Edit</value>
   </data>
   <data name="EnableIPv6" xml:space="preserve">
-    <value>启用IPv6</value>
+    <value>Enable IPv6</value>
   </data>
   <data name="exportMenuItemText" xml:space="preserve">
-    <value>导出配置</value>
+    <value>Export</value>
   </data>
   <data name="ImportConfig.Content" xml:space="preserve">
-    <value>导入配置</value>
+    <value>Import</value>
   </data>
   <data name="Interface.Header" xml:space="preserve">
-    <value>接口:</value>
+    <value>Interface:</value>
   </data>
   <data name="Interface.PlaceholderText" xml:space="preserve">
-    <value>选择您当前的上网网口</value>
+    <value>Select your current internet access interface</value>
   </data>
   <data name="IPv4Unconnect" xml:space="preserve">
-    <value>未找到 IPv4 连接</value>
+    <value>IPv4 connection not found</value>
   </data>
   <data name="IPv6Unconnect" xml:space="preserve">
-    <value>未找到 IPv6 连接</value>
+    <value>IPv6 connection not found</value>
   </data>
   <data name="NavViewItemAbout.Content" xml:space="preserve">
-    <value>关于</value>
+    <value>About</value>
   </data>
   <data name="NavViewItemNetSetting.Content" xml:space="preserve">
-    <value>网关切换</value>
+    <value>Gateway Switch</value>
   </data>
   <data name="NeedSelectedTips.Title" xml:space="preserve">
-    <value>需要选中一个配置</value>
+    <value>You need to select a configuration</value>
   </data>
   <data name="NetInterfaceGrid.Text" xml:space="preserve">
-    <value>接口</value>
+    <value>Interface</value>
   </data>
   <data name="NetSelectHeader.Text" xml:space="preserve">
-    <value>网关切换</value>
+    <value>Gateway Switch</value>
   </data>
   <data name="NetworkInterfaceDescription.Text" xml:space="preserve">
-    <value>接口描述:</value>
+    <value>Interface Description:</value>
   </data>
   <data name="NetworkInterfaceDNS.Text" xml:space="preserve">
     <value>DNS:</value>
   </data>
   <data name="NetworkInterfaceGatewayAddress.Text" xml:space="preserve">
-    <value>网关地址:</value>
+    <value>Gateway Address:</value>
   </data>
   <data name="NetworkInterfaceIPAddress.Text" xml:space="preserve">
-    <value>IP 地址:</value>
+    <value>IP Address:</value>
   </data>
   <data name="NetworkInterfaceMACAddress.Text" xml:space="preserve">
-    <value>物理地址 (MAC) 地址:</value>
+    <value>Physical Address (MAC):</value>
   </data>
   <data name="NetworkInterfaceName.Text" xml:space="preserve">
-    <value>接口名称:</value>
+    <value>Interface Name:</value>
   </data>
   <data name="NetworkInterfaceSpeed.Text" xml:space="preserve">
-    <value>协商速度:</value>
+    <value>Negotiated Speed:</value>
   </data>
   <data name="NetworkInterfaceSubnetMask.Text" xml:space="preserve">
-    <value>子网掩码:</value>
+    <value>Subnet Mask:</value>
   </data>
   <data name="NetworkInterfaceTypeTextBox.Text" xml:space="preserve">
-    <value>网络类型:</value>
+    <value>Network Type:</value>
   </data>
   <data name="NetworkIsChangeTips.Subtitle" xml:space="preserve">
-    <value>已经通过 netsh 命令行修改了网络配置，您可能需要重新进入 “Windows 高级网络设置” 页面才能看到修改结果。</value>
+    <value>The network configuration has been modified using the netsh command line. You may need to re-enter the "Windows Advanced Network Settings" page to see the changes.</value>
   </data>
   <data name="NetworkIsChangeTips.Title" xml:space="preserve">
-    <value>网络预设已经切换</value>
+    <value>Network Preset Switched</value>
   </data>
   <data name="NotAdminTips.ActionButtonContent" xml:space="preserve">
-    <value>给予管理员权限</value>
+    <value>Grant Admin Permissions</value>
   </data>
   <data name="NotAdminTips.Subtitle" xml:space="preserve">
-    <value>您需要以管理员身份运行网关切换器 (Gateway Selector)，这是因为netsh需要在管理员权限下才可以修改网络配置信息。</value>
+    <value>You need to run Gateway Selector with administrator privileges because netsh requires administrator privileges to modify network configuration.</value>
   </data>
   <data name="NotAdminTips.Title" xml:space="preserve">
-    <value>设置失败！</value>
+    <value>Setup Failed!</value>
   </data>
   <data name="refreshItemText" xml:space="preserve">
-    <value>刷新</value>
+    <value>Refresh</value>
   </data>
   <data name="replaceMenuItemText" xml:space="preserve">
-    <value>覆盖配置</value>
+    <value>Overwrite</value>
   </data>
   <data name="SelectInterface.Text" xml:space="preserve">
-    <value>选择您的上网网口</value>
+    <value>Select your internet access interface</value>
   </data>
   <data name="selectMenuItemText" xml:space="preserve">
-    <value>切换至此配置</value>
+    <value>Switch to</value>
   </data>
   <data name="SettingsHeader.Text" xml:space="preserve">
-    <value>设置</value>
+    <value>Settings</value>
   </data>
   <data name="Sponsor.Content" xml:space="preserve">
-    <value>赞助我</value>
+    <value>Sponsor Me</value>
   </data>
   <data name="Tips1.Text" xml:space="preserve">
-    <value>双击左键应用配置 右键配置打开菜单</value>
+    <value>Double-click to apply, right-click to open menu</value>
   </data>
   <data name="Tips2.Text" xml:space="preserve">
-    <value>当前上网网口信息</value>
+    <value>Current Internet Access Interface Information</value>
   </data>
   <data name="TypeEthernet" xml:space="preserve">
-    <value>以太网</value>
+    <value>Ethernet</value>
   </data>
   <data name="TypeLoopback" xml:space="preserve">
-    <value>回环</value>
+    <value>Loopback</value>
   </data>
   <data name="TypeTunnel" xml:space="preserve">
-    <value>隧道</value>
+    <value>Tunnel</value>
   </data>
   <data name="TypeUnknown" xml:space="preserve">
-    <value>未知</value>
+    <value>Unknown</value>
   </data>
   <data name="TypeWireless80211" xml:space="preserve">
-    <value>无线 (IEEE 802.11)</value>
+    <value>Wireless (IEEE 802.11)</value>
   </data>
 </root>

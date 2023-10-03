@@ -18,10 +18,10 @@
             Orientation="Vertical">
             <TextBlock
                 x:Name="Header"
+                x:Uid="AboutHeader"
                 Margin="0,0,0,8"
                 HorizontalAlignment="Center"
-                FontSize="24"
-                Text="关于" />
+                FontSize="24" />
             <StackPanel
                 Margin="0,0,0,8"
                 HorizontalAlignment="Center"
@@ -38,7 +38,7 @@
                     BorderBrush="#11FFFFFF"
                     BorderThickness="0,0,1,0">
                     <StackPanel
-                        Width="200"
+                        Width="210"
                         Margin="0,0,8,0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
@@ -48,10 +48,10 @@
                             VerticalAlignment="Center"
                             Orientation="Horizontal">
                             <TextBlock
+                                x:Uid="AboutAuthor"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
-                                FontSize="14"
-                                Text="👾作者:" />
+                                FontSize="14" />
                             <HyperlinkButton
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
@@ -80,10 +80,10 @@
                             VerticalAlignment="Center"
                             Orientation="Horizontal">
                             <TextBlock
+                                x:Uid="AboutLicense"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
-                                FontSize="14"
-                                Text="⚖️开源许可:" />
+                                FontSize="14" />
                             <HyperlinkButton
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
@@ -96,10 +96,10 @@
                             VerticalAlignment="Center"
                             Orientation="Horizontal">
                             <TextBlock
+                                x:Uid="AboutPrivacy"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
-                                FontSize="14"
-                                Text="🔑隐私策略:" />
+                                FontSize="14" />
                             <HyperlinkButton
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
@@ -112,10 +112,10 @@
                             VerticalAlignment="Center"
                             Orientation="Horizontal">
                             <TextBlock
+                                x:Uid="AboutHelp"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
-                                FontSize="14"
-                                Text="❓帮助:" />
+                                FontSize="14" />
                             <HyperlinkButton
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
@@ -128,10 +128,10 @@
                             VerticalAlignment="Center"
                             Orientation="Horizontal">
                             <TextBlock
+                                x:Uid="AboutVersion"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
-                                FontSize="14"
-                                Text="🍰版本号:" />
+                                FontSize="14" />
                             <HyperlinkButton
                                 x:Name="APPVersion"
                                 HorizontalAlignment="Center"
@@ -141,42 +141,43 @@
                     </StackPanel>
                 </Border>
                 <StackPanel
+                    Width="210"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     Orientation="Vertical">
                     <TextBlock
+                        x:Uid="AboutSponsor"
                         Margin="0,0,0,8"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
-                        FontSize="18"
-                        Text="☕赞助" />
+                        FontSize="18" />
                     <StackPanel
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
                         Orientation="Horizontal">
                         <HyperlinkButton
+                            x:Uid="AboutAliPay"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
-                            Content="支付宝"
                             FontSize="12"
                             NavigateUri="https://raw.githubusercontent.com/Direct5dom/Direct5dom/main/README/Sponsor/AliPay.jpg" />
                         <HyperlinkButton
+                            x:Uid="AboutWePay"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
-                            Content="微信"
                             FontSize="12"
                             NavigateUri="https://raw.githubusercontent.com/Direct5dom/Direct5dom/main/README/Sponsor/WeChat.png" />
                     </StackPanel>
                     <TextBlock
+                        x:Uid="AboutSponsorTips"
                         Margin="0,0,0,8"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
                         FontSize="12"
-                        Foreground="DarkGray"
-                        Text="备注要展示的名称，按时间倒序" />
+                        Foreground="DarkGray" />
                     <WebView2
                         Grid.Row="1"
-                        Width="200"
+                        Width="210"
                         Height="100"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"

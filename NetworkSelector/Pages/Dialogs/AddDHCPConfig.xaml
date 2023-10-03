@@ -18,7 +18,7 @@
                 Margin="0,0,0,8"
                 HorizontalAlignment="Center"
                 FontSize="24"
-                Text="添加一个DHCP配置" />
+                Text="DHCP" />
             <StackPanel
                 Margin="0,0,0,8"
                 HorizontalAlignment="Center"
@@ -26,14 +26,13 @@
                 Orientation="Vertical">
                 <ComboBox
                     x:Name="networkInterfaceName"
+                    x:Uid="Interface"
                     Width="250"
-                    Margin="0,0,0,8"
-                    Header="网卡："
-                    PlaceholderText="选择您当前的上网网卡" />
+                    Margin="0,0,0,8" />
                 <TextBlock
+                    x:Uid="SelectInterface"
                     FontSize="12"
-                    Foreground="DarkGray"
-                    Text="选择您的上网网卡" />
+                    Foreground="DarkGray" />
             </StackPanel>
         </StackPanel>
     </Grid>

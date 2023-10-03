@@ -16,15 +16,14 @@
             Orientation="Vertical">
             <TextBlock
                 x:Name="Header"
+                x:Uid="AddConfigHeader"
                 HorizontalAlignment="Center"
-                FontSize="24"
-                Text="添加一个配置" />
+                FontSize="24" />
             <TextBox
                 x:Name="configName"
+                x:Uid="AddConfConfigName"
                 Width="250"
                 Margin="0,8,0,0"
-                Header="配置名称："
-                PlaceholderText="eg: 旁路网关"
                 TextChanged="TextChanged" />
             <StackPanel
                 HorizontalAlignment="Center"
@@ -32,45 +31,44 @@
                 Orientation="Vertical">
                 <ComboBox
                     x:Name="networkInterfaceName"
+                    x:Uid="AddConfNetworkInterfaceName"
                     Width="250"
                     Margin="0,8,0,0"
-                    Header="网卡："
-                    PlaceholderText="选择一个网卡"
                     SelectionChanged="networkInterfaceName_SelectionChanged" />
             </StackPanel>
             <TextBox
                 x:Name="ipAddr"
+                x:Uid="AddConfIpAddr"
                 Width="250"
                 Margin="0,8,0,0"
-                Header="IP地址："
                 PlaceholderText="eg: 192.168.0.1"
                 TextChanged="TextChanged" />
             <TextBox
                 x:Name="mask"
+                x:Uid="AddConfSubnetMask"
                 Width="250"
                 Margin="0,8,0,0"
-                Header="子网掩码："
                 PlaceholderText="eg: 255.255.255.0"
                 TextChanged="TextChanged" />
             <TextBox
                 x:Name="gateway"
+                x:Uid="AddConfGateway"
                 Width="250"
                 Margin="0,8,0,0"
-                Header="网关："
                 PlaceholderText="eg: 192.168.0.1"
                 TextChanged="TextChanged" />
             <TextBox
                 x:Name="dns1"
+                x:Uid="AddConfDns1"
                 Width="250"
                 Margin="0,8,0,0"
-                Header="首选DNS："
                 PlaceholderText="eg: 192.168.0.1"
                 TextChanged="TextChanged" />
             <TextBox
                 x:Name="dns2"
+                x:Uid="AddConfDns2"
                 Width="250"
                 Margin="0,8,0,0"
-                Header="备选DNS："
                 PlaceholderText="eg: 4.2.2.1"
                 TextChanged="TextChanged" />
         </StackPanel>

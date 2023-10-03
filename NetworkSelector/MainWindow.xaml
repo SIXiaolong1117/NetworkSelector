@@ -26,10 +26,10 @@
                 Source=".\Assets\Square44x44Logo.altform-lightunplated_targetsize-256.png" />
             <TextBlock
                 x:Name="AppTitleTextBlock"
+                x:Uid="AppTitleTextBlock"
                 Margin="28,0,0,0"
                 VerticalAlignment="Center"
                 Style="{StaticResource CaptionTextBlockStyle}"
-                Text="网关切换器 (Gateway Selector)"
                 TextWrapping="NoWrap" />
         </Grid>
 
@@ -40,14 +40,14 @@
             IsSettingsVisible="True"
             SelectionChanged="NavigationView_SelectionChanged">
             <NavigationView.MenuItems>
-                <NavigationViewItem Content="网关切换" Tag="NetSetting">
+                <NavigationViewItem x:Uid="NavViewItemNetSetting" Tag="NetSetting">
                     <NavigationViewItem.Icon>
                         <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xeda3;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
             </NavigationView.MenuItems>
             <NavigationView.FooterMenuItems>
-                <NavigationViewItem Content="关于" Tag="About">
+                <NavigationViewItem x:Uid="NavViewItemAbout" Tag="About">
                     <NavigationViewItem.Icon>
                         <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE946;" />
                     </NavigationViewItem.Icon>
