@@ -167,61 +167,96 @@
                                 Margin="0,0,0,8"
                                 RightTapped="OnScrollViewerRightTapped"
                                 Style="{StaticResource TransparentScrollViewerStyle}">
-                                <StackPanel
-                                    Width="262"
-                                    Margin="14"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    Orientation="Vertical">
-                                    <TextBlock x:Uid="NetworkInterfaceName" TextWrapping="Wrap" />
-                                    <TextBlock
-                                        x:Name="NetworkInterfaceName"
-                                        Margin="0,0,0,8"
-                                        Foreground="DarkGray"
-                                        TextWrapping="Wrap" />
-                                    <TextBlock x:Uid="NetworkInterfaceDescription" TextWrapping="Wrap" />
-                                    <TextBlock
-                                        x:Name="NetworkInterfaceDescription"
-                                        Margin="0,0,0,8"
-                                        Foreground="DarkGray"
-                                        TextWrapping="Wrap" />
-                                    <TextBlock x:Uid="NetworkInterfaceIPAddress" TextWrapping="Wrap" />
-                                    <TextBlock
-                                        x:Name="NetworkInterfaceIPAddress"
-                                        Margin="0,0,0,8"
-                                        Foreground="DarkGray"
-                                        TextWrapping="Wrap" />
-                                    <TextBlock x:Uid="NetworkInterfaceMACAddress" TextWrapping="Wrap" />
-                                    <TextBlock
-                                        x:Name="NetworkInterfaceMACAddress"
-                                        Margin="0,0,0,8"
-                                        Foreground="DarkGray"
-                                        TextWrapping="Wrap" />
-                                    <TextBlock x:Uid="NetworkInterfaceGatewayAddress" TextWrapping="Wrap" />
-                                    <TextBlock
-                                        x:Name="NetworkInterfaceGatewayAddress"
-                                        Margin="0,0,0,8"
-                                        Foreground="DarkGray"
-                                        TextWrapping="Wrap" />
-                                    <TextBlock x:Uid="NetworkInterfaceDNS" TextWrapping="Wrap" />
-                                    <TextBlock
-                                        x:Name="NetworkInterfaceDNS"
-                                        Margin="0,0,0,8"
-                                        Foreground="DarkGray"
-                                        TextWrapping="Wrap" />
-                                    <TextBlock x:Uid="NetworkInterfaceTypeTextBox" TextWrapping="Wrap" />
-                                    <TextBlock
-                                        x:Name="NetworkInterfaceTypeTextBox"
-                                        Margin="0,0,0,8"
-                                        Foreground="DarkGray"
-                                        TextWrapping="Wrap" />
-                                    <TextBlock x:Uid="NetworkInterfaceSpeed" TextWrapping="Wrap" />
-                                    <TextBlock
-                                        x:Name="NetworkInterfaceSpeed"
-                                        Margin="0,0,0,8"
-                                        Foreground="DarkGray"
-                                        TextWrapping="Wrap" />
-                                </StackPanel>
+                                <ListView
+                                    x:Name="dataListView2"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    ItemsSource="{Binding InterfaceInfoModel}"
+                                    SelectionMode="None">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel
+                                                Width="292"
+                                                Margin="0,16,0,16"
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Center"
+                                                Orientation="Vertical">
+                                                <TextBlock
+                                                    x:Uid="NetworkInterfaceName"
+                                                    Margin="0,0,0,8"
+                                                    TextWrapping="Wrap" />
+                                                <TextBlock
+                                                    Margin="0,0,0,8"
+                                                    Foreground="DarkGray"
+                                                    Text="{Binding Name}"
+                                                    TextWrapping="Wrap" />
+                                                <TextBlock
+                                                    x:Uid="NetworkInterfaceDescription"
+                                                    Margin="0,0,0,8"
+                                                    TextWrapping="Wrap" />
+                                                <TextBlock
+                                                    Margin="0,0,0,8"
+                                                    Foreground="DarkGray"
+                                                    Text="{Binding Description}"
+                                                    TextWrapping="Wrap" />
+                                                <TextBlock
+                                                    x:Uid="NetworkInterfaceMACAddress"
+                                                    Margin="0,0,0,8"
+                                                    TextWrapping="Wrap" />
+                                                <TextBlock
+                                                    Margin="0,0,0,8"
+                                                    Foreground="DarkGray"
+                                                    Text="{Binding MACAddress}"
+                                                    TextWrapping="Wrap" />
+                                                <TextBlock
+                                                    x:Uid="NetworkInterfaceIPAddress"
+                                                    Margin="0,0,0,8"
+                                                    TextWrapping="Wrap" />
+                                                <TextBlock
+                                                    Margin="0,0,0,8"
+                                                    Foreground="DarkGray"
+                                                    Text="{Binding IPAddress}"
+                                                    TextWrapping="Wrap" />
+                                                <TextBlock
+                                                    x:Uid="NetworkInterfaceGatewayAddress"
+                                                    Margin="0,0,0,8"
+                                                    TextWrapping="Wrap" />
+                                                <TextBlock
+                                                    Margin="0,0,0,8"
+                                                    Foreground="DarkGray"
+                                                    Text="{Binding GatewayAddress}"
+                                                    TextWrapping="Wrap" />
+                                                <TextBlock
+                                                    x:Uid="NetworkInterfaceDNS"
+                                                    Margin="0,0,0,8"
+                                                    TextWrapping="Wrap" />
+                                                <TextBlock
+                                                    Margin="0,0,0,8"
+                                                    Foreground="DarkGray"
+                                                    Text="{Binding DNS}"
+                                                    TextWrapping="Wrap" />
+                                                <TextBlock
+                                                    x:Uid="NetworkInterfaceTypeTextBox"
+                                                    Margin="0,0,0,8"
+                                                    TextWrapping="Wrap" />
+                                                <TextBlock
+                                                    Margin="0,0,0,8"
+                                                    Foreground="DarkGray"
+                                                    Text="{Binding Type}"
+                                                    TextWrapping="Wrap" />
+                                                <TextBlock
+                                                    x:Uid="NetworkInterfaceSpeed"
+                                                    Margin="0,0,0,8"
+                                                    TextWrapping="Wrap" />
+                                                <TextBlock
+                                                    Margin="0,0,0,8"
+                                                    Foreground="DarkGray"
+                                                    Text="{Binding Speed}"
+                                                    TextWrapping="Wrap" />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
                             </ScrollViewer>
                             <StackPanel
                                 Width="292"
@@ -275,6 +310,13 @@
         <TeachingTip
             x:Name="NotAdminTips"
             x:Uid="NotAdminTips"
+            ActionButtonClick="NotAdminTips_ActionButtonClick"
+            IsLightDismissEnabled="True"
+            PlacementMargin="20"
+            PreferredPlacement="Auto" />
+        <TeachingTip
+            x:Name="IsAdminButTips"
+            x:Uid="IsAdminButTips"
             ActionButtonClick="NotAdminTips_ActionButtonClick"
             IsLightDismissEnabled="True"
             PlacementMargin="20"

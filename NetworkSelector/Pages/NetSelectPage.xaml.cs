@@ -33,6 +33,7 @@ namespace NetworkSelector.Pages
 {
     public sealed partial class NetSelectPage : Page
     {
+        int ipv6Flag = 1;
         ResourceLoader resourceLoader = new ResourceLoader();
         private DispatcherQueue _dispatcherQueue;
         public NetSelectPage()
@@ -86,25 +87,47 @@ namespace NetworkSelector.Pages
         // 导入配置按钮点击
         private async void ImportConfig_Click(object sender, RoutedEventArgs e)
         {
-            ImportConfig.IsEnabled = false;
-            // 实例化SQLiteHelper
-            SQLiteHelper dbHelper = new SQLiteHelper();
-            // 获取导入的数据
-            NSModel nsModel = await NSMethod.ImportConfig();
-            if (nsModel != null)
+            // WinUI 应用无法在提升状态下打开 FilePicker
+            WindowsIdentity identity = WindowsIdentity.GetCurrent();
+            WindowsPrincipal principal = new WindowsPrincipal(identity);
+            bool isAdmin = principal.IsInRole(WindowsBuiltInRole.Administrator);
+            if (isAdmin)
             {
-                // 插入新数据
-                dbHelper.InsertData(nsModel);
-                // 重新加载数据
-                LoadData();
+                IsAdminButTips.IsOpen = true;
             }
-            ImportConfig.IsEnabled = true;
+            else
+            {
+                ImportConfig.IsEnabled = false;
+                // 实例化SQLiteHelper
+                SQLiteHelper dbHelper = new SQLiteHelper();
+                // 获取导入的数据
+                NSModel nsModel = await NSMethod.ImportConfig();
+                if (nsModel != null)
+                {
+                    // 插入新数据
+                    dbHelper.InsertData(nsModel);
+                    // 重新加载数据
+                    LoadData();
+                }
+                ImportConfig.IsEnabled = true;
+            }
         }
         private async void ExportConfigFunction()
         {
-            // 获取NSModel对象
-            NSModel selectedModel = (NSModel)dataListView.SelectedItem;
-            string result = await NSMethod.ExportConfig(selectedModel);
+            // WinUI 应用无法在提升状态下打开 FilePicker
+            WindowsIdentity identity = WindowsIdentity.GetCurrent();
+            WindowsPrincipal principal = new WindowsPrincipal(identity);
+            bool isAdmin = principal.IsInRole(WindowsBuiltInRole.Administrator);
+            if (isAdmin)
+            {
+                IsAdminButTips.IsOpen = true;
+            }
+            else
+            {
+                // 获取NSModel对象
+                NSModel selectedModel = (NSModel)dataListView.SelectedItem;
+                string result = await NSMethod.ExportConfig(selectedModel);
+            }
         }
         // 添加/修改配置按钮点击
         private async void AddConfigButton_Click(object sender, RoutedEventArgs e)
@@ -175,62 +198,40 @@ namespace NetworkSelector.Pages
             bool isAdmin = principal.IsInRole(WindowsBuiltInRole.Administrator);
             if (isAdmin)
             {
+                InProgressing.IsActive = true;
+                string cmd;
                 // 如果IPv6启用
-                if (NSMethod.IsIPv6Enabled() == true)
+                if (ipv6Flag == 1)
                 {
-                    InProgressing.IsActive = true;
-                    string cmd = $"Disable-NetAdapterBinding -Name {NSMethod.GetCurrentActiveNetworkInterfaceName()} -ComponentID 'ms_tcpip6'";
-                    // 在子线程中执行任务
-                    Thread subThread = new Thread(new ThreadStart(() =>
-                    {
-                        Process process = new Process();
-                        process.StartInfo.FileName = "PowerShell.exe";
-                        process.StartInfo.Arguments = cmd;
-                        //是否使用操作系统shell启动
-                        process.StartInfo.UseShellExecute = false;
-                        //是否在新窗口中启动该进程的值 (不显示程序窗口)
-                        process.StartInfo.CreateNoWindow = true;
-                        process.Start();
-                        process.WaitForExit();
-                        process.Close();
-                        // 要在UI线程上更新UI，使用DispatcherQueue
-                        _dispatcherQueue.TryEnqueue(() =>
-                        {
-                            InProgressing.IsActive = false;
-                            NetworkIsChangeTips.IsOpen = true;
-                            DisplayNetworkInfo();
-                        });
-                    }));
-                    subThread.Start();
+                    cmd = $"Disable-NetAdapterBinding -Name {NSMethod.GetCurrentActiveNetworkInterfaceName()} -ComponentID 'ms_tcpip6'";
                 }
                 // 如果IPv6未启用
                 else
                 {
-                    InProgressing.IsActive = true;
-                    string cmd = $"Enable-NetAdapterBinding -Name {NSMethod.GetCurrentActiveNetworkInterfaceName()} -ComponentID 'ms_tcpip6'";
-                    // 在子线程中执行任务
-                    Thread subThread = new Thread(new ThreadStart(() =>
-                    {
-                        Process process = new Process();
-                        process.StartInfo.FileName = "PowerShell.exe";
-                        process.StartInfo.Arguments = cmd;
-                        //是否使用操作系统shell启动
-                        process.StartInfo.UseShellExecute = false;
-                        //是否在新窗口中启动该进程的值 (不显示程序窗口)
-                        process.StartInfo.CreateNoWindow = true;
-                        process.Start();
-                        process.WaitForExit();
-                        process.Close();
-                        // 要在UI线程上更新UI，使用DispatcherQueue
-                        _dispatcherQueue.TryEnqueue(() =>
-                        {
-                            InProgressing.IsActive = false;
-                            NetworkIsChangeTips.IsOpen = true;
-                            DisplayNetworkInfo();
-                        });
-                    }));
-                    subThread.Start();
+                    cmd = $"Enable-NetAdapterBinding -Name {NSMethod.GetCurrentActiveNetworkInterfaceName()} -ComponentID 'ms_tcpip6'";
                 }
+                // 在子线程中执行任务
+                Thread subThread = new Thread(new ThreadStart(() =>
+                {
+                    Process process = new Process();
+                    process.StartInfo.FileName = "PowerShell.exe";
+                    process.StartInfo.Arguments = cmd;
+                    //是否使用操作系统shell启动
+                    process.StartInfo.UseShellExecute = false;
+                    //是否在新窗口中启动该进程的值 (不显示程序窗口)
+                    process.StartInfo.CreateNoWindow = true;
+                    process.Start();
+                    process.WaitForExit();
+                    process.Close();
+                    // 要在UI线程上更新UI，使用DispatcherQueue
+                    _dispatcherQueue.TryEnqueue(() =>
+                    {
+                        InProgressing.IsActive = false;
+                        NetworkIsChangeTips.IsOpen = true;
+                        DisplayNetworkInfo();
+                    });
+                }));
+                subThread.Start();
             }
             else
             {
@@ -421,7 +422,7 @@ namespace NetworkSelector.Pages
                 foreach (var networkInterface in networkInterfaces)
                 {
                     // 仅处理与目标网络接口名称匹配的网络接口
-                    if (networkInterface.Name == NSMethod.GetCurrentActiveNetworkInterfaceName())
+                    if (NSMethod.GetCurrentActiveNetworkInterfaceName() != null && networkInterface.Name == NSMethod.GetCurrentActiveNetworkInterfaceName())
                     {
                         // 获取网络接口的IP属性
                         IPInterfaceProperties ipProperties = networkInterface.GetIPProperties();
@@ -466,7 +467,6 @@ namespace NetworkSelector.Pages
                             ipAddress = resourceLoader.GetString("IPv4Unconnect");
                         }
                         // v6
-                        int ipv6Flag = 1;
                         string ipv6AddressSrc = ipProperties.UnicastAddresses.FirstOrDefault(ip => ip.Address.AddressFamily == AddressFamily.InterNetworkV6)?.Address.ToString();
                         string ipv6Address = ipv6AddressSrc + "/" + subnet6Mask;
                         if (ipv6AddressSrc == null)
@@ -499,8 +499,11 @@ namespace NetworkSelector.Pages
                         }
 
                         // 获取网络接口的类型（以太网、Wi-Fi等）
+                        // https://learn.microsoft.com/zh-cn/dotnet/api/system.net.networkinformation.networkinterfacetype?view=net-6.0
                         string interfaceTypeSrc = networkInterface.NetworkInterfaceType.ToString();
                         string interfaceType = interfaceTypeSrc;
+                        // 虽然枚举中定义了好几种以太网类型，但实际上一般只返回 Ethernet 类型。
+                        // https://learn.microsoft.com/zh-cn/dotnet/api/system.net.networkinformation.networkinterface.networkinterfacetype?view=net-6.0
                         if (interfaceTypeSrc == "Ethernet")
                         {
                             interfaceType = resourceLoader.GetString("TypeEthernet");
@@ -532,15 +535,21 @@ namespace NetworkSelector.Pages
                         // 要在UI线程上更新UI，使用DispatcherQueue
                         _dispatcherQueue.TryEnqueue(() =>
                         {
-                            // 将信息输出到TextBlock
-                            NetworkInterfaceName.Text = $"{interfaceName}";
-                            NetworkInterfaceDescription.Text = $"{interfaceDescription}";
-                            NetworkInterfaceMACAddress.Text = $"{macAddress}";
-                            NetworkInterfaceIPAddress.Text = $"{ipAddress}\n{ipv6Address}";
-                            NetworkInterfaceGatewayAddress.Text = $"{gatewayAddress}\n{gateway6Address}";
-                            NetworkInterfaceDNS.Text = $"{dns.TrimEnd()}";
-                            NetworkInterfaceTypeTextBox.Text = $"{interfaceType}";
-                            NetworkInterfaceSpeed.Text = $"{interfaceSpeed / 1000000} Mbps";
+                            // 将信息输出到UI
+                            List<InterfaceInfoModel> interfaceInfoList = new List<InterfaceInfoModel>();
+                            interfaceInfoList.Add(new InterfaceInfoModel
+                            {
+                                Name = $"{interfaceName}",
+                                Description = $"{interfaceDescription}",
+                                MACAddress = $"{macAddress}",
+                                IPAddress = $"{ipAddress}\n{ipv6Address}",
+                                GatewayAddress = $"{gatewayAddress}\n{gateway6Address}",
+                                DNS = $"{dns.TrimEnd()}",
+                                Type = $"{interfaceType}",
+                                Speed = $"{ interfaceSpeed / 1000000 } Mbps"
+                            });
+                            dataListView2.ItemsSource = interfaceInfoList;
+
                             if (ipv6Flag == 1)
                             {
                                 DisableIPv6.Content = resourceLoader.GetString("DisableIPv6");
@@ -549,6 +558,14 @@ namespace NetworkSelector.Pages
                             {
                                 DisableIPv6.Content = resourceLoader.GetString("EnableIPv6");
                             }
+                            InProgressing.IsActive = false;
+                        });
+                    }
+                    // 无网络
+                    else
+                    {
+                        _dispatcherQueue.TryEnqueue(() =>
+                        {
                             InProgressing.IsActive = false;
                         });
                     }

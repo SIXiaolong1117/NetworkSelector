@@ -180,6 +180,9 @@
   <data name="AddConfSubnetMask.Header" xml:space="preserve">
     <value>Subnet Mask:</value>
   </data>
+  <data name="AppTitle" xml:space="preserve">
+    <value>Gateway Switcher</value>
+  </data>
   <data name="AppTitleTextBlock.Text" xml:space="preserve">
     <value>Gateway Switcher</value>
   </data>

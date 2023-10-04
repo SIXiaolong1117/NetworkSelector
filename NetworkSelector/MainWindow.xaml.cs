@@ -21,6 +21,7 @@ using Windows.Foundation.Collections;
 using Windows.Storage;
 using Windows.UI.ApplicationSettings;
 using WinRT;
+using Windows.ApplicationModel.Resources;
 
 namespace NetworkSelector
 {
@@ -34,6 +35,8 @@ namespace NetworkSelector
 
         ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
 
+        ResourceLoader resourceLoader = new ResourceLoader();
+
         public MainWindow()
         {
             this.InitializeComponent();
@@ -43,7 +46,7 @@ namespace NetworkSelector
             // 将UI设置为TitleBar
             SetTitleBar(AppTitleBar);
             // 设置任务栏显示名称
-            Title = $"网关切换器 (Gateway Selector)";
+            Title = resourceLoader.GetString("AppTitle");
 
             if (localSettings.Values["materialStatus"] as string == "Acrylic")
             {

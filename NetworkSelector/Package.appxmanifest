@@ -10,10 +10,10 @@
   <Identity
     Name="53093SIXiaolong.GatewaySelector"
     Publisher="CN=SI Xiaolong"
-    Version="1.1.0.0" />
+    Version="1.1.1.0" />
 
   <Properties>
-    <DisplayName>网关选择器（Gateway Selector）</DisplayName>
+    <DisplayName>ms-resource:AppTitle</DisplayName>
     <PublisherDisplayName>SI Xiaolong</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -32,7 +32,7 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="$targetentrypoint$">
       <uap:VisualElements
-        DisplayName="网关切换器 (Gateway Selector)"
+        DisplayName="ms-resource:AppTitle"
         Description="NetworkSelector"
         BackgroundColor="transparent"
         Square150x150Logo="Assets\Square150x150Logo.png"
