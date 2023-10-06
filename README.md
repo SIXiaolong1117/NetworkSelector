@@ -29,7 +29,9 @@ Other languages: **English**, [简体中文](./README.zh-CN.md)
 
 ### Get it from the Microsoft Store (recommended)
 
-[<img src="https://get.microsoft.com/images/zh-cn%20light.svg"  width="30%" height="30%">](https://www.microsoft.com/store/productid/9PDQC93R0WLF?ocid=pdpshare)
+<a href="ms-windows-store://pdp/?ProductId=9PDQC93R0WLF&mode=mini">
+   <img src="https://get.microsoft.com/images/en-us%20light.svg" alt="Download" />
+</a>
 
 ### Get a self-signed version from Releases (not recommended)
 
@@ -38,6 +40,10 @@ You can go directly to [Releases · Direct5dom/NetworkSelector](https://github.c
 > It should be noted that because this project uses self-signed sideloading, you need to turn on the developer mode of Windows, right-click and "Use PowrShell" to run Install.ps1 instead of double-clicking WinWoL.msix directly.
 
 > The self-signed version requires turning on developer mode and installing a certificate, which is not a secure way to install an app.
+
+## 🌍Help Translation
+
+See: [Language](./NetworkSelector/Language/)
 
 ## 🛠️Source Code
 

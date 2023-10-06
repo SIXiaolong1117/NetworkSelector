@@ -317,7 +317,7 @@
         <TeachingTip
             x:Name="IsAdminButTips"
             x:Uid="IsAdminButTips"
-            ActionButtonClick="NotAdminTips_ActionButtonClick"
+            ActionButtonClick="IsAdminButTips_ActionButtonClick"
             IsLightDismissEnabled="True"
             PlacementMargin="20"
             PreferredPlacement="Auto" />

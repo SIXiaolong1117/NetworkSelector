@@ -25,11 +25,13 @@
 
 Other languages: [English](./README.md), **简体中文**
 
-## ⬇下载/Download
+## ⬇下载
 
 ### 从 Microsoft Store 获取（推荐）
 
-[<img src="https://get.microsoft.com/images/zh-cn%20light.svg"  width="30%" height="30%">](https://www.microsoft.com/store/productid/9PDQC93R0WLF?ocid=pdpshare)
+<a href="ms-windows-store://pdp/?ProductId=9PDQC93R0WLF&mode=mini">
+   <img src="https://get.microsoft.com/images/zh-cn%20light.svg" alt="Download" />
+</a>
 
 ### 从 Releases 获取自签名版（不推荐）
 
@@ -39,7 +41,11 @@ Other languages: [English](./README.md), **简体中文**
 
 > 自签名版需要打开开发者模式并安装一个证书，这并不是安全的应用安装方式。
 
-## 🛠️获取源码/Source Code
+## 🌍帮助翻译
+
+详见：[Language](./NetworkSelector/Language/)
+
+## 🛠️获取源码
 
 要构建此项目，您需要将项目源码克隆到本地。
 

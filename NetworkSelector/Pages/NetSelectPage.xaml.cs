@@ -61,6 +61,7 @@ namespace NetworkSelector.Pages
 
 
                     NotAdminTips.CloseButtonContent = resourceLoader.GetString("Cancel");
+                    IsAdminButTips.CloseButtonContent = resourceLoader.GetString("Cancel");
                     CancelDelete.Content = resourceLoader.GetString("Cancel");
                     CancelReplace.Content = resourceLoader.GetString("Cancel");
                 });
@@ -178,65 +179,56 @@ namespace NetworkSelector.Pages
             // 如果按下了Primary
             if (result == ContentDialogResult.Primary)
             {
-                WindowsIdentity identity = WindowsIdentity.GetCurrent();
-                WindowsPrincipal principal = new WindowsPrincipal(identity);
-                bool isAdmin = principal.IsInRole(WindowsBuiltInRole.Administrator);
-                if (isAdmin)
-                {
-                    SeletcDHCPConfig(dhcpInterfaceModel.Netinterface);
-                }
-                else
-                {
-                    NotAdminTips.IsOpen = true;
-                }
+                SeletcDHCPConfig(dhcpInterfaceModel.Netinterface);
             }
         }
         private void DisableIPv6Button_Click(object sender, RoutedEventArgs e)
         {
-            WindowsIdentity identity = WindowsIdentity.GetCurrent();
-            WindowsPrincipal principal = new WindowsPrincipal(identity);
-            bool isAdmin = principal.IsInRole(WindowsBuiltInRole.Administrator);
-            if (isAdmin)
+            InProgressing.IsActive = true;
+            string cmd;
+            // 如果IPv6启用
+            if (ipv6Flag == 1)
             {
-                InProgressing.IsActive = true;
-                string cmd;
-                // 如果IPv6启用
-                if (ipv6Flag == 1)
-                {
-                    cmd = $"Disable-NetAdapterBinding -Name {NSMethod.GetCurrentActiveNetworkInterfaceName()} -ComponentID 'ms_tcpip6'";
-                }
-                // 如果IPv6未启用
-                else
-                {
-                    cmd = $"Enable-NetAdapterBinding -Name {NSMethod.GetCurrentActiveNetworkInterfaceName()} -ComponentID 'ms_tcpip6'";
-                }
-                // 在子线程中执行任务
-                Thread subThread = new Thread(new ThreadStart(() =>
-                {
-                    Process process = new Process();
-                    process.StartInfo.FileName = "PowerShell.exe";
-                    process.StartInfo.Arguments = cmd;
-                    //是否使用操作系统shell启动
-                    process.StartInfo.UseShellExecute = false;
-                    //是否在新窗口中启动该进程的值 (不显示程序窗口)
-                    process.StartInfo.CreateNoWindow = true;
-                    process.Start();
-                    process.WaitForExit();
-                    process.Close();
-                    // 要在UI线程上更新UI，使用DispatcherQueue
-                    _dispatcherQueue.TryEnqueue(() =>
-                    {
-                        InProgressing.IsActive = false;
-                        NetworkIsChangeTips.IsOpen = true;
-                        DisplayNetworkInfo();
-                    });
-                }));
-                subThread.Start();
+                cmd = $"Disable-NetAdapterBinding -Name {NSMethod.GetCurrentActiveNetworkInterfaceName()} -ComponentID 'ms_tcpip6'";
             }
+            // 如果IPv6未启用
             else
             {
-                NotAdminTips.IsOpen = true;
+                cmd = $"Enable-NetAdapterBinding -Name {NSMethod.GetCurrentActiveNetworkInterfaceName()} -ComponentID 'ms_tcpip6'";
             }
+            // 在子线程中执行任务
+            Thread subThread = new Thread(new ThreadStart(() =>
+            {
+                ProcessStartInfo startInfo = new ProcessStartInfo();
+                startInfo.FileName = "PowerShell.exe";
+                // 是否使用操作系统shell启动
+                startInfo.UseShellExecute = true;
+                // 不显示程序窗口
+                startInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                // 使用管理员权限启动
+                startInfo.Verb = "runas";
+                startInfo.Arguments = cmd;
+                try
+                {
+                    Process process = Process.Start(startInfo);
+                    // 等待进程执行完毕
+                    process.WaitForExit();
+                    process.Close();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+
+                // 要在UI线程上更新UI，使用DispatcherQueue
+                _dispatcherQueue.TryEnqueue(() =>
+                {
+                    InProgressing.IsActive = false;
+                    NetworkIsChangeTips.IsOpen = true;
+                    DisplayNetworkInfo();
+                });
+            }));
+            subThread.Start();
         }
         private void CopyThisConfig(NSModel model)
         {
@@ -252,16 +244,27 @@ namespace NetworkSelector.Pages
             // 在子线程中执行任务
             Thread subThread = new Thread(new ThreadStart(() =>
                 {
-                    Process process = new Process();
-                    process.StartInfo.FileName = "PowerShell.exe";
-                    process.StartInfo.Arguments = cmd;
-                    //是否使用操作系统shell启动
-                    process.StartInfo.UseShellExecute = false;
-                    //是否在新窗口中启动该进程的值 (不显示程序窗口)
-                    process.StartInfo.CreateNoWindow = true;
-                    process.Start();
-                    process.WaitForExit();
-                    process.Close();
+                    ProcessStartInfo startInfo = new ProcessStartInfo();
+                    startInfo.FileName = "PowerShell.exe";
+                    // 是否使用操作系统shell启动
+                    startInfo.UseShellExecute = true;
+                    // 不显示程序窗口
+                    startInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                    // 使用管理员权限启动
+                    startInfo.Verb = "runas";
+                    startInfo.Arguments = cmd;
+                    try
+                    {
+                        Process process = Process.Start(startInfo);
+                        // 等待进程执行完毕
+                        process.WaitForExit();
+                        process.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+
                     // 要在UI线程上更新UI，使用DispatcherQueue
                     _dispatcherQueue.TryEnqueue(() =>
                     {
@@ -279,16 +282,27 @@ namespace NetworkSelector.Pages
             // 在子线程中执行任务
             Thread subThread = new Thread(new ThreadStart(() =>
             {
-                Process process = new Process();
-                process.StartInfo.FileName = "PowerShell.exe";
-                process.StartInfo.Arguments = cmd;
-                //是否使用操作系统shell启动
-                process.StartInfo.UseShellExecute = false;
-                //是否在新窗口中启动该进程的值 (不显示程序窗口)
-                process.StartInfo.CreateNoWindow = true;
-                process.Start();
-                process.WaitForExit();
-                process.Close();
+                ProcessStartInfo startInfo = new ProcessStartInfo();
+                startInfo.FileName = "PowerShell.exe";
+                // 是否使用操作系统shell启动
+                startInfo.UseShellExecute = true;
+                // 不显示程序窗口
+                startInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                // 使用管理员权限启动
+                startInfo.Verb = "runas";
+                startInfo.Arguments = cmd;
+                try
+                {
+                    Process process = Process.Start(startInfo);
+                    // 等待进程执行完毕
+                    process.WaitForExit();
+                    process.Close();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+
                 // 要在UI线程上更新UI，使用DispatcherQueue
                 _dispatcherQueue.TryEnqueue(() =>
                 {
@@ -392,10 +406,12 @@ namespace NetworkSelector.Pages
             startInfo.FileName = appPath;
             startInfo.UseShellExecute = true;
             startInfo.Verb = "runas"; // 使用管理员权限启动
-
             try
             {
-                Process.Start(startInfo);
+                Process process = Process.Start(startInfo);
+                // 等待进程执行完毕
+                process.WaitForExit();
+                process.Close();
             }
             catch (Exception ex)
             {
@@ -403,10 +419,16 @@ namespace NetworkSelector.Pages
             }
             Environment.Exit(0);
         }
+        //private static void RestartAsNotAdmin()
+        //{
+        //}
         private void NotAdminTips_ActionButtonClick(TeachingTip sender, object args)
         {
-            //localSettings.Values["adminFlag"] = "1";
             RestartAsAdmin();
+        }
+        private void IsAdminButTips_ActionButtonClick(TeachingTip sender, object args)
+        {
+            //RestartAsNotAdmin();
         }
         private void DisplayNetworkInfo()
         {
@@ -546,7 +568,7 @@ namespace NetworkSelector.Pages
                                 GatewayAddress = $"{gatewayAddress}\n{gateway6Address}",
                                 DNS = $"{dns.TrimEnd()}",
                                 Type = $"{interfaceType}",
-                                Speed = $"{ interfaceSpeed / 1000000 } Mbps"
+                                Speed = $"{interfaceSpeed / 1000000} Mbps"
                             });
                             dataListView2.ItemsSource = interfaceInfoList;
 
@@ -597,17 +619,7 @@ namespace NetworkSelector.Pages
                     };
                     selectMenuItem.Click += (sender, e) =>
                     {
-                        WindowsIdentity identity = WindowsIdentity.GetCurrent();
-                        WindowsPrincipal principal = new WindowsPrincipal(identity);
-                        bool isAdmin = principal.IsInRole(WindowsBuiltInRole.Administrator);
-                        if (isAdmin)
-                        {
-                            SeletcThisConfig(selectedItem);
-                        }
-                        else
-                        {
-                            NotAdminTips.IsOpen = true;
-                        }
+                        SeletcThisConfig(selectedItem);
                     };
                     menuFlyout.Items.Add(selectMenuItem);
 
@@ -689,17 +701,7 @@ namespace NetworkSelector.Pages
                 // 获取右键点击的数据对象（NSModel）
                 NSModel selectedItem = listViewItem?.DataContext as NSModel;
 
-                WindowsIdentity identity = WindowsIdentity.GetCurrent();
-                WindowsPrincipal principal = new WindowsPrincipal(identity);
-                bool isAdmin = principal.IsInRole(WindowsBuiltInRole.Administrator);
-                if (isAdmin)
-                {
-                    SeletcThisConfig(selectedItem);
-                }
-                else
-                {
-                    NotAdminTips.IsOpen = true;
-                }
+                SeletcThisConfig(selectedItem);
             }
         }
         private void OnScrollViewerRightTapped(object sender, RightTappedRoutedEventArgs e)

@@ -249,8 +249,11 @@
   <data name="IPv6Unconnect" xml:space="preserve">
     <value>未找到 IPv6 连接</value>
   </data>
+  <data name="IsAdminButTips.ActionButtonContent" xml:space="preserve">
+    <value>退回普通用户权限</value>
+  </data>
   <data name="IsAdminButTips.Subtitle" xml:space="preserve">
-    <value>WinUI 无法在管理员权限下进行此操作。</value>
+    <value>WinUI 无法在管理员权限下进行导入导出操作，请您以普通用户身份启动。</value>
   </data>
   <data name="IsAdminButTips.Title" xml:space="preserve">
     <value>操作失败！</value>
@@ -298,7 +301,7 @@
     <value>接口类型:</value>
   </data>
   <data name="NetworkIsChangeTips.Subtitle" xml:space="preserve">
-    <value>已经通过 netsh 命令行修改了网络配置，您可能需要重新进入 “Windows 高级网络设置” 页面才能看到修改结果。</value>
+    <value>已经通过命令行命令修改了网络配置，您可能需要重新进入 “Windows 高级网络设置” 页面才能看到修改结果。</value>
   </data>
   <data name="NetworkIsChangeTips.Title" xml:space="preserve">
     <value>网络预设已经切换</value>
@@ -307,7 +310,7 @@
     <value>给予管理员权限</value>
   </data>
   <data name="NotAdminTips.Subtitle" xml:space="preserve">
-    <value>您需要以管理员身份运行网关切换器 (Gateway Selector)，这是因为netsh需要在管理员权限下才可以修改网络配置信息。</value>
+    <value>您需要以管理员身份运行网关切换器 (Gateway Selector)，这是因为命令行命令需要在管理员权限下才可以修改网络配置信息。</value>
   </data>
   <data name="NotAdminTips.Title" xml:space="preserve">
     <value>操作失败！</value>
