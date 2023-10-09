@@ -522,6 +522,7 @@ namespace NetworkSelector.Pages
 
                         // 获取网络接口的类型（以太网、Wi-Fi等）
                         // https://learn.microsoft.com/zh-cn/dotnet/api/system.net.networkinformation.networkinterfacetype?view=net-6.0
+                        // https://github.com/tpn/winsdk-10/blob/master/Include/10.0.14393.0/shared/ipifcons.h
                         string interfaceTypeSrc = networkInterface.NetworkInterfaceType.ToString();
                         string interfaceType = interfaceTypeSrc;
                         // 虽然枚举中定义了好几种以太网类型，但实际上一般只返回 Ethernet 类型。
@@ -545,6 +546,11 @@ namespace NetworkSelector.Pages
                         else if (interfaceTypeSrc == "Unknown")
                         {
                             interfaceType = resourceLoader.GetString("TypeUnknown");
+                        }
+                        // https://github.com/tpn/winsdk-10/blob/9b69fd26ac0c7d0b83d378dba01080e93349c2ed/Include/10.0.14393.0/shared/ipifcons.h#L96C33-L96C33
+                        else if (interfaceTypeSrc == "53")
+                        {
+                            interfaceType = resourceLoader.GetString("Type53");
                         }
                         else
                         {

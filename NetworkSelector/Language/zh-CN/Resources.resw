@@ -339,6 +339,9 @@
   <data name="Tips2.Text" xml:space="preserve">
     <value>当前上网网口信息</value>
   </data>
+  <data name="Type53" xml:space="preserve">
+    <value>专有虚拟/内部 (Proprietary virtual/internal)</value>
+  </data>
   <data name="TypeEthernet" xml:space="preserve">
     <value>以太网</value>
   </data>
