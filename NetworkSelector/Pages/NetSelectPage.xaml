@@ -280,21 +280,33 @@
                             </StackPanel>
                         </StackPanel>
                     </StackPanel>
-
-
-
                 </StackPanel>
             </StackPanel>
+
             <StackPanel
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                Orientation="Vertical">
-                <HyperlinkButton
+                Orientation="Horizontal">
+                <TextBlock
                     x:Uid="Sponsor"
-                    HorizontalAlignment="Right"
+                    HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     FontSize="12"
-                    NavigateUri="https://github.com/Direct5dom/Direct5dom/blob/main/Sponsor.md" />
+                    TextWrapping="Wrap" />
+                <HyperlinkButton
+                    x:Name="AboutAliPay"
+                    x:Uid="AboutAliPay"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Click="AboutAliPay_Click"
+                    FontSize="12" />
+                <HyperlinkButton
+                    x:Name="AboutWePay"
+                    x:Uid="AboutWePay"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Click="AboutWePay_Click"
+                    FontSize="12" />
             </StackPanel>
         </StackPanel>
         <TeachingTip
@@ -327,6 +339,25 @@
             IsLightDismissEnabled="True"
             PlacementMargin="20"
             PreferredPlacement="Auto" />
+
+        <TeachingTip x:Name="AboutAliPayTips">
+            <TeachingTip.HeroContent>
+                <Image Height="400">
+                    <Image.Source>
+                        <BitmapImage UriSource="/Assets/AliPay.jpg" />
+                    </Image.Source>
+                </Image>
+            </TeachingTip.HeroContent>
+        </TeachingTip>
+        <TeachingTip x:Name="AboutWePayTips">
+            <TeachingTip.HeroContent>
+                <Image Height="400">
+                    <Image.Source>
+                        <BitmapImage UriSource="/Assets/WePay.png" />
+                    </Image.Source>
+                </Image>
+            </TeachingTip.HeroContent>
+        </TeachingTip>
         <ProgressRing x:Name="InProgressing" IsActive="False" />
     </Grid>
 </Page>

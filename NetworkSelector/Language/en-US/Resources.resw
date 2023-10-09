@@ -118,240 +118,240 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutAliPay.Content" xml:space="preserve">
-  <value>Alipay</value>
-</data>
-<data name="AboutAuthor.Text" xml:space="preserve">
-  <value>👾Author:</value>
-</data>
-<data name="AboutHeader.Text" xml:space="preserve">
-  <value>About</value>
-</data>
-<data name="AboutHelp.Text" xml:space="preserve">
-  <value>❓Help:</value>
-</data>
-<data name="AboutLicense.Text" xml:space="preserve">
-  <value>⚖️Open Source License:</value>
-</data>
-<data name="AboutPrivacy.Text" xml:space="preserve">
-  <value>🔑Privacy Policy:</value>
-</data>
-<data name="AboutSponsor.Text" xml:space="preserve">
-  <value>☕Sponsor</value>
-</data>
-<data name="AboutSponsorTips.Text" xml:space="preserve">
-  <value>Enter the name to be displayed, in reverse chronological order</value>
-</data>
-<data name="AboutVersion.Text" xml:space="preserve">
-  <value>🍰Version:</value>
-</data>
-<data name="AboutWePay.Content" xml:space="preserve">
-  <value>WeChat</value>
-</data>
-<data name="AddConfConfigName.Header" xml:space="preserve">
-  <value>Configuration Name:</value>
-</data>
-<data name="AddConfConfigName.PlaceholderText" xml:space="preserve">
-  <value>eg: Bypass Gateway</value>
-</data>
-<data name="AddConfDns1.Header" xml:space="preserve">
-  <value>IPv4 Preferred DNS:</value>
-</data>
-<data name="AddConfDns2.Header" xml:space="preserve">
-  <value>IPv4 Alternate DNS:</value>
-</data>
-<data name="AddConfGateway.Header" xml:space="preserve">
-  <value>Gateway:</value>
-</data>
-<data name="AddConfig.Content" xml:space="preserve">
-  <value>Add Configuration</value>
-</data>
-<data name="AddConfigHeader.Text" xml:space="preserve">
-  <value>Add a Configuration</value>
-</data>
-<data name="AddConfIpAddr.Header" xml:space="preserve">
-  <value>IP Address</value>
-</data>
-<data name="AddConfNetworkInterfaceName.Header" xml:space="preserve">
-  <value>Interface:</value>
-</data>
-<data name="AddConfNetworkInterfaceName.PlaceholderText" xml:space="preserve">
-  <value>Select a network interface</value>
-</data>
-<data name="AddConfSubnetMask.Header" xml:space="preserve">
-  <value>Subnet Mask:</value>
-</data>
-<data name="AppTitle" xml:space="preserve">
-  <value>Gateway Switcher</value>
-</data>
-<data name="AppTitleTextBlock.Text" xml:space="preserve">
-  <value>Gateway Switcher</value>
-</data>
-<data name="backgroundMaterial.Header" xml:space="preserve">
-  <value>Background Material:</value>
-</data>
-<data name="Cancel" xml:space="preserve">
-  <value>Cancel</value>
-</data>
-<data name="ConfigGrid.Text" xml:space="preserve">
-  <value>Configuration</value>
-</data>
-<data name="Confirm" xml:space="preserve">
-  <value>Confirm</value>
-</data>
-<data name="ConfirmDelete.Text" xml:space="preserve">
-  <value>Are you sure you want to delete?</value>
-</data>
-<data name="ConfirmReplace.Text" xml:space="preserve">
-  <value>Are you sure you want to overwrite?</value>
-</data>
-<data name="copyMenuItemText" xml:space="preserve">
-  <value>Copy Configuration</value>
-</data>
-<data name="deleteMenuItemText" xml:space="preserve">
-  <value>Delete Configuration</value>
-</data>
-<data name="DHCPConfig.Content" xml:space="preserve">
-  <value>DHCP (Auto)</value>
-</data>
-<data name="DialogAdd" xml:space="preserve">
-  <value>Add</value>
-</data>
-<data name="DialogChange" xml:space="preserve">
-  <value>Change</value>
-</data>
-<data name="DialogClose" xml:space="preserve">
-  <value>Close</value>
-</data>
-<data name="DisableIPv6" xml:space="preserve">
-  <value>Disable IPv6</value>
-</data>
-<data name="editMenuItemText" xml:space="preserve">
-  <value>Edit Configuration</value>
-</data>
-<data name="EnableIPv6" xml:space="preserve">
-  <value>Enable IPv6</value>
-</data>
-<data name="exportMenuItemText" xml:space="preserve">
-  <value>Export Configuration</value>
-</data>
-<data name="ImportConfig.Content" xml:space="preserve">
-  <value>Import Configuration</value>
-</data>
-<data name="Interface.Header" xml:space="preserve">
-  <value>Interface:</value>
-</data>
-<data name="Interface.PlaceholderText" xml:space="preserve">
-  <value>Select your current internet access interface</value>
-</data>
-<data name="IPv4Unconnect" xml:space="preserve">
-  <value>IPv4 not connected</value>
-</data>
-<data name="IPv6Unconnect" xml:space="preserve">
-  <value>IPv6 not connected</value>
-</data>
-<data name="IsAdminButTips.ActionButtonContent" xml:space="preserve">
-  <value>Revert to regular user privileges</value>
-</data>
-<data name="IsAdminButTips.Subtitle" xml:space="preserve">
-  <value>WinUI cannot perform import and export operations under administrator privileges. Please run as a regular user.</value>
-</data>
-<data name="IsAdminButTips.Title" xml:space="preserve">
-  <value>Operation Failed!</value>
-</data>
-<data name="NavViewItemAbout.Content" xml:space="preserve">
-  <value>About</value>
-</data>
-<data name="NavViewItemNetSetting.Content" xml:space="preserve">
-  <value>Gateway Switch</value>
-</data>
-<data name="NeedSelectedTips.Title" xml:space="preserve">
-  <value>You need to select a configuration</value>
-</data>
-<data name="NetInterfaceGrid.Text" xml:space="preserve">
-  <value>Interface</value>
-</data>
-<data name="NetSelectHeader.Text" xml:space="preserve">
-  <value>Gateway Switch</value>
-</data>
-<data name="NetworkInterfaceDescription.Text" xml:space="preserve">
-  <value>Interface Description:</value>
-</data>
-<data name="NetworkInterfaceDNS.Text" xml:space="preserve">
-  <value>DNS:</value>
-</data>
-<data name="NetworkInterfaceGatewayAddress.Text" xml:space="preserve">
-  <value>Gateway Address:</value>
-</data>
-<data name="NetworkInterfaceIPAddress.Text" xml:space="preserve">
-  <value>IP Address:</value>
-</data>
-<data name="NetworkInterfaceMACAddress.Text" xml:space="preserve">
-  <value>Physical Address (MAC):</value>
-</data>
-<data name="NetworkInterfaceName.Text" xml:space="preserve">
-  <value>Interface Name:</value>
-</data>
-<data name="NetworkInterfaceSpeed.Text" xml:space="preserve">
-  <value>Negotiated Speed:</value>
-</data>
-<data name="NetworkInterfaceSubnetMask.Text" xml:space="preserve">
-  <value>Subnet Mask:</value>
-</data>
-<data name="NetworkInterfaceTypeTextBox.Text" xml:space="preserve">
-  <value>Interface Type:</value>
-</data>
-<data name="NetworkIsChangeTips.Subtitle" xml:space="preserve">
-  <value>The network configuration has been changed via command line. You may need to re-enter the "Windows Advanced Network Settings" page to see the changes.</value>
-</data>
-<data name="NetworkIsChangeTips.Title" xml:space="preserve">
-  <value>Network Preset Switched</value>
-</data>
-<data name="NotAdminTips.ActionButtonContent" xml:space="preserve">
-  <value>Grant Administrator Privileges</value>
-</data>
-<data name="NotAdminTips.Subtitle" xml:space="preserve">
-  <value>You need to run Gateway Selector with administrator privileges because command line commands require administrator access to modify network configuration.</value>
-</data>
-<data name="NotAdminTips.Title" xml:space="preserve">
-  <value>Operation Failed!</value>
-</data>
-<data name="refreshItemText" xml:space="preserve">
-  <value>Refresh</value>
-</data>
-<data name="replaceMenuItemText" xml:space="preserve">
-  <value>Replace Configuration</value>
-</data>
-<data name="SelectInterface.Text" xml:space="preserve">
-  <value>Select your internet access interface</value>
-</data>
-<data name="selectMenuItemText" xml:space="preserve">
-  <value>Switch to this configuration</value>
-</data>
-<data name="SettingsHeader.Text" xml:space="preserve">
-  <value>Settings</value>
-</data>
-<data name="Sponsor.Content" xml:space="preserve">
-  <value>Sponsor Me</value>
-</data>
-<data name="Tips1.Text" xml:space="preserve">
-  <value>Double-click to apply configuration, right-click for configuration menu</value>
-</data>
-<data name="Tips2.Text" xml:space="preserve">
-  <value>Current Internet Access Interface Information</value>
-</data>
-<data name="TypeEthernet" xml:space="preserve">
-  <value>Ethernet</value>
-</data>
-<data name="TypeLoopback" xml:space="preserve">
-  <value>Loopback</value>
-</data>
-<data name="TypeTunnel" xml:space="preserve">
-  <value>Tunnel</value>
-</data>
-<data name="TypeUnknown" xml:space="preserve">
-  <value>Unknown</value>
-</data>
-<data name="TypeWireless80211" xml:space="preserve">
-  <value>Wireless (IEEE 802.11)</value>
-</data>
+    <value>Alipay</value>
+  </data>
+  <data name="AboutAuthor.Text" xml:space="preserve">
+    <value>👾Author:</value>
+  </data>
+  <data name="AboutHeader.Text" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="AboutHelp.Text" xml:space="preserve">
+    <value>❓Help:</value>
+  </data>
+  <data name="AboutLicense.Text" xml:space="preserve">
+    <value>⚖️Open Source License:</value>
+  </data>
+  <data name="AboutPrivacy.Text" xml:space="preserve">
+    <value>🔑Privacy Policy:</value>
+  </data>
+  <data name="AboutSponsor.Text" xml:space="preserve">
+    <value>☕Sponsor</value>
+  </data>
+  <data name="AboutSponsorTips.Text" xml:space="preserve">
+    <value>Enter the name to be displayed, in reverse chronological order</value>
+  </data>
+  <data name="AboutVersion.Text" xml:space="preserve">
+    <value>🍰Version:</value>
+  </data>
+  <data name="AboutWePay.Content" xml:space="preserve">
+    <value>WeChat</value>
+  </data>
+  <data name="AddConfConfigName.Header" xml:space="preserve">
+    <value>Configuration Name:</value>
+  </data>
+  <data name="AddConfConfigName.PlaceholderText" xml:space="preserve">
+    <value>eg: Bypass Gateway</value>
+  </data>
+  <data name="AddConfDns1.Header" xml:space="preserve">
+    <value>IPv4 Preferred DNS:</value>
+  </data>
+  <data name="AddConfDns2.Header" xml:space="preserve">
+    <value>IPv4 Alternate DNS:</value>
+  </data>
+  <data name="AddConfGateway.Header" xml:space="preserve">
+    <value>Gateway:</value>
+  </data>
+  <data name="AddConfig.Content" xml:space="preserve">
+    <value>Add Configuration</value>
+  </data>
+  <data name="AddConfigHeader.Text" xml:space="preserve">
+    <value>Add a Configuration</value>
+  </data>
+  <data name="AddConfIpAddr.Header" xml:space="preserve">
+    <value>IP Address</value>
+  </data>
+  <data name="AddConfNetworkInterfaceName.Header" xml:space="preserve">
+    <value>Interface:</value>
+  </data>
+  <data name="AddConfNetworkInterfaceName.PlaceholderText" xml:space="preserve">
+    <value>Select a network interface</value>
+  </data>
+  <data name="AddConfSubnetMask.Header" xml:space="preserve">
+    <value>Subnet Mask:</value>
+  </data>
+  <data name="AppTitle" xml:space="preserve">
+    <value>Gateway Switcher</value>
+  </data>
+  <data name="AppTitleTextBlock.Text" xml:space="preserve">
+    <value>Gateway Switcher</value>
+  </data>
+  <data name="backgroundMaterial.Header" xml:space="preserve">
+    <value>Background Material:</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="ConfigGrid.Text" xml:space="preserve">
+    <value>Configuration</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="ConfirmDelete.Text" xml:space="preserve">
+    <value>Are you sure you want to delete?</value>
+  </data>
+  <data name="ConfirmReplace.Text" xml:space="preserve">
+    <value>Are you sure you want to overwrite?</value>
+  </data>
+  <data name="copyMenuItemText" xml:space="preserve">
+    <value>Copy Configuration</value>
+  </data>
+  <data name="deleteMenuItemText" xml:space="preserve">
+    <value>Delete Configuration</value>
+  </data>
+  <data name="DHCPConfig.Content" xml:space="preserve">
+    <value>DHCP (Auto)</value>
+  </data>
+  <data name="DialogAdd" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="DialogChange" xml:space="preserve">
+    <value>Change</value>
+  </data>
+  <data name="DialogClose" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="DisableIPv6" xml:space="preserve">
+    <value>Disable IPv6</value>
+  </data>
+  <data name="editMenuItemText" xml:space="preserve">
+    <value>Edit Configuration</value>
+  </data>
+  <data name="EnableIPv6" xml:space="preserve">
+    <value>Enable IPv6</value>
+  </data>
+  <data name="exportMenuItemText" xml:space="preserve">
+    <value>Export Configuration</value>
+  </data>
+  <data name="ImportConfig.Content" xml:space="preserve">
+    <value>Import Configuration</value>
+  </data>
+  <data name="Interface.Header" xml:space="preserve">
+    <value>Interface:</value>
+  </data>
+  <data name="Interface.PlaceholderText" xml:space="preserve">
+    <value>Select your current internet access interface</value>
+  </data>
+  <data name="IPv4Unconnect" xml:space="preserve">
+    <value>IPv4 not connected</value>
+  </data>
+  <data name="IPv6Unconnect" xml:space="preserve">
+    <value>IPv6 not connected</value>
+  </data>
+  <data name="IsAdminButTips.ActionButtonContent" xml:space="preserve">
+    <value>Revert to regular user privileges</value>
+  </data>
+  <data name="IsAdminButTips.Subtitle" xml:space="preserve">
+    <value>WinUI cannot perform import and export operations under administrator privileges. Please run as a regular user.</value>
+  </data>
+  <data name="IsAdminButTips.Title" xml:space="preserve">
+    <value>Operation Failed!</value>
+  </data>
+  <data name="NavViewItemAbout.Content" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="NavViewItemNetSetting.Content" xml:space="preserve">
+    <value>Gateway Switch</value>
+  </data>
+  <data name="NeedSelectedTips.Title" xml:space="preserve">
+    <value>You need to select a configuration</value>
+  </data>
+  <data name="NetInterfaceGrid.Text" xml:space="preserve">
+    <value>Interface</value>
+  </data>
+  <data name="NetSelectHeader.Text" xml:space="preserve">
+    <value>Gateway Switch</value>
+  </data>
+  <data name="NetworkInterfaceDescription.Text" xml:space="preserve">
+    <value>Interface Description:</value>
+  </data>
+  <data name="NetworkInterfaceDNS.Text" xml:space="preserve">
+    <value>DNS:</value>
+  </data>
+  <data name="NetworkInterfaceGatewayAddress.Text" xml:space="preserve">
+    <value>Gateway Address:</value>
+  </data>
+  <data name="NetworkInterfaceIPAddress.Text" xml:space="preserve">
+    <value>IP Address:</value>
+  </data>
+  <data name="NetworkInterfaceMACAddress.Text" xml:space="preserve">
+    <value>Physical Address (MAC):</value>
+  </data>
+  <data name="NetworkInterfaceName.Text" xml:space="preserve">
+    <value>Interface Name:</value>
+  </data>
+  <data name="NetworkInterfaceSpeed.Text" xml:space="preserve">
+    <value>Negotiated Speed:</value>
+  </data>
+  <data name="NetworkInterfaceSubnetMask.Text" xml:space="preserve">
+    <value>Subnet Mask:</value>
+  </data>
+  <data name="NetworkInterfaceTypeTextBox.Text" xml:space="preserve">
+    <value>Interface Type:</value>
+  </data>
+  <data name="NetworkIsChangeTips.Subtitle" xml:space="preserve">
+    <value>The network configuration has been changed via command line. You may need to re-enter the "Windows Advanced Network Settings" page to see the changes.</value>
+  </data>
+  <data name="NetworkIsChangeTips.Title" xml:space="preserve">
+    <value>Network Preset Switched</value>
+  </data>
+  <data name="NotAdminTips.ActionButtonContent" xml:space="preserve">
+    <value>Grant Administrator Privileges</value>
+  </data>
+  <data name="NotAdminTips.Subtitle" xml:space="preserve">
+    <value>You need to run Gateway Selector with administrator privileges because command line commands require administrator access to modify network configuration.</value>
+  </data>
+  <data name="NotAdminTips.Title" xml:space="preserve">
+    <value>Operation Failed!</value>
+  </data>
+  <data name="refreshItemText" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="replaceMenuItemText" xml:space="preserve">
+    <value>Replace Configuration</value>
+  </data>
+  <data name="SelectInterface.Text" xml:space="preserve">
+    <value>Select your internet access interface</value>
+  </data>
+  <data name="selectMenuItemText" xml:space="preserve">
+    <value>Switch to this configuration</value>
+  </data>
+  <data name="SettingsHeader.Text" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="Sponsor.Text" xml:space="preserve">
+    <value>Sponsor Me:</value>
+  </data>
+  <data name="Tips1.Text" xml:space="preserve">
+    <value>Double-click to apply configuration, right-click for configuration menu</value>
+  </data>
+  <data name="Tips2.Text" xml:space="preserve">
+    <value>Current Internet Access Interface Information</value>
+  </data>
+  <data name="TypeEthernet" xml:space="preserve">
+    <value>Ethernet</value>
+  </data>
+  <data name="TypeLoopback" xml:space="preserve">
+    <value>Loopback</value>
+  </data>
+  <data name="TypeTunnel" xml:space="preserve">
+    <value>Tunnel</value>
+  </data>
+  <data name="TypeUnknown" xml:space="preserve">
+    <value>Unknown</value>
+  </data>
+  <data name="TypeWireless80211" xml:space="preserve">
+    <value>Wireless (IEEE 802.11)</value>
+  </data>
 </root>

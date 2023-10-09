@@ -330,8 +330,8 @@
   <data name="SettingsHeader.Text" xml:space="preserve">
     <value>设置</value>
   </data>
-  <data name="Sponsor.Content" xml:space="preserve">
-    <value>赞助我</value>
+  <data name="Sponsor.Text" xml:space="preserve">
+    <value>赞助我：</value>
   </data>
   <data name="Tips1.Text" xml:space="preserve">
     <value>双击左键应用配置 右键配置打开菜单</value>

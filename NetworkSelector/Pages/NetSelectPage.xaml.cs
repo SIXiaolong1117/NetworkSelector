@@ -398,6 +398,14 @@ namespace NetworkSelector.Pages
             // 关闭二次确认Flyout
             confirmationReplaceFlyout.Hide();
         }
+        private void AboutAliPay_Click(object sender, RoutedEventArgs e)
+        {
+            AboutAliPayTips.IsOpen = true;
+        }
+        private void AboutWePay_Click(object sender, RoutedEventArgs e)
+        {
+            AboutWePayTips.IsOpen = true;
+        }
         private static void RestartAsAdmin()
         {
             string appPath = Process.GetCurrentProcess().MainModule.FileName;
