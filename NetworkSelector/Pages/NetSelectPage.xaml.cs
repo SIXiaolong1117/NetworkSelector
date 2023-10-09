@@ -427,9 +427,6 @@ namespace NetworkSelector.Pages
             }
             Environment.Exit(0);
         }
-        //private static void RestartAsNotAdmin()
-        //{
-        //}
         private void NotAdminTips_ActionButtonClick(TeachingTip sender, object args)
         {
             RestartAsAdmin();

@@ -29,6 +29,19 @@
                 Margin="0,0,0,8"
                 ItemsSource="{x:Bind material}"
                 SelectionChanged="backgroundMaterial_SelectionChanged" />
+            <Button
+                x:Uid="ResetDatabase"
+                Width="292"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Click="ResetDatabaseButton_Click" />
         </StackPanel>
+        <TeachingTip
+            x:Name="ResetDatabaseTips"
+            x:Uid="ResetDatabaseTips"
+            ActionButtonClick="ResetDatabaseTips_ActionButtonClick"
+            IsLightDismissEnabled="True"
+            PlacementMargin="20"
+            PreferredPlacement="Auto" />
     </Grid>
 </Page>

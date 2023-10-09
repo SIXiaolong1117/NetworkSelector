@@ -8,11 +8,14 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using NetworkSelector.Datas;
+using NetworkSelector.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel.Resources;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
@@ -23,6 +26,8 @@ namespace NetworkSelector.Pages
     {
         // 启用本地设置数据
         ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
+
+        ResourceLoader resourceLoader = new ResourceLoader();
 
         // 材料ComboBox列表List
         public List<string> material { get; } = new List<string>()
@@ -44,7 +49,17 @@ namespace NetworkSelector.Pages
             // 初始化
             this.InitializeComponent();
 
-            //backgroundMaterial.PlaceholderText = localSettings.Values["materialStatus"] as string;
+            materialStatusSet();
+            LoadString();
+        }
+        private void LoadString()
+        {
+            ResetDatabaseTips.ActionButtonContent = resourceLoader.GetString("Confirm");
+            ResetDatabaseTips.CloseButtonContent = resourceLoader.GetString("Cancel");
+        }
+
+        private void materialStatusSet()
+        {
             // 读取本地设置数据，调整ComboBox状态
             if (localSettings.Values["materialStatus"] as string == "Mica")
             {
@@ -108,6 +123,18 @@ namespace NetworkSelector.Pages
                 default:
                     throw new Exception($"Invalid argument: {materialStatus}");
             }
-        }       
+        }
+
+        private void ResetDatabaseButton_Click(object sender, RoutedEventArgs e)
+        {
+            ResetDatabaseTips.IsOpen = true;
+        }
+        private void ResetDatabaseTips_ActionButtonClick(TeachingTip sender, object args)
+        {
+            // 实例化SQLiteHelper
+            SQLiteHelper dbHelper = new SQLiteHelper();
+            dbHelper.DropTable();
+            ResetDatabaseTips.IsOpen = false;
+        }
     }
 }

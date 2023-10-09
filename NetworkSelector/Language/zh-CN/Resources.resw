@@ -321,6 +321,15 @@
   <data name="replaceMenuItemText" xml:space="preserve">
     <value>覆盖配置</value>
   </data>
+  <data name="ResetDatabase.Content" xml:space="preserve">
+    <value>重置数据库</value>
+  </data>
+  <data name="ResetDatabaseTips.Subtitle" xml:space="preserve">
+    <value>这会使您丢失所有的配置数据，且无法找回！</value>
+  </data>
+  <data name="ResetDatabaseTips.Title" xml:space="preserve">
+    <value>您确定要重置数据库吗？</value>
+  </data>
   <data name="SelectInterface.Text" xml:space="preserve">
     <value>选择您的上网网口</value>
   </data>

@@ -14,15 +14,29 @@ namespace NetworkSelector.Datas
 
         public SQLiteHelper()
         {
-            // 初始化数据库连接
+            CreateTableIfNotExists();
+        }
+        // 建表
+        public void CreateTableIfNotExists()
+        {
+            using (SqliteConnection connection = new SqliteConnection(connectionString))
+            {
+                connection.Open();
+                var createTableCommand = connection.CreateCommand();
+                createTableCommand.CommandText = "CREATE TABLE IF NOT EXISTS NSTable (Id INTEGER PRIMARY KEY, Name TEXT, Netinterface Text, IPAddr TEXT, Mask TEXT, Gateway TEXT, DNS1 TEXT, DNS2 TEXT)";
+                createTableCommand.ExecuteNonQuery();
+            }
+        }
+        // 删表
+        public void DropTable()
+        {
             using (SqliteConnection connection = new SqliteConnection(connectionString))
             {
                 connection.Open();
 
-                // 创建WoL信息表
-                var createTableCommand = connection.CreateCommand();
-                createTableCommand.CommandText = "CREATE TABLE IF NOT EXISTS NSTable (Id INTEGER PRIMARY KEY, Name TEXT, Netinterface Text, IPAddr TEXT, Mask TEXT, Gateway TEXT, DNS1 TEXT, DNS2 TEXT)";
-                createTableCommand.ExecuteNonQuery();
+                var dropTableCommand = connection.CreateCommand();
+                dropTableCommand.CommandText = $"DROP TABLE IF EXISTS NSTable;";
+                dropTableCommand.ExecuteNonQuery();
             }
         }
         // 插入数据
