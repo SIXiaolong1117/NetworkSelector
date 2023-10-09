@@ -17,8 +17,7 @@
   </p>
 </p>
 <p align="center">
-  <img src="./README/1.png" width="49%" />
-  <img src="./README/2.png" width="49%" />
+  <img src="./README/1.png" width="100%" />
 </p>
 
 因为微软没有在 Windows 中提供保存网络设置为预设的功能，对于需要经常切换网关服务器或代理服务器的用户来说十分的麻烦，于是我就开发了这个小工具。
