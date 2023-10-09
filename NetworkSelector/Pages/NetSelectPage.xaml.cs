@@ -563,7 +563,32 @@ namespace NetworkSelector.Pages
                         }
 
                         // 获取网络接口的速度（以比特每秒为单位）
-                        long interfaceSpeed = networkInterface.Speed;
+                        long interfaceSpeedSrc = networkInterface.Speed;
+                        string interfaceSpeed;
+                        if (interfaceSpeedSrc < 1000)
+                        {
+                            interfaceSpeed = $"{interfaceSpeedSrc} bps";
+                        }
+                        else if (interfaceSpeedSrc < 1000000)
+                        {
+                            interfaceSpeed = $"{interfaceSpeedSrc / 1000} Kbps";
+                        }
+                        else if (interfaceSpeedSrc < 1000000000)
+                        {
+                            interfaceSpeed = $"{interfaceSpeedSrc / 1000000} Mbps";
+                        }
+                        else if (interfaceSpeedSrc < 1000000000000)
+                        {
+                            interfaceSpeed = $"{interfaceSpeedSrc / 1000000000} Gbps";
+                        }
+                        else if (interfaceSpeedSrc < 1000000000000000)
+                        {
+                            interfaceSpeed = $"{interfaceSpeedSrc / 1000000000000} Tbps";
+                        }
+                        else
+                        {
+                            interfaceSpeed = $"{interfaceSpeedSrc}";
+                        }
 
                         // 要在UI线程上更新UI，使用DispatcherQueue
                         _dispatcherQueue.TryEnqueue(() =>
@@ -579,7 +604,7 @@ namespace NetworkSelector.Pages
                                 GatewayAddress = $"{gatewayAddress}\n{gateway6Address}",
                                 DNS = $"{dns.TrimEnd()}",
                                 Type = $"{interfaceType}",
-                                Speed = $"{interfaceSpeed / 1000000} Mbps"
+                                Speed = $"{interfaceSpeed}"
                             });
                             dataListView2.ItemsSource = interfaceInfoList;
 
