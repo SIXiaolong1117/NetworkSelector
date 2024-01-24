@@ -346,7 +346,7 @@
     <value>双击左键应用配置 右键配置打开菜单</value>
   </data>
   <data name="Tips2.Text" xml:space="preserve">
-    <value>当前上网网口信息</value>
+    <value>网络接口信息</value>
   </data>
   <data name="Type53" xml:space="preserve">
     <value>专有虚拟/内部 (Proprietary virtual/internal)</value>

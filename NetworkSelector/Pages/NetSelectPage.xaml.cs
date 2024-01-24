@@ -41,6 +41,19 @@ namespace NetworkSelector.Pages
             this.InitializeComponent();
             // 获取UI线程的DispatcherQueue
             _dispatcherQueue = DispatcherQueue.GetForCurrentThread();
+            
+            // 将所有网卡名添加到ComboBox列表
+            foreach (string interfaceName in NSMethod.ListNetworkInterfaces())
+            {
+                networkInterfaceName.Items.Add(interfaceName);
+            }
+
+            // 设置ComboBox的默认选中项为当前使用的网卡
+            if (!string.IsNullOrEmpty(NSMethod.GetCurrentActiveNetworkInterfaceName()))
+            {
+                networkInterfaceName.SelectedItem = NSMethod.GetCurrentActiveNetworkInterfaceName();
+            }
+
             // 加载数据
             LoadData();
             DisplayNetworkInfo();
@@ -440,6 +453,8 @@ namespace NetworkSelector.Pages
             InProgressing.IsActive = true;
             // 占位符
             DisableIPv6.Content = resourceLoader.GetString("DisableIPv6");
+            // 局部变量 网络接口名
+            string networkInterfaceNameLocal = networkInterfaceName.SelectedItem.ToString();
             // 在子线程中执行任务
             Thread subThread = new Thread(new ThreadStart(() =>
             {
@@ -449,7 +464,7 @@ namespace NetworkSelector.Pages
                 foreach (var networkInterface in networkInterfaces)
                 {
                     // 仅处理与目标网络接口名称匹配的网络接口
-                    if (NSMethod.GetCurrentActiveNetworkInterfaceName() != null && networkInterface.Name == NSMethod.GetCurrentActiveNetworkInterfaceName())
+                    if (NSMethod.GetCurrentActiveNetworkInterfaceName() != null && networkInterface.Name == networkInterfaceNameLocal)
                     {
                         // 获取网络接口的IP属性
                         IPInterfaceProperties ipProperties = networkInterface.GetIPProperties();
@@ -766,5 +781,10 @@ namespace NetworkSelector.Pages
                 menuFlyout.ShowAt(sender as UIElement, point);
             }
         }
+        private void networkInterfaceName_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DisplayNetworkInfo();
+        }
+
     }
 }

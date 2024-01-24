@@ -161,9 +161,21 @@
                                 VerticalAlignment="Center"
                                 FontSize="12"
                                 Foreground="DarkGray" />
+                            <StackPanel
+                                Width="292"
+                                Margin="0,0,0,8"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Orientation="Vertical">
+                                <ComboBox
+                                    x:Name="networkInterfaceName"
+                                    Width="292"
+                                    Height="30"
+                                    SelectionChanged="networkInterfaceName_SelectionChanged" />
+                            </StackPanel>
                             <ScrollViewer
                                 Width="292"
-                                Height="292"
+                                Height="254"
                                 Margin="0,0,0,8"
                                 RightTapped="OnScrollViewerRightTapped"
                                 Style="{StaticResource TransparentScrollViewerStyle}">

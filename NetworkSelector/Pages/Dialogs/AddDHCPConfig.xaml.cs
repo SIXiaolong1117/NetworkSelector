@@ -31,6 +31,7 @@ namespace NetworkSelector.Pages.Dialogs
             PrimaryButtonClick += MyDialog_PrimaryButtonClick;
             DHCPInterfaceData = dhcpInterfaceModel;
 
+            // 将所有网卡名添加到ComboBox列表
             foreach (string interfaceName in NSMethod.ListNetworkInterfaces())
             {
                 networkInterfaceName.Items.Add(interfaceName);
