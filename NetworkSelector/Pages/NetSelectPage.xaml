@@ -289,6 +289,12 @@
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Bottom"
                                     Click="DisableIPv6Button_Click" />
+                                <Button
+                                    x:Name="EnableIPv6"
+                                    Width="142"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Bottom"
+                                    Click="EnableIPv6Button_Click" />
                             </StackPanel>
                         </StackPanel>
                     </StackPanel>

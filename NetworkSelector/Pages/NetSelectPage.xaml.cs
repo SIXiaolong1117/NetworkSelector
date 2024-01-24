@@ -33,7 +33,6 @@ namespace NetworkSelector.Pages
 {
     public sealed partial class NetSelectPage : Page
     {
-        int ipv6Flag = 1;
         ResourceLoader resourceLoader = new ResourceLoader();
         private DispatcherQueue _dispatcherQueue;
         public NetSelectPage()
@@ -41,7 +40,7 @@ namespace NetworkSelector.Pages
             this.InitializeComponent();
             // 获取UI线程的DispatcherQueue
             _dispatcherQueue = DispatcherQueue.GetForCurrentThread();
-            
+
             // 将所有网卡名添加到ComboBox列表
             foreach (string interfaceName in NSMethod.ListNetworkInterfaces())
             {
@@ -198,17 +197,45 @@ namespace NetworkSelector.Pages
         private void DisableIPv6Button_Click(object sender, RoutedEventArgs e)
         {
             InProgressing.IsActive = true;
-            string cmd;
-            // 如果IPv6启用
-            if (ipv6Flag == 1)
+            string cmd = $"Disable-NetAdapterBinding -Name {networkInterfaceName.SelectedItem.ToString()} -ComponentID 'ms_tcpip6'";
+            // 在子线程中执行任务
+            Thread subThread = new Thread(new ThreadStart(() =>
             {
-                cmd = $"Disable-NetAdapterBinding -Name {NSMethod.GetCurrentActiveNetworkInterfaceName()} -ComponentID 'ms_tcpip6'";
-            }
-            // 如果IPv6未启用
-            else
-            {
-                cmd = $"Enable-NetAdapterBinding -Name {NSMethod.GetCurrentActiveNetworkInterfaceName()} -ComponentID 'ms_tcpip6'";
-            }
+                ProcessStartInfo startInfo = new ProcessStartInfo();
+                startInfo.FileName = "PowerShell.exe";
+                // 是否使用操作系统shell启动
+                startInfo.UseShellExecute = true;
+                // 不显示程序窗口
+                startInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                // 使用管理员权限启动
+                startInfo.Verb = "runas";
+                startInfo.Arguments = cmd;
+                try
+                {
+                    Process process = Process.Start(startInfo);
+                    // 等待进程执行完毕
+                    process.WaitForExit();
+                    process.Close();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+
+                // 要在UI线程上更新UI，使用DispatcherQueue
+                _dispatcherQueue.TryEnqueue(() =>
+                {
+                    InProgressing.IsActive = false;
+                    NetworkIsChangeTips.IsOpen = true;
+                    DisplayNetworkInfo();
+                });
+            }));
+            subThread.Start();
+        }
+        private void EnableIPv6Button_Click(object sender, RoutedEventArgs e)
+        {
+            InProgressing.IsActive = true;
+            string cmd = $"Enable-NetAdapterBinding -Name {networkInterfaceName.SelectedItem.ToString()} -ComponentID 'ms_tcpip6'";
             // 在子线程中执行任务
             Thread subThread = new Thread(new ThreadStart(() =>
             {
@@ -514,7 +541,6 @@ namespace NetworkSelector.Pages
                         if (ipv6AddressSrc == null)
                         {
                             ipv6Address = resourceLoader.GetString("IPv6Unconnect");
-                            ipv6Flag = 0;
                         }
 
                         // 获取网关地址
@@ -623,13 +649,17 @@ namespace NetworkSelector.Pages
                             });
                             dataListView2.ItemsSource = interfaceInfoList;
 
-                            if (ipv6Flag == 1)
+                            if (ipv6AddressSrc != null)
                             {
                                 DisableIPv6.Content = resourceLoader.GetString("DisableIPv6");
+                                DisableIPv6.Visibility = Visibility.Visible;
+                                EnableIPv6.Visibility = Visibility.Collapsed;
                             }
                             else
                             {
-                                DisableIPv6.Content = resourceLoader.GetString("EnableIPv6");
+                                EnableIPv6.Content = resourceLoader.GetString("EnableIPv6");
+                                DisableIPv6.Visibility = Visibility.Collapsed;
+                                EnableIPv6.Visibility = Visibility.Visible;
                             }
                             InProgressing.IsActive = false;
                         });
