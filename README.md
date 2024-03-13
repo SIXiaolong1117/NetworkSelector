@@ -30,15 +30,11 @@
 
 ### 从 Releases 获取自签名版（不推荐）
 
-您可以直接到 [Releases · Direct5dom/NetworkSelector](https://github.com/Direct5dom/NetworkSelector/releases) 下载我已经打包好的安装包。
+*我已不再继续更新自签名版本*
 
-> 需要注意的是，因为本项目使用自签名旁加载，需要您打开Windows的开发者模式，右键“使用PowrShell”运行Install.ps1，而不是直接双击WinWoL.msix。
+## ✋使用教程/Wiki
 
-> 自签名版需要打开开发者模式并安装一个证书，这并不是安全的应用安装方式。
-
-## 🌍帮助翻译
-
-详见：[Language](./NetworkSelector/Language/)
+参考本项目 [Wiki](https://about.sixiaolong.win/Project/Gateway-Switcher.html)。
 
 ## 🛠️获取源码
 
