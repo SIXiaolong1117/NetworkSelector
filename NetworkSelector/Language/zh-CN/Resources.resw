@@ -162,7 +162,7 @@
   <data name="AddConfGateway.Header" xml:space="preserve">
     <value>网关:</value>
   </data>
-  <data name="AddConfig.Content" xml:space="preserve">
+  <data name="AddConfig.Label" xml:space="preserve">
     <value>添加配置</value>
   </data>
   <data name="AddConfigHeader.Text" xml:space="preserve">
@@ -210,8 +210,8 @@
   <data name="deleteMenuItemText" xml:space="preserve">
     <value>删除配置</value>
   </data>
-  <data name="DHCPConfig.Content" xml:space="preserve">
-    <value>DHCP (自动)</value>
+  <data name="DHCPConfig.Label" xml:space="preserve">
+    <value>DHCP</value>
   </data>
   <data name="DialogAdd" xml:space="preserve">
     <value>添加</value>
@@ -234,7 +234,7 @@
   <data name="exportMenuItemText" xml:space="preserve">
     <value>导出配置</value>
   </data>
-  <data name="ImportConfig.Content" xml:space="preserve">
+  <data name="ImportConfig.Label" xml:space="preserve">
     <value>导入配置</value>
   </data>
   <data name="Interface.Header" xml:space="preserve">

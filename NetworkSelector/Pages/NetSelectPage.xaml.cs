@@ -479,7 +479,7 @@ namespace NetworkSelector.Pages
         {
             InProgressing.IsActive = true;
             // 占位符
-            DisableIPv6.Content = resourceLoader.GetString("DisableIPv6");
+            DisableIPv6.Label = resourceLoader.GetString("DisableIPv6");
             // 局部变量 网络接口名
             string networkInterfaceNameLocal = networkInterfaceName.SelectedItem.ToString();
             // 在子线程中执行任务
@@ -651,13 +651,13 @@ namespace NetworkSelector.Pages
 
                             if (ipv6AddressSrc != null)
                             {
-                                DisableIPv6.Content = resourceLoader.GetString("DisableIPv6");
+                                DisableIPv6.Label = resourceLoader.GetString("DisableIPv6");
                                 DisableIPv6.Visibility = Visibility.Visible;
                                 EnableIPv6.Visibility = Visibility.Collapsed;
                             }
                             else
                             {
-                                EnableIPv6.Content = resourceLoader.GetString("EnableIPv6");
+                                EnableIPv6.Label = resourceLoader.GetString("EnableIPv6");
                                 DisableIPv6.Visibility = Visibility.Collapsed;
                                 EnableIPv6.Visibility = Visibility.Visible;
                             }

@@ -48,259 +48,347 @@
     </Page.Resources>
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock
+            x:Name="Header"
+            x:Uid="NetSelectHeader"
+            Grid.Row="0"
+            Grid.Column="0"
+            Margin="0,24,0,8"
+            HorizontalAlignment="Center"
+            FontSize="24" />
+
+        <Grid
+            Grid.Row="1"
+            Grid.Column="0"
+            Margin="24,0,24,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock
+                x:Uid="Tips1"
+                Grid.Row="0"
+                Grid.Column="0"
+                Margin="0,0,0,8"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="12"
+                Foreground="DarkGray" />
+            <TextBlock
+                x:Uid="Tips2"
+                Grid.Row="0"
+                Grid.Column="1"
+                Margin="0,0,0,8"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="12"
+                Foreground="DarkGray" />
+        </Grid>
+
+        <Grid
+            Grid.Row="2"
+            Grid.Column="0"
+            Margin="24,0,24,8">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <ScrollViewer
+                Grid.Row="0"
+                Grid.Column="0"
+                Margin="0,0,4,0"
+                Style="{StaticResource TransparentScrollViewerStyle}">
+                <Grid>
+                    <ListView
+                        x:Name="dataListView"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid DoubleTapped="OnListViewDoubleTapped" RightTapped="OnListViewRightTapped">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock
+                                        x:Uid="ConfigGrid"
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        Padding="0,8,8,0" />
+                                    <TextBlock
+                                        x:Name="NetInterfaceGrid"
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        Padding="0,8,0,0"
+                                        Text="{Binding Name}" />
+                                    <TextBlock
+                                        x:Uid="NetInterfaceGrid"
+                                        Grid.Row="1"
+                                        Grid.Column="0"
+                                        Padding="0,0,8,8" />
+                                    <TextBlock
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        Padding="0,0,0,8"
+                                        Text="{Binding Netinterface}" />
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </ScrollViewer>
+
+            <Grid
+                Grid.Row="0"
+                Grid.Column="0"
+                Margin="0,0,12,8"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <AppBarButton
+                    x:Name="AddConfig"
+                    x:Uid="AddConfig"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Click="AddConfigButton_Click"
+                    Icon="Add" />
+                <AppBarButton
+                    x:Name="ImportConfig"
+                    x:Uid="ImportConfig"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Click="ImportConfig_Click"
+                    Icon="Import" />
+                <AppBarButton
+                    x:Name="DHCPConfig"
+                    x:Uid="DHCPConfig"
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    Click="DHCPConfigButton_Click">
+                    <AppBarButton.Icon>
+                        <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xEC05;" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarButton
+                    x:Name="DisableIPv6"
+                    Grid.Row="0"
+                    Grid.Column="3"
+                    Click="DisableIPv6Button_Click">
+                    <AppBarButton.Icon>
+                        <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xEB55;" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarButton
+                    x:Name="EnableIPv6"
+                    Grid.Row="0"
+                    Grid.Column="3"
+                    Click="EnableIPv6Button_Click">
+                    <AppBarButton.Icon>
+                        <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE839;" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
+            </Grid>
+
+            <Grid
+                Grid.Row="0"
+                Grid.Column="1"
+                Margin="4,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <ScrollViewer
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Margin="0,0,0,8"
+                    RightTapped="OnScrollViewerRightTapped"
+                    Style="{StaticResource TransparentScrollViewerStyle}">
+                    <ListView
+                        x:Name="dataListView2"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        ItemsSource="{Binding InterfaceInfoModel}"
+                        SelectionMode="None">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel
+                                    Width="292"
+                                    Margin="0,16,0,16"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Orientation="Vertical">
+                                    <TextBlock
+                                        x:Uid="NetworkInterfaceName"
+                                        Margin="0,0,0,8"
+                                        TextWrapping="Wrap" />
+                                    <TextBlock
+                                        Margin="0,0,0,8"
+                                        Foreground="DarkGray"
+                                        Text="{Binding Name}"
+                                        TextWrapping="Wrap" />
+                                    <TextBlock
+                                        x:Uid="NetworkInterfaceDescription"
+                                        Margin="0,0,0,8"
+                                        TextWrapping="Wrap" />
+                                    <TextBlock
+                                        Margin="0,0,0,8"
+                                        Foreground="DarkGray"
+                                        Text="{Binding Description}"
+                                        TextWrapping="Wrap" />
+                                    <TextBlock
+                                        x:Uid="NetworkInterfaceMACAddress"
+                                        Margin="0,0,0,8"
+                                        TextWrapping="Wrap" />
+                                    <TextBlock
+                                        Margin="0,0,0,8"
+                                        Foreground="DarkGray"
+                                        Text="{Binding MACAddress}"
+                                        TextWrapping="Wrap" />
+                                    <TextBlock
+                                        x:Uid="NetworkInterfaceIPAddress"
+                                        Margin="0,0,0,8"
+                                        TextWrapping="Wrap" />
+                                    <TextBlock
+                                        Margin="0,0,0,8"
+                                        Foreground="DarkGray"
+                                        Text="{Binding IPAddress}"
+                                        TextWrapping="Wrap" />
+                                    <TextBlock
+                                        x:Uid="NetworkInterfaceGatewayAddress"
+                                        Margin="0,0,0,8"
+                                        TextWrapping="Wrap" />
+                                    <TextBlock
+                                        Margin="0,0,0,8"
+                                        Foreground="DarkGray"
+                                        Text="{Binding GatewayAddress}"
+                                        TextWrapping="Wrap" />
+                                    <TextBlock
+                                        x:Uid="NetworkInterfaceDNS"
+                                        Margin="0,0,0,8"
+                                        TextWrapping="Wrap" />
+                                    <TextBlock
+                                        Margin="0,0,0,8"
+                                        Foreground="DarkGray"
+                                        Text="{Binding DNS}"
+                                        TextWrapping="Wrap" />
+                                    <TextBlock
+                                        x:Uid="NetworkInterfaceTypeTextBox"
+                                        Margin="0,0,0,8"
+                                        TextWrapping="Wrap" />
+                                    <TextBlock
+                                        Margin="0,0,0,8"
+                                        Foreground="DarkGray"
+                                        Text="{Binding Type}"
+                                        TextWrapping="Wrap" />
+                                    <TextBlock
+                                        x:Uid="NetworkInterfaceSpeed"
+                                        Margin="0,0,0,8"
+                                        TextWrapping="Wrap" />
+                                    <TextBlock
+                                        Margin="0,0,0,8"
+                                        Foreground="DarkGray"
+                                        Text="{Binding Speed}"
+                                        TextWrapping="Wrap" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </ScrollViewer>
+
+                <ComboBox
+                    x:Name="networkInterfaceName"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    HorizontalAlignment="Stretch"
+                    SelectionChanged="networkInterfaceName_SelectionChanged" />
+            </Grid>
+        </Grid>
+
+
+
+        <!--<Grid Grid.Row="3" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button
+                x:Name="AddConfig"
+                x:Uid="AddConfig"
+                Width="142"
+                Margin="0,0,8,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                Click="AddConfigButton_Click" />
+            <Button
+                x:Name="ImportConfig"
+                x:Uid="ImportConfig"
+                Width="142"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                Click="ImportConfig_Click" />
+            <Button
+                x:Name="DHCPConfig"
+                x:Uid="DHCPConfig"
+                Width="142"
+                Margin="0,0,8,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                Click="DHCPConfigButton_Click" />
+            <Button
+                x:Name="DisableIPv6"
+                Width="142"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                Click="DisableIPv6Button_Click" />
+            <Button
+                x:Name="EnableIPv6"
+                Width="142"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                Click="EnableIPv6Button_Click" />
+        </Grid>-->
         <StackPanel
+            Grid.Row="4"
+            Grid.Column="0"
+            Margin="0,0,0,24"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             Orientation="Vertical">
-            <StackPanel
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                Orientation="Horizontal">
-                <StackPanel
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Orientation="Vertical">
-                    <TextBlock
-                        x:Name="Header"
-                        x:Uid="NetSelectHeader"
-                        Margin="0,0,0,8"
-                        HorizontalAlignment="Center"
-                        FontSize="24" />
-
-                    <StackPanel Margin="0,0,0,8" Orientation="Horizontal">
-                        <StackPanel
-                            Margin="0,0,8,0"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Orientation="Vertical">
-                            <TextBlock
-                                x:Uid="Tips1"
-                                Margin="0,0,0,8"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                FontSize="12"
-                                Foreground="DarkGray" />
-                            <ScrollViewer
-                                Width="292"
-                                Height="292"
-                                Margin="0,0,0,8"
-                                Style="{StaticResource TransparentScrollViewerStyle}">
-                                <Grid>
-                                    <ListView
-                                        x:Name="dataListView"
-                                        HorizontalAlignment="Stretch"
-                                        VerticalAlignment="Stretch">
-                                        <ListView.ItemTemplate>
-                                            <DataTemplate>
-                                                <Grid DoubleTapped="OnListViewDoubleTapped" RightTapped="OnListViewRightTapped">
-                                                    <Grid.RowDefinitions>
-                                                        <RowDefinition Height="Auto" />
-                                                        <RowDefinition Height="Auto" />
-                                                    </Grid.RowDefinitions>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="Auto" />
-                                                        <ColumnDefinition Width="*" />
-                                                    </Grid.ColumnDefinitions>
-                                                    <TextBlock
-                                                        x:Uid="ConfigGrid"
-                                                        Grid.Row="0"
-                                                        Grid.Column="0"
-                                                        Padding="0,8,8,0" />
-                                                    <TextBlock
-                                                        x:Name="NetInterfaceGrid"
-                                                        Grid.Row="0"
-                                                        Grid.Column="1"
-                                                        Padding="0,8,0,0"
-                                                        Text="{Binding Name}" />
-                                                    <TextBlock
-                                                        x:Uid="NetInterfaceGrid"
-                                                        Grid.Row="1"
-                                                        Grid.Column="0"
-                                                        Padding="0,0,8,8" />
-                                                    <TextBlock
-                                                        Grid.Row="1"
-                                                        Grid.Column="1"
-                                                        Padding="0,0,0,8"
-                                                        Text="{Binding Netinterface}" />
-                                                </Grid>
-                                            </DataTemplate>
-                                        </ListView.ItemTemplate>
-                                    </ListView>
-                                </Grid>
-                            </ScrollViewer>
-                            <StackPanel
-                                Width="292"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                Orientation="Horizontal">
-                                <Button
-                                    x:Name="AddConfig"
-                                    x:Uid="AddConfig"
-                                    Width="142"
-                                    Margin="0,0,8,0"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Bottom"
-                                    Click="AddConfigButton_Click" />
-                                <Button
-                                    x:Name="ImportConfig"
-                                    x:Uid="ImportConfig"
-                                    Width="142"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Bottom"
-                                    Click="ImportConfig_Click" />
-                            </StackPanel>
-                        </StackPanel>
-                        <StackPanel
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Orientation="Vertical">
-                            <TextBlock
-                                x:Uid="Tips2"
-                                Margin="0,0,0,8"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                FontSize="12"
-                                Foreground="DarkGray" />
-                            <StackPanel
-                                Width="292"
-                                Margin="0,0,0,8"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                Orientation="Vertical">
-                                <ComboBox
-                                    x:Name="networkInterfaceName"
-                                    Width="292"
-                                    Height="30"
-                                    SelectionChanged="networkInterfaceName_SelectionChanged" />
-                            </StackPanel>
-                            <ScrollViewer
-                                Width="292"
-                                Height="254"
-                                Margin="0,0,0,8"
-                                RightTapped="OnScrollViewerRightTapped"
-                                Style="{StaticResource TransparentScrollViewerStyle}">
-                                <ListView
-                                    x:Name="dataListView2"
-                                    HorizontalAlignment="Stretch"
-                                    VerticalAlignment="Stretch"
-                                    ItemsSource="{Binding InterfaceInfoModel}"
-                                    SelectionMode="None">
-                                    <ListView.ItemTemplate>
-                                        <DataTemplate>
-                                            <StackPanel
-                                                Width="292"
-                                                Margin="0,16,0,16"
-                                                HorizontalAlignment="Left"
-                                                VerticalAlignment="Center"
-                                                Orientation="Vertical">
-                                                <TextBlock
-                                                    x:Uid="NetworkInterfaceName"
-                                                    Margin="0,0,0,8"
-                                                    TextWrapping="Wrap" />
-                                                <TextBlock
-                                                    Margin="0,0,0,8"
-                                                    Foreground="DarkGray"
-                                                    Text="{Binding Name}"
-                                                    TextWrapping="Wrap" />
-                                                <TextBlock
-                                                    x:Uid="NetworkInterfaceDescription"
-                                                    Margin="0,0,0,8"
-                                                    TextWrapping="Wrap" />
-                                                <TextBlock
-                                                    Margin="0,0,0,8"
-                                                    Foreground="DarkGray"
-                                                    Text="{Binding Description}"
-                                                    TextWrapping="Wrap" />
-                                                <TextBlock
-                                                    x:Uid="NetworkInterfaceMACAddress"
-                                                    Margin="0,0,0,8"
-                                                    TextWrapping="Wrap" />
-                                                <TextBlock
-                                                    Margin="0,0,0,8"
-                                                    Foreground="DarkGray"
-                                                    Text="{Binding MACAddress}"
-                                                    TextWrapping="Wrap" />
-                                                <TextBlock
-                                                    x:Uid="NetworkInterfaceIPAddress"
-                                                    Margin="0,0,0,8"
-                                                    TextWrapping="Wrap" />
-                                                <TextBlock
-                                                    Margin="0,0,0,8"
-                                                    Foreground="DarkGray"
-                                                    Text="{Binding IPAddress}"
-                                                    TextWrapping="Wrap" />
-                                                <TextBlock
-                                                    x:Uid="NetworkInterfaceGatewayAddress"
-                                                    Margin="0,0,0,8"
-                                                    TextWrapping="Wrap" />
-                                                <TextBlock
-                                                    Margin="0,0,0,8"
-                                                    Foreground="DarkGray"
-                                                    Text="{Binding GatewayAddress}"
-                                                    TextWrapping="Wrap" />
-                                                <TextBlock
-                                                    x:Uid="NetworkInterfaceDNS"
-                                                    Margin="0,0,0,8"
-                                                    TextWrapping="Wrap" />
-                                                <TextBlock
-                                                    Margin="0,0,0,8"
-                                                    Foreground="DarkGray"
-                                                    Text="{Binding DNS}"
-                                                    TextWrapping="Wrap" />
-                                                <TextBlock
-                                                    x:Uid="NetworkInterfaceTypeTextBox"
-                                                    Margin="0,0,0,8"
-                                                    TextWrapping="Wrap" />
-                                                <TextBlock
-                                                    Margin="0,0,0,8"
-                                                    Foreground="DarkGray"
-                                                    Text="{Binding Type}"
-                                                    TextWrapping="Wrap" />
-                                                <TextBlock
-                                                    x:Uid="NetworkInterfaceSpeed"
-                                                    Margin="0,0,0,8"
-                                                    TextWrapping="Wrap" />
-                                                <TextBlock
-                                                    Margin="0,0,0,8"
-                                                    Foreground="DarkGray"
-                                                    Text="{Binding Speed}"
-                                                    TextWrapping="Wrap" />
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </ListView.ItemTemplate>
-                                </ListView>
-                            </ScrollViewer>
-                            <StackPanel
-                                Width="292"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                Orientation="Horizontal">
-                                <Button
-                                    x:Name="DHCPConfig"
-                                    x:Uid="DHCPConfig"
-                                    Width="142"
-                                    Margin="0,0,8,0"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Bottom"
-                                    Click="DHCPConfigButton_Click" />
-                                <Button
-                                    x:Name="DisableIPv6"
-                                    Width="142"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Bottom"
-                                    Click="DisableIPv6Button_Click" />
-                                <Button
-                                    x:Name="EnableIPv6"
-                                    Width="142"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Bottom"
-                                    Click="EnableIPv6Button_Click" />
-                            </StackPanel>
-                        </StackPanel>
-                    </StackPanel>
-                </StackPanel>
-            </StackPanel>
-
             <StackPanel
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
