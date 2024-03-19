@@ -464,6 +464,10 @@
                 </Image>
             </TeachingTip.HeroContent>
         </TeachingTip>
-        <ProgressRing x:Name="InProgressing" IsActive="False" />
+        <ProgressRing
+            x:Name="InProgressing"
+            Grid.Row="2"
+            Grid.Column="0"
+            IsActive="False" />
     </Grid>
 </Page>
