@@ -43,9 +43,9 @@ namespace NetworkSelector.Pages
             // 获取UI线程的DispatcherQueue
             _dispatcherQueue = DispatcherQueue.GetForCurrentThread();
 
-            APPVersion.Content = $"{version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
+            APPVersion.Text = $"{version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
             //APPVersion.NavigateUri = new System.Uri($"https://github.com/Direct5dom/NetworkSelector/releases/tag/{version.Major}.{version.Minor}.{version.Build}.{version.Revision}");
-            APPVersion.NavigateUri = new System.Uri($"https://www.microsoft.com/store/apps/9PDQC93R0WLF");
+            //APPVersion.NavigateUri = new System.Uri($"https://www.microsoft.com/store/apps/9PDQC93R0WLF");
 
             GetSponsorList();
         }

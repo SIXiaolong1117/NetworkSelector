@@ -8,70 +8,94 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <ScrollViewer Width="280">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
 
-        <StackPanel
+        <TextBlock
+            x:Name="Header"
+            x:Uid="AddConfigHeader"
             HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Orientation="Vertical">
-            <TextBlock
-                x:Name="Header"
-                x:Uid="AddConfigHeader"
-                HorizontalAlignment="Center"
-                FontSize="24" />
-            <TextBox
-                x:Name="configName"
-                x:Uid="AddConfConfigName"
-                Width="250"
-                Margin="0,8,0,0"
-                TextChanged="TextChanged" />
-            <StackPanel
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                Orientation="Vertical">
-                <ComboBox
-                    x:Name="networkInterfaceName"
-                    x:Uid="AddConfNetworkInterfaceName"
-                    Width="250"
-                    Margin="0,8,0,0"
-                    SelectionChanged="networkInterfaceName_SelectionChanged" />
-            </StackPanel>
-            <TextBox
-                x:Name="ipAddr"
-                x:Uid="AddConfIpAddr"
-                Width="250"
-                Margin="0,8,0,0"
-                PlaceholderText="eg: 192.168.0.1"
-                TextChanged="TextChanged" />
-            <TextBox
-                x:Name="mask"
-                x:Uid="AddConfSubnetMask"
-                Width="250"
-                Margin="0,8,0,0"
-                PlaceholderText="eg: 255.255.255.0"
-                TextChanged="TextChanged" />
-            <TextBox
-                x:Name="gateway"
-                x:Uid="AddConfGateway"
-                Width="250"
-                Margin="0,8,0,0"
-                PlaceholderText="eg: 192.168.0.1"
-                TextChanged="TextChanged" />
-            <TextBox
-                x:Name="dns1"
-                x:Uid="AddConfDns1"
-                Width="250"
-                Margin="0,8,0,0"
-                PlaceholderText="eg: 192.168.0.1"
-                TextChanged="TextChanged" />
-            <TextBox
-                x:Name="dns2"
-                x:Uid="AddConfDns2"
-                Width="250"
-                Margin="0,8,0,0"
-                PlaceholderText="eg: 4.2.2.1"
-                TextChanged="TextChanged" />
-        </StackPanel>
+            FontSize="24" />
 
-    </ScrollViewer>
+        <ScrollViewer
+            Grid.Row="1"
+            Grid.Column="0"
+            MinWidth="280">
+            <Grid Width="260">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBox
+                    x:Name="configName"
+                    x:Uid="AddConfConfigName"
+                    Grid.Row="0"
+                    Margin="0,4,0,0"
+                    TextChanged="TextChanged" />
+                <StackPanel
+                    Grid.Row="1"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center"
+                    Orientation="Vertical">
+                    <ComboBox
+                        x:Name="networkInterfaceName"
+                        x:Uid="AddConfNetworkInterfaceName"
+                        Margin="0,4,0,0"
+                        HorizontalAlignment="Stretch"
+                        SelectionChanged="networkInterfaceName_SelectionChanged" />
+                </StackPanel>
+                <TextBox
+                    x:Name="ipAddr"
+                    x:Uid="AddConfIpAddr"
+                    Grid.Row="2"
+                    Margin="0,4,0,0"
+                    PlaceholderText="eg: 192.168.0.1"
+                    TextChanged="TextChanged" />
+                <TextBox
+                    x:Name="mask"
+                    x:Uid="AddConfSubnetMask"
+                    Grid.Row="3"
+                    Margin="0,4,0,0"
+                    PlaceholderText="eg: 255.255.255.0"
+                    TextChanged="TextChanged" />
+                <TextBox
+                    x:Name="gateway"
+                    x:Uid="AddConfGateway"
+                    Grid.Row="4"
+                    Margin="0,4,0,0"
+                    PlaceholderText="eg: 192.168.0.1"
+                    TextChanged="TextChanged" />
+                <TextBox
+                    x:Name="dns1"
+                    x:Uid="AddConfDns1"
+                    Grid.Row="5"
+                    Margin="0,4,0,0"
+                    PlaceholderText="eg: 192.168.0.1"
+                    TextChanged="TextChanged" />
+                <TextBox
+                    x:Name="dns2"
+                    x:Uid="AddConfDns2"
+                    Grid.Row="6"
+                    Margin="0,4,0,0"
+                    PlaceholderText="eg: 4.2.2.1"
+                    TextChanged="TextChanged" />
+            </Grid>
+        </ScrollViewer>
+    </Grid>
 </ContentDialog>

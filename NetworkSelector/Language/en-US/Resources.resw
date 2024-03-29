@@ -121,31 +121,37 @@
     <value>Alipay</value>
   </data>
   <data name="AboutAuthor.Text" xml:space="preserve">
-    <value>👾Author:</value>
+    <value>Author</value>
   </data>
   <data name="AboutHeader.Text" xml:space="preserve">
     <value>About</value>
   </data>
-  <data name="AboutHelp.Text" xml:space="preserve">
-    <value>❓Help:</value>
+  <data name="AboutMITLicense.Content" xml:space="preserve">
+    <value>MIT License</value>
   </data>
-  <data name="AboutLicense.Text" xml:space="preserve">
-    <value>⚖️Open Source License:</value>
+  <data name="AboutNS.Text" xml:space="preserve">
+    <value>About</value>
   </data>
-  <data name="AboutPrivacy.Text" xml:space="preserve">
-    <value>🔑Privacy Policy:</value>
+  <data name="AboutNSRight.Text" xml:space="preserve">
+    <value>Gateway Switcher</value>
+  </data>
+  <data name="AboutNSRightTip.Text" xml:space="preserve">
+    <value>© 2024 SI Xiaolong. This work is licensed under the MIT License.</value>
+  </data>
+  <data name="AboutReference.Text" xml:space="preserve">
+    <value>Dependencies</value>
+  </data>
+  <data name="AboutRepo.Content" xml:space="preserve">
+    <value>Repository</value>
   </data>
   <data name="AboutSponsor.Text" xml:space="preserve">
-    <value>☕Sponsor</value>
-  </data>
-  <data name="AboutSponsorTips.Text" xml:space="preserve">
-    <value>Enter the name to be displayed, in reverse chronological order</value>
-  </data>
-  <data name="AboutVersion.Text" xml:space="preserve">
-    <value>🍰Version:</value>
+    <value>Sponsor</value>
   </data>
   <data name="AboutWePay.Content" xml:space="preserve">
     <value>WeChat</value>
+  </data>
+  <data name="AboutWiki.Content" xml:space="preserve">
+    <value>Wiki</value>
   </data>
   <data name="AddConfConfigName.Header" xml:space="preserve">
     <value>Configuration Name:</value>
@@ -163,10 +169,10 @@
     <value>Gateway:</value>
   </data>
   <data name="AddConfig.Label" xml:space="preserve">
-    <value>Add Configuration</value>
+    <value>Add</value>
   </data>
   <data name="AddConfigHeader.Text" xml:space="preserve">
-    <value>Add a Configuration</value>
+    <value>Add Configuration</value>
   </data>
   <data name="AddConfIpAddr.Header" xml:space="preserve">
     <value>IP Address</value>
@@ -179,6 +185,9 @@
   </data>
   <data name="AddConfSubnetMask.Header" xml:space="preserve">
     <value>Subnet Mask:</value>
+  </data>
+  <data name="AppearanceSetting.Text" xml:space="preserve">
+    <value>Appearance &amp; behavior</value>
   </data>
   <data name="AppTitle" xml:space="preserve">
     <value>Gateway Switcher</value>
@@ -207,6 +216,9 @@
   <data name="copyMenuItemText" xml:space="preserve">
     <value>Copy Configuration</value>
   </data>
+  <data name="DatabaseSetting.Text" xml:space="preserve">
+    <value>Database</value>
+  </data>
   <data name="deleteMenuItemText" xml:space="preserve">
     <value>Delete Configuration</value>
   </data>
@@ -234,8 +246,11 @@
   <data name="exportMenuItemText" xml:space="preserve">
     <value>Export Configuration</value>
   </data>
+  <data name="FeedbackBugs.Content" xml:space="preserve">
+    <value>Feedback Bugs</value>
+  </data>
   <data name="ImportConfig.Label" xml:space="preserve">
-    <value>Import Configuration</value>
+    <value>Import</value>
   </data>
   <data name="Interface.Header" xml:space="preserve">
     <value>Interface:</value>
@@ -257,6 +272,9 @@
   </data>
   <data name="IsAdminButTips.Title" xml:space="preserve">
     <value>Operation Failed!</value>
+  </data>
+  <data name="LanguageSetting.Text" xml:space="preserve">
+    <value>Language</value>
   </data>
   <data name="NavViewItemAbout.Content" xml:space="preserve">
     <value>About</value>
@@ -315,11 +333,26 @@
   <data name="NotAdminTips.Title" xml:space="preserve">
     <value>Operation Failed!</value>
   </data>
+  <data name="PRIVACYLink.Content" xml:space="preserve">
+    <value>PRIVACY</value>
+  </data>
   <data name="refreshItemText" xml:space="preserve">
     <value>Refresh</value>
   </data>
   <data name="replaceMenuItemText" xml:space="preserve">
     <value>Replace Configuration</value>
+  </data>
+  <data name="ResetDatabase.Content" xml:space="preserve">
+    <value>Reset Database</value>
+  </data>
+  <data name="ResetDatabaseSetting.Text" xml:space="preserve">
+    <value>Reset Database</value>
+  </data>
+  <data name="ResetDatabaseTips.Subtitle" xml:space="preserve">
+    <value>This will cause you to lose all configuration data and it will be impossible to get it back!</value>
+  </data>
+  <data name="ResetDatabaseTips.Title" xml:space="preserve">
+    <value>Reset database?</value>
   </data>
   <data name="SelectInterface.Text" xml:space="preserve">
     <value>Select your internet access interface</value>
@@ -333,11 +366,14 @@
   <data name="Sponsor.Text" xml:space="preserve">
     <value>Sponsor Me:</value>
   </data>
+  <data name="ThemeSetting.Text" xml:space="preserve">
+    <value>App theme</value>
+  </data>
   <data name="Tips1.Text" xml:space="preserve">
-    <value>Double-click to apply configuration, right-click for configuration menu</value>
+    <value>Double-click to apply, Right-click for menu</value>
   </data>
   <data name="Tips2.Text" xml:space="preserve">
-    <value>Current Internet Access Interface Information</value>
+    <value>Current Network Interface Information</value>
   </data>
   <data name="TypeEthernet" xml:space="preserve">
     <value>Ethernet</value>

@@ -336,85 +336,44 @@
             </Grid>
         </Grid>
 
-
-
-        <!--<Grid Grid.Row="3" Grid.Column="0">
+        <Grid
+            Grid.Row="4"
+            Grid.Column="0"
+            Margin="0,0,0,24"
+            HorizontalAlignment="Center">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Button
-                x:Name="AddConfig"
-                x:Uid="AddConfig"
-                Width="142"
-                Margin="0,0,8,0"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Bottom"
-                Click="AddConfigButton_Click" />
-            <Button
-                x:Name="ImportConfig"
-                x:Uid="ImportConfig"
-                Width="142"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Bottom"
-                Click="ImportConfig_Click" />
-            <Button
-                x:Name="DHCPConfig"
-                x:Uid="DHCPConfig"
-                Width="142"
-                Margin="0,0,8,0"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Bottom"
-                Click="DHCPConfigButton_Click" />
-            <Button
-                x:Name="DisableIPv6"
-                Width="142"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Bottom"
-                Click="DisableIPv6Button_Click" />
-            <Button
-                x:Name="EnableIPv6"
-                Width="142"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Bottom"
-                Click="EnableIPv6Button_Click" />
-        </Grid>-->
-        <StackPanel
-            Grid.Row="4"
-            Grid.Column="0"
-            Margin="0,0,0,24"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Orientation="Vertical">
-            <StackPanel
+            <TextBlock
+                x:Uid="Sponsor"
+                Grid.Column="0"
+                Padding="4"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                Orientation="Horizontal">
-                <TextBlock
-                    x:Uid="Sponsor"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    FontSize="12"
-                    TextWrapping="Wrap" />
-                <HyperlinkButton
-                    x:Name="AboutAliPay"
-                    x:Uid="AboutAliPay"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Click="AboutAliPay_Click"
-                    FontSize="12" />
-                <HyperlinkButton
-                    x:Name="AboutWePay"
-                    x:Uid="AboutWePay"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Click="AboutWePay_Click"
-                    FontSize="12" />
-            </StackPanel>
-        </StackPanel>
+                TextWrapping="Wrap" />
+            <HyperlinkButton
+                x:Name="AboutAliPay"
+                x:Uid="AboutAliPay"
+                Grid.Column="1"
+                Padding="4"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Click="AboutAliPay_Click" />
+            <HyperlinkButton
+                x:Name="AboutWePay"
+                x:Uid="AboutWePay"
+                Grid.Column="2"
+                Padding="4"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Click="AboutWePay_Click" />
+        </Grid>
+
         <TeachingTip
             x:Name="NeedSelectedTips"
             x:Uid="NeedSelectedTips"

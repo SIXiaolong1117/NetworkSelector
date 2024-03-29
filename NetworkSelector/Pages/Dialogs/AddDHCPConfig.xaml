@@ -9,31 +9,51 @@
     mc:Ignorable="d">
 
     <Grid>
-        <StackPanel
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <TextBlock
+            x:Name="Header"
+            Grid.Row="0"
+            Grid.Column="0"
+            Margin="0,0,0,8"
             HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Orientation="Vertical">
-            <TextBlock
-                x:Name="Header"
-                Margin="0,0,0,8"
-                HorizontalAlignment="Center"
-                FontSize="24"
-                Text="DHCP" />
-            <StackPanel
-                Margin="0,0,0,8"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                Orientation="Vertical">
+            FontSize="24"
+            Text="DHCP" />
+        <ScrollViewer
+            Grid.Row="1"
+            Grid.Column="0"
+            MinWidth="280">
+            <Grid Width="260">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
                 <ComboBox
                     x:Name="networkInterfaceName"
                     x:Uid="Interface"
+                    Grid.Row="0"
+                    Grid.Column="0"
                     Width="250"
                     Margin="0,0,0,8" />
                 <TextBlock
                     x:Uid="SelectInterface"
+                    Grid.Row="1"
+                    Grid.Column="0"
                     FontSize="12"
                     Foreground="DarkGray" />
-            </StackPanel>
-        </StackPanel>
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </ContentDialog>

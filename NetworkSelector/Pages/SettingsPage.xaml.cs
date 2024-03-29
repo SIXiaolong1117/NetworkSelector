@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft Corporation and Contributors.
+ï»¿// Copyright (c) Microsoft Corporation and Contributors.
 // Licensed under the MIT License.
 
 using Microsoft.UI.Xaml;
@@ -18,18 +18,27 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel.Resources;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Globalization;
 using Windows.Storage;
 
 namespace NetworkSelector.Pages
 {
     public sealed partial class SettingsPage : Page
     {
-        // ÆôÓÃ±¾µØÉèÖÃÊı¾İ
+        // å¯ç”¨æœ¬åœ°è®¾ç½®æ•°æ®
         ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
 
         ResourceLoader resourceLoader = new ResourceLoader();
 
-        // ²ÄÁÏComboBoxÁĞ±íList
+        public SettingsPage()
+        {
+            this.InitializeComponent();
+
+            LoadString();
+            materialStatusSet();
+            languageStatusSet();
+        }
+        // ææ–™ComboBoxåˆ—è¡¨List
         public List<string> material { get; } = new List<string>()
         {
             "Mica",
@@ -37,30 +46,49 @@ namespace NetworkSelector.Pages
             "Acrylic"
         };
 
-        public List<string> CMDDisplays { get; } = new List<string>()
+        public List<string> language { get; } = new List<string>()
         {
-            "ÊÇ",
-            "·ñ"
+            "ç®€ä½“ä¸­æ–‡",
+            "English"
         };
-
-        // Ò³Ãæ³õÊ¼»¯
-        public SettingsPage()
-        {
-            // ³õÊ¼»¯
-            this.InitializeComponent();
-
-            materialStatusSet();
-            LoadString();
-        }
         private void LoadString()
         {
             ResetDatabaseTips.ActionButtonContent = resourceLoader.GetString("Confirm");
             ResetDatabaseTips.CloseButtonContent = resourceLoader.GetString("Cancel");
         }
+        private void languageStatusSet()
+        {
+            if (!languageStatusSetList())
+            {
+                // æœªè®¾ç½®
+                localSettings.Values["languageChange"] = Windows.Globalization.Language.CurrentInputMethodLanguageTag;
+                // éæ³•è¾“å…¥ï¼Œæ‰”å‡ºè­¦æŠ¥
+                //throw new Exception(Windows.Globalization.Language.CurrentInputMethodLanguageTag);
+                languageStatusSetList();
+            }
+        }
+        private bool languageStatusSetList()
+        {
+            // è¯»å–æœ¬åœ°è®¾ç½®æ•°æ®ï¼Œè°ƒæ•´ComboBoxçŠ¶æ€
+            if (localSettings.Values["languageChange"] as string == "zh-Hans-CN")
+            {
+                languageChange.SelectedItem = language[0];
+                return true;
+            }
+            else if (localSettings.Values["languageChange"] as string == "en-US")
+            {
+                languageChange.SelectedItem = language[1];
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         private void materialStatusSet()
         {
-            // ¶ÁÈ¡±¾µØÉèÖÃÊı¾İ£¬µ÷ÕûComboBox×´Ì¬
+            // è¯»å–æœ¬åœ°è®¾ç½®æ•°æ®ï¼Œè°ƒæ•´ComboBoxçŠ¶æ€
             if (localSettings.Values["materialStatus"] as string == "Mica")
             {
                 backgroundMaterial.SelectedItem = material[0];
@@ -75,13 +103,15 @@ namespace NetworkSelector.Pages
             }
             else
             {
-                // ·Ç·¨ÊäÈë£¬ÉèÖÃÄ¬ÈÏ²ÄÁÏÎªMica Alt
+                // éæ³•è¾“å…¥ï¼Œè®¾ç½®é»˜è®¤ææ–™ä¸ºMica Alt
                 localSettings.Values["materialStatus"] = "Mica Alt";
                 backgroundMaterial.SelectedItem = material[1];
+                // éæ³•è¾“å…¥ï¼Œæ‰”å‡ºè­¦æŠ¥
+                //throw new Exception($"Wrong material type: {localSettings.Values["materialStatus"]}");
             }
         }
 
-        // ±³¾°²ÄÁÏÉèÖÃComboBox¸Ä¶¯ÊÂ¼ş
+        // èƒŒæ™¯ææ–™è®¾ç½®ComboBoxæ”¹åŠ¨äº‹ä»¶
         private void backgroundMaterial_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             string materialStatus = e.AddedItems[0].ToString();
@@ -125,13 +155,48 @@ namespace NetworkSelector.Pages
             }
         }
 
+        private void languageChange_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string languageStatus = e.AddedItems[0].ToString();
+            switch (languageStatus)
+            {
+                case "ç®€ä½“ä¸­æ–‡":
+                    if (localSettings.Values["languageChange"] as string != "zh-Hans-CN")
+                    {
+                        localSettings.Values["languageChange"] = "zh-Hans-CN";
+                        ApplicationLanguages.PrimaryLanguageOverride = localSettings.Values["languageChange"] as string;
+                        Windows.ApplicationModel.Resources.Core.ResourceContext.SetGlobalQualifierValue("Language", localSettings.Values["languageChange"] as string);
+                        Microsoft.Windows.AppLifecycle.AppInstance.Restart("");
+                    }
+                    else
+                    {
+                        localSettings.Values["languageChange"] = "zh-Hans-CN";
+                    }
+                    break;
+                case "English":
+                    if (localSettings.Values["languageChange"] as string != "en-US")
+                    {
+                        localSettings.Values["languageChange"] = "en-US";
+                        ApplicationLanguages.PrimaryLanguageOverride = localSettings.Values["languageChange"] as string;
+                        Windows.ApplicationModel.Resources.Core.ResourceContext.SetGlobalQualifierValue("Language", localSettings.Values["languageChange"] as string);
+                        Microsoft.Windows.AppLifecycle.AppInstance.Restart("");
+                    }
+                    else
+                    {
+                        localSettings.Values["languageChange"] = "en-US";
+                    }
+                    break;
+                default:
+                    throw new Exception($"Invalid argument: {languageChange}");
+            }
+        }
         private void ResetDatabaseButton_Click(object sender, RoutedEventArgs e)
         {
             ResetDatabaseTips.IsOpen = true;
         }
         private void ResetDatabaseTips_ActionButtonClick(TeachingTip sender, object args)
         {
-            // ÊµÀı»¯SQLiteHelper
+            // å®ä¾‹åŒ–SQLiteHelper
             SQLiteHelper dbHelper = new SQLiteHelper();
             dbHelper.DropTable();
             ResetDatabaseTips.IsOpen = false;
