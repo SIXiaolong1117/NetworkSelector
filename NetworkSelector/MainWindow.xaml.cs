@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft Corporation and Contributors.
+ï»¿// Copyright (c) Microsoft Corporation and Contributors.
 // Licensed under the MIT License.
 
 using Microsoft.UI;
@@ -41,11 +41,11 @@ namespace NetworkSelector
         {
             this.InitializeComponent();
 
-            // Æô¶¯¸öĞÔ»¯TitleBar
+            // å¯åŠ¨ä¸ªæ€§åŒ–TitleBar
             ExtendsContentIntoTitleBar = true;
-            // ½«UIÉèÖÃÎªTitleBar
+            // å°†UIè®¾ç½®ä¸ºTitleBar
             SetTitleBar(AppTitleBar);
-            // ÉèÖÃÈÎÎñÀ¸ÏÔÊ¾Ãû³Æ
+            // è®¾ç½®ä»»åŠ¡æ æ˜¾ç¤ºåç§°
             Title = resourceLoader.GetString("AppTitle");
 
             if (localSettings.Values["materialStatus"] as string == "Acrylic")

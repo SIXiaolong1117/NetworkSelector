@@ -226,7 +226,9 @@ namespace NetworkSelector.Pages
                 _dispatcherQueue.TryEnqueue(() =>
                 {
                     InProgressing.IsActive = false;
-                    NetworkIsChangeTips.IsOpen = true;
+                    string IPv6IsDisable = resourceLoader.GetString("NotificationIPv6IsDisable");
+                    string UACSuccessfully = resourceLoader.GetString("NotificationUACSuccessfully");
+                    NSMethod.SendNotification(IPv6IsDisable, UACSuccessfully);
                     DisplayNetworkInfo();
                 });
             }));
@@ -264,7 +266,9 @@ namespace NetworkSelector.Pages
                 _dispatcherQueue.TryEnqueue(() =>
                 {
                     InProgressing.IsActive = false;
-                    NetworkIsChangeTips.IsOpen = true;
+                    string IPv6IsEnable = resourceLoader.GetString("NotificationIPv6IsEnable");
+                    string UACSuccessfully = resourceLoader.GetString("NotificationUACSuccessfully");
+                    NSMethod.SendNotification(IPv6IsEnable, UACSuccessfully);
                     DisplayNetworkInfo();
                 });
             }));
@@ -308,8 +312,10 @@ namespace NetworkSelector.Pages
                     // 要在UI线程上更新UI，使用DispatcherQueue
                     _dispatcherQueue.TryEnqueue(() =>
                     {
-                        InProgressing.IsActive = false;
-                        NetworkIsChangeTips.IsOpen = true;
+                        InProgressing.IsActive = false; 
+                        string NetChange = resourceLoader.GetString("NotificationNetChange");
+                        string UACSuccessfully = resourceLoader.GetString("NotificationUACSuccessfully");
+                        NSMethod.SendNotification(NetChange, UACSuccessfully);
                         DisplayNetworkInfo();
                     });
                 }));
@@ -347,7 +353,9 @@ namespace NetworkSelector.Pages
                 _dispatcherQueue.TryEnqueue(() =>
                 {
                     InProgressing.IsActive = false;
-                    NetworkIsChangeTips.IsOpen = true;
+                    string NetChange = resourceLoader.GetString("NotificationNetChange");
+                    string UACSuccessfully = resourceLoader.GetString("NotificationUACSuccessfully");
+                    NSMethod.SendNotification(NetChange, UACSuccessfully);
                     DisplayNetworkInfo();
                 });
             }));

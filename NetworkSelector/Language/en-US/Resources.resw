@@ -333,6 +333,18 @@
   <data name="NotAdminTips.Title" xml:space="preserve">
     <value>Operation Failed!</value>
   </data>
+  <data name="NotificationIPv6IsDisable" xml:space="preserve">
+    <value>IPv6 disabled</value>
+  </data>
+  <data name="NotificationIPv6IsEnable" xml:space="preserve">
+    <value>IPv6 enabled</value>
+  </data>
+  <data name="NotificationNetChange" xml:space="preserve">
+    <value>Network configuration changes</value>
+  </data>
+  <data name="NotificationUACSuccessfully" xml:space="preserve">
+    <value>If UAC permission is successfully obtained</value>
+  </data>
   <data name="PRIVACYLink.Content" xml:space="preserve">
     <value>PRIVACY</value>
   </data>

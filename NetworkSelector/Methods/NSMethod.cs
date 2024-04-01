@@ -12,6 +12,9 @@ using Windows.Storage.Provider;
 using Windows.Storage;
 using Newtonsoft.Json;
 using System.Diagnostics;
+using Windows.UI.Notifications;
+using Microsoft.Toolkit.Uwp.Notifications;
+
 
 namespace NetworkSelector.Methods
 {
@@ -179,6 +182,32 @@ namespace NetworkSelector.Methods
                 // 未选择JSON文件。
                 return null;
             }
+        }
+        // 发送通知
+        public static void SendNotification(string title, string content, string additionalContent = null, string buttonText = null, string buttonArgument = null)
+        {
+            // 创建一个 ToastNotificationContent 对象
+            ToastContentBuilder builder = new ToastContentBuilder()
+                .AddText(title)
+                .AddText(content);
+
+            if (!string.IsNullOrEmpty(additionalContent))
+            {
+                builder.AddText(additionalContent);
+            }
+
+            if (!string.IsNullOrEmpty(buttonText))
+            {
+                builder.AddButton(new ToastButton()
+                    .SetContent(buttonText)
+                    .AddArgument("action", buttonArgument));
+            }
+
+            // 构建通知
+            ToastNotification notification = new ToastNotification(builder.GetToastContent().GetXml());
+
+            // 发送通知
+            ToastNotificationManager.CreateToastNotifier().Show(notification);
         }
     }
 }
