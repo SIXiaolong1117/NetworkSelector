@@ -136,7 +136,7 @@
     <value>网关切换器</value>
   </data>
   <data name="AboutNSRightTip.Text" xml:space="preserve">
-    <value>© 2024 司晓龙. 本作品采用 MIT License.</value>
+    <value>© 2024 司晓龙. 使用 MIT License.</value>
   </data>
   <data name="AboutReference.Text" xml:space="preserve">
     <value>依赖</value>
@@ -310,7 +310,7 @@
     <value>接口名称:</value>
   </data>
   <data name="NetworkInterfaceSpeed.Text" xml:space="preserve">
-    <value>协商速度:</value>
+    <value>链接速率:</value>
   </data>
   <data name="NetworkInterfaceSubnetMask.Text" xml:space="preserve">
     <value>子网掩码:</value>

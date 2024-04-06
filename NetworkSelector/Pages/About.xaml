@@ -73,8 +73,7 @@
                     Grid.Row="1"
                     Margin="24,0,24,0"
                     Padding="28,16,28,16"
-                    Background="#11FFFFFF"
-                    BorderBrush="#11FFFFFF"
+                    Background="{ThemeResource SystemControlBackgroundAltMediumLowBrush}"
                     BorderThickness="0"
                     CornerRadius="4,4,0,0">
                     <Grid.RowDefinitions>
@@ -97,7 +96,7 @@
                             x:Uid="AboutNSRightTip"
                             Grid.Row="1"
                             FontSize="12"
-                            Foreground="DarkGray" />
+                            Foreground="{ThemeResource SystemControlBackgroundBaseMediumBrush}" />
                     </Grid>
                     <TextBlock
                         x:Name="APPVersion"
@@ -105,15 +104,14 @@
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center"
                         FontSize="14"
-                        Foreground="DarkGray" />
+                        Foreground="{ThemeResource SystemControlBackgroundBaseMediumBrush}" />
                 </Grid>
 
                 <Grid
                     Grid.Row="2"
                     Margin="24,1,24,0"
                     Padding="16"
-                    Background="#11FFFFFF"
-                    BorderBrush="#11FFFFFF"
+                    Background="{ThemeResource SystemControlBackgroundAltMediumLowBrush}"
                     BorderThickness="0"
                     CornerRadius="0,0,4,4">
                     <Grid.RowDefinitions>
@@ -176,8 +174,7 @@
                     Grid.Row="4"
                     Margin="24,1,24,0"
                     Padding="16"
-                    Background="#11FFFFFF"
-                    BorderBrush="#11FFFFFF"
+                    Background="{ThemeResource SystemControlBackgroundAltMediumLowBrush}"
                     BorderThickness="0"
                     CornerRadius="4,4,4,4">
                     <Grid.RowDefinitions>
@@ -190,7 +187,8 @@
                     <ScrollViewer
                         Grid.Column="0"
                         HorizontalAlignment="Stretch"
-                        Style="{StaticResource TransparentScrollViewerStyle}">
+                        Background="{ThemeResource SystemControlBackgroundAltMediumLowBrush}"
+                        CornerRadius="4">
                         <TextBlock
                             x:Name="NameList"
                             Margin="8,8,8,8"
@@ -230,8 +228,7 @@
                     Grid.Row="6"
                     Margin="24,1,24,0"
                     Padding="16"
-                    Background="#11FFFFFF"
-                    BorderBrush="#11FFFFFF"
+                    Background="{ThemeResource SystemControlBackgroundAltMediumLowBrush}"
                     BorderThickness="0"
                     CornerRadius="4,4,4,4">
                     <Grid.RowDefinitions>
@@ -289,11 +286,13 @@
                     Grid.Row="8"
                     Margin="24,1,24,0"
                     Padding="16"
-                    Background="#11FFFFFF"
-                    BorderBrush="#11FFFFFF"
+                    Background="{ThemeResource SystemControlBackgroundAltMediumLowBrush}"
                     BorderThickness="0"
                     CornerRadius="4,4,4,4">
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
@@ -307,6 +306,34 @@
                         VerticalAlignment="Center"
                         Content="WindowsAppSDK"
                         NavigateUri="https://aka.ms/windowsappsdk" />
+                    <HyperlinkButton
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Content="Microsoft.Windows.SDK.BuildTools"
+                        NavigateUri="https://www.nuget.org/packages/Microsoft.Windows.SDK.BuildTools/" />
+                    <HyperlinkButton
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Content="Microsoft.Data.Sqlite"
+                        NavigateUri="https://www.nuget.org/packages/Microsoft.Data.Sqlite/" />
+                    <HyperlinkButton
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Content="Newtonsoft.Json"
+                        NavigateUri="https://www.nuget.org/packages/Newtonsoft.Json/" />
+                    <HyperlinkButton
+                        Grid.Row="4"
+                        Grid.Column="0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Content="PInvoke.User32"
+                        NavigateUri="https://www.nuget.org/packages/PInvoke.User32/" />
                 </Grid>
             </Grid>
         </ScrollViewer>

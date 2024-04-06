@@ -52,7 +52,7 @@
                 Grid.Row="1"
                 Margin="24,0,24,0"
                 Padding="28,16,28,16"
-                Background="#11FFFFFF"
+                Background="{ThemeResource SystemControlBackgroundAltMediumLowBrush}"
                 BorderThickness="0"
                 CornerRadius="4,4,0,0">
                 <Grid.RowDefinitions>
@@ -86,7 +86,7 @@
                 Grid.Row="2"
                 Margin="24,1,24,0"
                 Padding="28,16,28,16"
-                Background="#11FFFFFF"
+                Background="{ThemeResource SystemControlBackgroundAltMediumLowBrush}"
                 BorderThickness="0"
                 CornerRadius="0,0,4,4">
                 <Grid.RowDefinitions>
@@ -136,7 +136,7 @@
                 Grid.Row="1"
                 Margin="24,0,24,0"
                 Padding="28,16,28,16"
-                Background="#11FFFFFF"
+                Background="{ThemeResource SystemControlBackgroundAltMediumLowBrush}"
                 BorderThickness="0"
                 CornerRadius="4,4,4,4">
                 <Grid.RowDefinitions>

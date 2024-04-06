@@ -10,17 +10,6 @@
     mc:Ignorable="d">
 
     <Page.Resources>
-        <!--  定义 ScrollViewer 的样式  -->
-        <Style x:Key="TransparentScrollViewerStyle" TargetType="ScrollViewer">
-            <!--  设置背景为透明  -->
-            <Setter Property="Background" Value="#11FFFFFF" />
-            <!--  设置边框为透明  -->
-            <Setter Property="BorderBrush" Value="Transparent" />
-            <!--  设置边框厚度为0  -->
-            <Setter Property="BorderThickness" Value="0" />
-            <!--  设置圆角  -->
-            <Setter Property="CornerRadius" Value="4" />
-        </Style>
         <Flyout x:Name="confirmationDelFlyout" Placement="Right">
             <StackPanel>
                 <TextBlock x:Uid="ConfirmDelete" Margin="0,0,0,8" />
@@ -87,7 +76,7 @@
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 FontSize="12"
-                Foreground="DarkGray" />
+                Foreground="{ThemeResource SystemControlBackgroundBaseMediumBrush}" />
             <TextBlock
                 x:Uid="Tips2"
                 Grid.Row="0"
@@ -96,7 +85,7 @@
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 FontSize="12"
-                Foreground="DarkGray" />
+                Foreground="{ThemeResource SystemControlBackgroundBaseMediumBrush}" />
         </Grid>
 
         <Grid
@@ -114,7 +103,8 @@
                 Grid.Row="0"
                 Grid.Column="0"
                 Margin="0,0,4,0"
-                Style="{StaticResource TransparentScrollViewerStyle}">
+                Background="{ThemeResource SystemControlBackgroundAltMediumLowBrush}"
+                CornerRadius="4">
                 <Grid>
                     <ListView
                         x:Name="dataListView"
@@ -233,8 +223,9 @@
                     Grid.Row="0"
                     Grid.Column="0"
                     Margin="0,0,0,8"
-                    RightTapped="OnScrollViewerRightTapped"
-                    Style="{StaticResource TransparentScrollViewerStyle}">
+                    Background="{ThemeResource SystemControlBackgroundAltMediumLowBrush}"
+                    CornerRadius="4"
+                    RightTapped="OnScrollViewerRightTapped">
                     <ListView
                         x:Name="dataListView2"
                         HorizontalAlignment="Stretch"
@@ -255,7 +246,7 @@
                                         TextWrapping="Wrap" />
                                     <TextBlock
                                         Margin="0,0,0,8"
-                                        Foreground="DarkGray"
+                                        Foreground="{ThemeResource SystemControlBackgroundBaseMediumBrush}"
                                         Text="{Binding Name}"
                                         TextWrapping="Wrap" />
                                     <TextBlock
@@ -264,7 +255,7 @@
                                         TextWrapping="Wrap" />
                                     <TextBlock
                                         Margin="0,0,0,8"
-                                        Foreground="DarkGray"
+                                        Foreground="{ThemeResource SystemControlBackgroundBaseMediumBrush}"
                                         Text="{Binding Description}"
                                         TextWrapping="Wrap" />
                                     <TextBlock
@@ -273,7 +264,7 @@
                                         TextWrapping="Wrap" />
                                     <TextBlock
                                         Margin="0,0,0,8"
-                                        Foreground="DarkGray"
+                                        Foreground="{ThemeResource SystemControlBackgroundBaseMediumBrush}"
                                         Text="{Binding MACAddress}"
                                         TextWrapping="Wrap" />
                                     <TextBlock
@@ -282,7 +273,7 @@
                                         TextWrapping="Wrap" />
                                     <TextBlock
                                         Margin="0,0,0,8"
-                                        Foreground="DarkGray"
+                                        Foreground="{ThemeResource SystemControlBackgroundBaseMediumBrush}"
                                         Text="{Binding IPAddress}"
                                         TextWrapping="Wrap" />
                                     <TextBlock
@@ -291,7 +282,7 @@
                                         TextWrapping="Wrap" />
                                     <TextBlock
                                         Margin="0,0,0,8"
-                                        Foreground="DarkGray"
+                                        Foreground="{ThemeResource SystemControlBackgroundBaseMediumBrush}"
                                         Text="{Binding GatewayAddress}"
                                         TextWrapping="Wrap" />
                                     <TextBlock
@@ -300,7 +291,7 @@
                                         TextWrapping="Wrap" />
                                     <TextBlock
                                         Margin="0,0,0,8"
-                                        Foreground="DarkGray"
+                                        Foreground="{ThemeResource SystemControlBackgroundBaseMediumBrush}"
                                         Text="{Binding DNS}"
                                         TextWrapping="Wrap" />
                                     <TextBlock
@@ -309,7 +300,7 @@
                                         TextWrapping="Wrap" />
                                     <TextBlock
                                         Margin="0,0,0,8"
-                                        Foreground="DarkGray"
+                                        Foreground="{ThemeResource SystemControlBackgroundBaseMediumBrush}"
                                         Text="{Binding Type}"
                                         TextWrapping="Wrap" />
                                     <TextBlock
@@ -318,7 +309,7 @@
                                         TextWrapping="Wrap" />
                                     <TextBlock
                                         Margin="0,0,0,8"
-                                        Foreground="DarkGray"
+                                        Foreground="{ThemeResource SystemControlBackgroundBaseMediumBrush}"
                                         Text="{Binding Speed}"
                                         TextWrapping="Wrap" />
                                 </StackPanel>
@@ -332,6 +323,8 @@
                     Grid.Row="1"
                     Grid.Column="0"
                     HorizontalAlignment="Stretch"
+                    Background="{ThemeResource SystemControlBackgroundAltMediumLowBrush}"
+                    BorderThickness="0"
                     SelectionChanged="networkInterfaceName_SelectionChanged" />
             </Grid>
         </Grid>

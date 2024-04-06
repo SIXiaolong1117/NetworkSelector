@@ -52,7 +52,7 @@
                     Grid.Row="1"
                     Grid.Column="0"
                     FontSize="12"
-                    Foreground="DarkGray" />
+                    Foreground="{ThemeResource SystemControlBackgroundBaseMediumBrush}" />
             </Grid>
         </ScrollViewer>
     </Grid>

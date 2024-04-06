@@ -136,7 +136,7 @@
     <value>Gateway Switcher</value>
   </data>
   <data name="AboutNSRightTip.Text" xml:space="preserve">
-    <value>© 2024 SI Xiaolong. This work is licensed under the MIT License.</value>
+    <value>© 2024 SI Xiaolong. Under MIT License.</value>
   </data>
   <data name="AboutReference.Text" xml:space="preserve">
     <value>Dependencies</value>
@@ -214,13 +214,13 @@
     <value>Are you sure you want to overwrite?</value>
   </data>
   <data name="copyMenuItemText" xml:space="preserve">
-    <value>Copy Configuration</value>
+    <value>Copy</value>
   </data>
   <data name="DatabaseSetting.Text" xml:space="preserve">
     <value>Database</value>
   </data>
   <data name="deleteMenuItemText" xml:space="preserve">
-    <value>Delete Configuration</value>
+    <value>Delete</value>
   </data>
   <data name="DHCPConfig.Label" xml:space="preserve">
     <value>DHCP</value>
@@ -235,16 +235,16 @@
     <value>Close</value>
   </data>
   <data name="DisableIPv6" xml:space="preserve">
-    <value>Disable IPv6</value>
+    <value>Disable v6</value>
   </data>
   <data name="editMenuItemText" xml:space="preserve">
-    <value>Edit Configuration</value>
+    <value>Edit</value>
   </data>
   <data name="EnableIPv6" xml:space="preserve">
-    <value>Enable IPv6</value>
+    <value>Enable v6</value>
   </data>
   <data name="exportMenuItemText" xml:space="preserve">
-    <value>Export Configuration</value>
+    <value>Export</value>
   </data>
   <data name="FeedbackBugs.Content" xml:space="preserve">
     <value>Feedback Bugs</value>
@@ -310,7 +310,7 @@
     <value>Interface Name:</value>
   </data>
   <data name="NetworkInterfaceSpeed.Text" xml:space="preserve">
-    <value>Negotiated Speed:</value>
+    <value>Link Speed:</value>
   </data>
   <data name="NetworkInterfaceSubnetMask.Text" xml:space="preserve">
     <value>Subnet Mask:</value>
@@ -352,7 +352,7 @@
     <value>Refresh</value>
   </data>
   <data name="replaceMenuItemText" xml:space="preserve">
-    <value>Replace Configuration</value>
+    <value>Replace</value>
   </data>
   <data name="ResetDatabase.Content" xml:space="preserve">
     <value>Reset Database</value>
@@ -370,7 +370,7 @@
     <value>Select your internet access interface</value>
   </data>
   <data name="selectMenuItemText" xml:space="preserve">
-    <value>Switch to this configuration</value>
+    <value>Switch to</value>
   </data>
   <data name="SettingsHeader.Text" xml:space="preserve">
     <value>Settings</value>
