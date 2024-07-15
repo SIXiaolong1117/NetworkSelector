@@ -3,11 +3,11 @@
   <p align="center">一个基于 WinUI3 的网关选择器 (Gateway Switcher)。</p>
   <p align="center">可以实现在多个网络配置预设中快速切换。</p>
   <p align="center">
-    <a href="https://github.com/Direct5dom/NetworkSelector/blob/master/LICENSE">
-      <img src="https://img.shields.io/github/license/Direct5dom/NetworkSelector"/>
+    <a href="https://github.com/SIXiaolong1117/NetworkSelector/blob/master/LICENSE">
+      <img src="https://img.shields.io/github/license/SIXiaolong1117/NetworkSelector"/>
     </a>
-    <a href="https://github.com/Direct5dom/NetworkSelector/releases">
-      <img src="https://img.shields.io/github/v/release/Direct5dom/NetworkSelector?display_name=tag"/>
+    <a href="https://github.com/SIXiaolong1117/NetworkSelector/releases">
+      <img src="https://img.shields.io/github/v/release/SIXiaolong1117/NetworkSelector?display_name=tag"/>
     </a>
   </p>
   <p align="center">
@@ -43,7 +43,7 @@
 您可以使用 Git 命令行：
 
 ```
-git clone git@github.com:Direct5dom/NetworkSelector.git
+git clone https://github.com/SIXiaolong1117/NetworkSelector.git
 ```
 
 或者更方便的，使用 Visual Studio 的“克隆存储库”克隆本仓库。
