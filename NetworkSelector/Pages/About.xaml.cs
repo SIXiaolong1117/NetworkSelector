@@ -22,7 +22,7 @@ namespace NetworkSelector.Pages
             var version = package.Id.Version;
 
             APPVersion.Text = $"{version.Major}.{version.Minor}.{version.Build}";
-            //APPVersion.NavigateUri = new System.Uri($"https://github.com/Direct5dom/NetworkSelector/releases/tag/{version.Major}.{version.Minor}.{version.Build}.{version.Revision}");
+            //APPVersion.NavigateUri = new System.Uri($"https://github.com/SIXiaolong1117/NetworkSelector/releases/tag/{version.Major}.{version.Minor}.{version.Build}.{version.Revision}");
             //APPVersion.NavigateUri = new System.Uri($"https://www.microsoft.com/store/apps/9PDQC93R0WLF");
 
             GetList();
@@ -57,13 +57,13 @@ namespace NetworkSelector.Pages
             string stringList = null;
             try
             {
-                nameList = await HTTPResponse("https://raw.githubusercontent.com/Direct5dom/Direct5dom/main/README/Sponsor/List");
+                nameList = await HTTPResponse("https://raw.githubusercontent.com/SIXiaolong1117/SIXiaolong1117/main/README/Sponsor/List");
             }
             catch (Exception ex)
             {
                 try
                 {
-                    nameList = await HTTPResponse("https://gitee.com/XiaolongSI/Direct5dom/raw/main/README/Sponsor/List");
+                    nameList = await HTTPResponse("https://gitee.com/XiaolongSI/SIXiaolong1117/raw/main/README/Sponsor/List");
                 }
                 catch (Exception ex2)
                 {
@@ -72,13 +72,13 @@ namespace NetworkSelector.Pages
             }
             try
             {
-                stringList = await HTTPResponse("https://raw.githubusercontent.com/Direct5dom/Direct5dom/main/README/Text/List");
+                stringList = await HTTPResponse("https://raw.githubusercontent.com/SIXiaolong1117/SIXiaolong1117/main/README/Text/List");
             }
             catch (Exception ex)
             {
                 try
                 {
-                    stringList = await HTTPResponse("https://gitee.com/XiaolongSI/Direct5dom/raw/main/README/Text/List");
+                    stringList = await HTTPResponse("https://gitee.com/XiaolongSI/SIXiaolong1117/raw/main/README/Text/List");
                 }
                 catch (Exception ex2)
                 {

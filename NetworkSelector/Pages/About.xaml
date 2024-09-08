@@ -134,14 +134,14 @@
                         Grid.Column="0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
-                        NavigateUri="https://raw.githubusercontent.com/Direct5dom/NetworkSelector/master/PRIVACY" />
+                        NavigateUri="https://raw.githubusercontent.com/SIXiaolong1117/NetworkSelector/master/PRIVACY" />
                     <HyperlinkButton
                         x:Uid="FeedbackBugs"
                         Grid.Row="1"
                         Grid.Column="0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
-                        NavigateUri="https://github.com/Direct5dom/NetworkSelector/issues" />
+                        NavigateUri="https://github.com/SIXiaolong1117/NetworkSelector/issues" />
                     <HyperlinkButton
                         x:Uid="AboutWiki"
                         Grid.Row="2"
@@ -156,7 +156,7 @@
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
                         FontSize="14"
-                        NavigateUri="https://github.com/Direct5dom/NetworkSelector" />
+                        NavigateUri="https://github.com/SIXiaolong1117/NetworkSelector" />
                     <HyperlinkButton
                         x:Uid="AboutMITLicense"
                         Grid.Row="4"
@@ -164,7 +164,7 @@
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
                         FontSize="14"
-                        NavigateUri="https://raw.githubusercontent.com/Direct5dom/NetworkSelector/master/LICENSE" />
+                        NavigateUri="https://raw.githubusercontent.com/SIXiaolong1117/NetworkSelector/master/LICENSE" />
                 </Grid>
 
                 <TextBlock
